@@ -43,13 +43,14 @@
     localsend
     rclone
     fastfetch
-    
+
     # Development
     zed-editor
-    
+    ghostty
+
     inputs.zen-browser.packages.${system}.default
   ];
-  
+
   xdg = {
     enable = true;
     userDirs = {

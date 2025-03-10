@@ -9,7 +9,7 @@
   ];
 
   networking.hostName = "seldon-nix";
-  
+
   boot.loader.efi.canTouchEfiVariables = false;
   boot.loader.grub = {
     enable = true;
@@ -20,12 +20,12 @@
     theme = "${pkgs.kdePackages.breeze-grub}/grub/themes/breeze";
   };
   boot.kernelParams = [ "apple_dcp.show_notch=1" ];
-  
+
   # Asahi-specific configuration
   hardware.asahi = {
     withRust = true;
-    # useExperimentalGPUDriver = true;
-    # experimentalGPUInstallMode = "replace";
+    useExperimentalGPUDriver = true;
+    experimentalGPUInstallMode = "replace";
     setupAsahiSound = true;
     # peripheralFirmwareDirectory = ../../firmware;
     peripheralFirmwareDirectory = /etc/nixos/firmware;
@@ -38,12 +38,12 @@
   } ];
 
   environment.systemPackages = with pkgs; [
-    # mesa
-    # mesa.drivers
+    mesa
+    mesa.drivers
   ];
 
   services.displayManager.sddm.wayland.enable = true;
   services.desktopManager.plasma6.enable = true;
-  
+
   time.timeZone = "America/New_York";
 }
