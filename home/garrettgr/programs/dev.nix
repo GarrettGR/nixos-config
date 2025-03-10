@@ -17,10 +17,10 @@
     
     # Python
     python314
-    python314Packages.pip
-    python314Packages.black
-    python314Packages.pylint
-    python314Packages.isort
+    # python314Packages.pip
+    # python314Packages.black
+    # python314Packages.pylint
+    # python314Packages.isort
     
     # Node.js
     # nodejs_20
