@@ -24,8 +24,8 @@
   # Asahi-specific configuration
   hardware.asahi = {
     withRust = true;
-    useExperimentalGPUDriver = true;
-    experimentalGPUInstallMode = "replace";
+    # useExperimentalGPUDriver = true;
+    # experimentalGPUInstallMode = "replace";
     setupAsahiSound = true;
     # peripheralFirmwareDirectory = ../../firmware;
     peripheralFirmwareDirectory = /etc/nixos/firmware;
@@ -38,8 +38,8 @@
   } ];
 
   environment.systemPackages = with pkgs; [
-    mesa
-    mesa.drivers
+    # mesa
+    # mesa.drivers
   ];
 
   services.displayManager.sddm.wayland.enable = true;
