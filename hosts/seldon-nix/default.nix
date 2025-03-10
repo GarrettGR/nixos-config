@@ -27,7 +27,8 @@
     useExperimentalGPUDriver = true;
     experimentalGPUInstallMode = "replace";
     setupAsahiSound = true;
-    peripheralFirmwareDirectory = ../../firmware;
+    # peripheralFirmwareDirectory = ../../firmware;
+    peripheralFirmwareDirectory = /etc/nixos/firmware;
   };
 
   # Swap configuration - defined here rather than hardware-configuration.nix ??
