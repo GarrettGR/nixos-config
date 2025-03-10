@@ -14,11 +14,17 @@
     };
     
     shellAliases = {
-      ll = "eza -la";
-      ls = "eza";
+      c = "clear";
+      l = "command ls -l";
+      ls = "eza $eza_params";
+      ll = "eza --all --header --long $eza_params";
+      la = "eza --all $eza_params";
+      lt = "eza --icons --tree --color-scale --git --level=3";
+      lr = "eza --recurse --level=2 $eza_params";
       cat = "bat";
-      cd = "z";
-      vim = "nvim";
+      ccat = "command cat";
+      top = "btop";
+      rl = "exec zsh";
       gs = "git status";
       gc = "git commit";
       gd = "git diff";
@@ -46,7 +52,7 @@
   programs.zoxide = {
     enable = true;
     enableZshIntegration = true;
-    options = ["--cmd cd"];
+    options = [ "--cmd cd" ];
   };
   
   programs.atuin = {
