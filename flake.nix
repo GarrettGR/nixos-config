@@ -22,7 +22,7 @@
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-sops, apple-silicon-support, zen-browser, ... } @ inputs:
+  outputs = { self, nixpkgs, home-manager, sops-nix, apple-silicon-support, zen-browser, ... } @ inputs:
     let
       system = "aarch64-linux";
       lib = nixpkgs.lib;
