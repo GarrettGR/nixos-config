@@ -8,6 +8,11 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     
     apple-silicon-support = {
       url = "github:tpwrules/nixos-apple-silicon";
@@ -17,7 +22,7 @@
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
   };
 
-  outputs = { self, nixpkgs, home-manager, apple-silicon-support, zen-browser, ... } @ inputs:
+  outputs = { self, nixpkgs, home-manager, nix-sops, apple-silicon-support, zen-browser, ... } @ inputs:
     let
       system = "aarch64-linux";
       lib = nixpkgs.lib;
@@ -31,11 +36,10 @@
         modules = [
           # Host specific configuration
           ./hosts/seldon-nix
-          
           # Import apple silicon support
           apple-silicon-support.nixosModules.apple-silicon-support
-          
-          # Import home-manager module
+
+          sops-nix.nixosModules.sops
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;

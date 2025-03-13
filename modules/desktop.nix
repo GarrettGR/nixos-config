@@ -13,7 +13,11 @@
     enable = true;
     xwayland.enable = true;
   };
-  
+ 
+  environment.systemPackages = with pkgs; [
+    wofi
+  ];
+
   programs.firefox.enable = true;
   
   fonts.packages = with pkgs; [

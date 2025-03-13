@@ -87,7 +87,6 @@
       lspconfig.rust_analyzer.setup {}
       lspconfig.pyright.setup {}
       lspconfig.tsserver.setup {}
-      lspconfig.rnix.setup {}
       
       -- nvim-cmp setup
       local cmp = require('cmp')
