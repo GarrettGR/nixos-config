@@ -39,7 +39,7 @@
           # Import apple silicon support
           apple-silicon-support.nixosModules.apple-silicon-support
 
-          sops-nix.nixosModules.sops
+          # sops-nix.nixosModules.sops
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;

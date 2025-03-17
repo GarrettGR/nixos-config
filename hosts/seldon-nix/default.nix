@@ -39,7 +39,7 @@
 
   environment.systemPackages = with pkgs; [
     mesa
-    mesa.drivers
+    # mesa.drivers
   ];
 
   services.displayManager.sddm.wayland.enable = true;
