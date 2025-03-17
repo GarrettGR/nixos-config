@@ -45,5 +45,8 @@
   services.displayManager.sddm.wayland.enable = true;
   services.desktopManager.plasma6.enable = true;
 
+  # external DisplayLink adapter (since dp-alt mode for usb-c doesn't work yet)
+  services.xserver.videoDrivers = [ "displaylink" "modesetting" ];
+
   time.timeZone = "America/New_York";
 }

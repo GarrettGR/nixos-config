@@ -12,10 +12,22 @@
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
+    # withUWSM = true;
   };
- 
+
+  services.hypridle.enable = true;
+  programs.hyprlock.enable = true;
+  # programs.uwsm.enable = true;
+
+  programs.waybar = {
+    enable = true;
+    # package = pkgs.waybar-hyprland;
+  };
+
   environment.systemPackages = with pkgs; [
     wofi
+    hyprpaper
+    hyprshot
   ];
 
   programs.firefox.enable = true;

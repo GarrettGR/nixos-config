@@ -48,6 +48,9 @@
     zed-editor
     ghostty
 
+    kicad
+    # freecad-wayland
+
     inputs.zen-browser.packages.${system}.default
   ];
 
