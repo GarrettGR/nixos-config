@@ -26,13 +26,17 @@
     };
   };
   
+  # Add common user applications
   home.packages = with pkgs; [
+    # Productivity
     obsidian
     bitwarden
     
+    # Communication
     legcord
     telegram-desktop
     
+    # Utilities
     speedread
     nmap
     speedtest-cli
@@ -40,6 +44,7 @@
     rclone
     fastfetch
 
+    # Development
     zed-editor
     ghostty
 
