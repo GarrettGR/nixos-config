@@ -26,6 +26,7 @@
     # nodejs_20
     
     # Development tools
+    claude-code
     ripgrep
     fzf
     jq
