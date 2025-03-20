@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, ... }
 
 {
   services.xserver = {
@@ -28,6 +28,15 @@
     wofi
     hyprpaper
     hyprshot
+    # grim
+    # slurp
+    brightnessctl
+    pavucontrol
+    wl-clipboard
+    wlogout
+    # networkmanagerapplet
+    # dunst
+    # libnotify
   ];
 
   programs.firefox.enable = true;
