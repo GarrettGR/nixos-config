@@ -3,3 +3,5 @@ certificates/
 
 result
 
+*.swp
+*.bak
