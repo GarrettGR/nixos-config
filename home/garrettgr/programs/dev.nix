@@ -53,4 +53,8 @@
       editor = "nvim";
     };
   };
+
+  # programs.nvf = {
+  #   enable = true;
+  # };
 }

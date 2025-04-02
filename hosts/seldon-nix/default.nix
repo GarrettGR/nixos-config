@@ -21,6 +21,12 @@
   };
   boot.kernelParams = [ "apple_dcp.show_notch=1" ];
 
+  boot.binfmt.emulatedSystems = [ "x86_64-linux" ];
+  nix.settings = {
+    extra-platforms = [ "x86_64-linux" ];
+    trusted-users = [ "garrettgr" ];
+  };
+
   # Asahi-specific configuration
   hardware.asahi = {
     withRust = true;

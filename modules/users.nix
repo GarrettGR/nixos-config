@@ -4,7 +4,7 @@
   users.users.garrettgr = {
     isNormalUser = true;
     shell = pkgs.zsh;
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = [ "wheel" "networkmanager" "lp" ];
   };
   
   programs.zsh.enable = true;

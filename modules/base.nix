@@ -38,14 +38,25 @@
   services = {
     openssh.enable = true;
     timesyncd.enable = true;
-    printing.enable = true;
+    printing = {
+      enable = true;
+      browsing = true;
+      browsedConf = ''
+        BrowseDNSSDSubTypes _cups,_print
+        BrowseLocalProtocols all
+        BrowseRemoteProtocols all
+        CreateIPPPrinterQueues All
+
+        BrowseProtocols all
+      '';
+    };
     avahi = {
       enable = true;
       nssmdns4 = true;
       openFirewall = true;
     };
   };
-  
+
   security.sudo.wheelNeedsPassword = true;
   
   i18n.defaultLocale = "en_US.UTF-8";

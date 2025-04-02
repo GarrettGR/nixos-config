@@ -3,7 +3,7 @@
 {
   imports = [
     ./programs/shell.nix
-    ./programs/neovim.nix
+    # ./programs/neovim.nix
     ./programs/tmux.nix
     ./programs/dev.nix
     # ./programs/hyprland.nix
@@ -11,11 +11,11 @@
   
   home.username = "garrettgr";
   home.homeDirectory = "/home/garrettgr";
-  
+
   home.stateVersion = "25.05";
-  
+
   programs.home-manager.enable = true;
-  
+
   programs.git = {
     enable = true;
     userName = "Garrett Gonzalez-Rivas";
@@ -26,14 +26,24 @@
       rebase.autoStash = true;
     };
   };
-  
+
   home.packages = with pkgs; [
+    spotify-player
+    # spotify-cli-linux
+    # spotify # unavailable on aarch64
+    # ytui-music
+    
+    # tuisky
+    # tuir
+
+    # wikitui
+
     obsidian
     bitwarden
-    
+
     legcord
     telegram-desktop
-    
+
     speedread
     nmap
     speedtest-cli
@@ -44,10 +54,11 @@
     zed-editor
     ghostty
 
+    darktable
     kicad
     # freecad-wayland
 
-    inputs.zen-browser.packages.${system}.default
+    inputs.zen-browser.packages.${system}.twilight
   ];
 
   xdg = {

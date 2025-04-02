@@ -37,6 +37,7 @@
     # networkmanagerapplet
     # dunst
     # libnotify
+    vulkan-tools
   ];
 
   programs.firefox.enable = true;

@@ -15,14 +15,25 @@
     };
     
     apple-silicon-support = {
-      url = "github:tpwrules/nixos-apple-silicon";
+      # url = "github:tpwrules/nixos-apple-silicon";
+      url = "github:tpwrules/nixos-apple-silicon?rev=f51de44b1d720ac23e838db8e0cf13fadb7942b8";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     
-    zen-browser.url = "github:0xc000022070/zen-browser-flake";
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # obsidian-nvim.url = "github:epwalsh/obsidian.nvim";
+    nvf = {
+      url = "github:notashelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.obsidian-nvim.follows = "obsidian-nvim";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, sops-nix, apple-silicon-support, zen-browser, ... } @ inputs:
+  outputs = { self, nixpkgs, home-manager, sops-nix, nvf, apple-silicon-support, zen-browser, ... } @ inputs:
     let
       system = "aarch64-linux";
       lib = nixpkgs.lib;
@@ -39,6 +50,8 @@
           # Import apple silicon support
           apple-silicon-support.nixosModules.apple-silicon-support
 
+          nvf.nixosModules.default
+          # nvf.homeManagerModules.default
           # sops-nix.nixosModules.sops
           home-manager.nixosModules.home-manager
           {
@@ -51,6 +64,7 @@
           # Apply common modules
           ./modules/base.nix
           ./modules/users.nix
+          ./modules/nvf.nix
         ];
       };
     };
