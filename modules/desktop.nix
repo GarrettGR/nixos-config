@@ -1,6 +1,9 @@
-{ config, lib, pkgs, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   services.xserver = {
     enable = true;
     xkb = {
@@ -8,16 +11,16 @@
       variant = "";
     };
   };
-  
+
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
-    # withUWSM = true;
+    withUWSM = true;
   };
 
   services.hypridle.enable = true;
   programs.hyprlock.enable = true;
-  # programs.uwsm.enable = true;
+  programs.uwsm.enable = true;
 
   programs.waybar = {
     enable = true;
@@ -36,12 +39,12 @@
     wlogout
     # networkmanagerapplet
     # dunst
-    # libnotify
+    libnotify
     vulkan-tools
   ];
 
   programs.firefox.enable = true;
-  
+
   fonts.packages = with pkgs; [
     nerd-fonts.fira-code
     nerd-fonts.monaspace
@@ -50,7 +53,7 @@
     nerd-fonts.fantasque-sans-mono
     monaspace
   ];
-  
+
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;

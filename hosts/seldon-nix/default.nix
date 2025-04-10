@@ -1,6 +1,9 @@
-{ config, lib, pkgs, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   imports = [
     ./hardware.nix
     ../../modules/desktop.nix
@@ -19,12 +22,12 @@
     gfxmodeEfi = "2560x1664";
     theme = "${pkgs.kdePackages.breeze-grub}/grub/themes/breeze";
   };
-  boot.kernelParams = [ "apple_dcp.show_notch=1" ];
+  boot.kernelParams = ["apple_dcp.show_notch=1"];
 
-  boot.binfmt.emulatedSystems = [ "x86_64-linux" ];
+  boot.binfmt.emulatedSystems = ["x86_64-linux"];
   nix.settings = {
-    extra-platforms = [ "x86_64-linux" ];
-    trusted-users = [ "garrettgr" ];
+    extra-platforms = ["x86_64-linux"];
+    trusted-users = ["garrettgr"];
   };
 
   # Asahi-specific configuration
@@ -38,21 +41,23 @@
   };
 
   # Swap configuration - defined here rather than hardware-configuration.nix ??
-  swapDevices = [ { 
-    device = "/var/lib/swapfile";
-    size = 16 * 1024;
-  } ];
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 16 * 1024;
+    }
+  ];
 
   environment.systemPackages = with pkgs; [
     mesa
     # mesa.drivers
   ];
 
-  services.displayManager.sddm.wayland.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  # services.displayManager.sddm.wayland.enable = true;
+  # services.desktopManager.plasma6.enable = true;
 
   # external DisplayLink adapter (since dp-alt mode for usb-c doesn't work yet)
-  services.xserver.videoDrivers = [ "displaylink" "modesetting" ];
+  services.xserver.videoDrivers = ["displaylink" "modesetting"];
 
   time.timeZone = "America/New_York";
 }
