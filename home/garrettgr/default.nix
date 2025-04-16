@@ -1,6 +1,11 @@
-{ config, lib, pkgs, inputs, system, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  inputs,
+  system,
+  ...
+}: {
   imports = [
     ./programs/shell.nix
     # ./programs/neovim.nix
@@ -8,7 +13,7 @@
     ./programs/dev.nix
     # ./programs/hyprland.nix
   ];
-  
+
   home.username = "garrettgr";
   home.homeDirectory = "/home/garrettgr";
 
@@ -32,7 +37,9 @@
     # spotify-cli-linux
     # spotify # unavailable on aarch64
     # ytui-music
-    
+
+    batmon
+
     # tuisky
     # tuir
 

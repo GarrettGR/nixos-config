@@ -50,6 +50,8 @@
 
   environment.systemPackages = with pkgs; [
     mesa
+    alsa-utils
+    # alsaequal
     # mesa.drivers
   ];
 

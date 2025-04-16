@@ -16,7 +16,8 @@
 
     apple-silicon-support = {
       # url = "github:tpwrules/nixos-apple-silicon";
-      url = "github:tpwrules/nixos-apple-silicon?rev=f51de44b1d720ac23e838db8e0cf13fadb7942b8";
+      # url = "github:tpwrules/nixos-apple-silicon?rev=f51de44b1d720ac23e838db8e0cf13fadb7942b8";
+      url = "github:flokli/nixos-apple-silicon/wip";
       #  inputs.nixpkgs.follows = "nixpkgs";
     };
 
