@@ -14,7 +14,7 @@
 
   programs.hyprland = {
     enable = true;
-    xwayland.enable = true;
+    xwayland.enable = false;
     withUWSM = true;
   };
 
@@ -40,6 +40,7 @@
     # networkmanagerapplet
     # dunst
     libnotify
+    nautilus
     vulkan-tools
   ];
 
