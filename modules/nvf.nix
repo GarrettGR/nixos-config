@@ -73,7 +73,7 @@
           ocaml.enable = true;
           # elixir.enable = true;
           # haskell.enable = true;
-          nim.enable = true;
+          # nim.enable = true;
         };
 
         visuals = {
@@ -136,7 +136,7 @@
 
         minimap = {
           minimap-vim.enable = false;
-          codewindow.enable = true; # lighter, faster, and uses lua for configuration
+          codewindow.enable = false; # lighter, faster, and uses lua for configuration
         };
 
         dashboard = {
@@ -233,6 +233,11 @@
 
         presence = {
           neocord.enable = false;
+        };
+
+        options = {
+          tabstop = 2;
+          shiftwidth = 2;
         };
       };
     };

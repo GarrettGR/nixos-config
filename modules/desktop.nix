@@ -38,7 +38,7 @@
     wl-clipboard
     wlogout
     # networkmanagerapplet
-    # dunst
+    dunst
     libnotify
     nautilus
     vulkan-tools
