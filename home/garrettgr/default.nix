@@ -35,10 +35,12 @@
   home.packages = with pkgs; [
     spotify-player
     # spotify-cli-linux
-    # spotify # unavailable on aarch64
+    # spotify # spicetify # unavailable on aarch64
     # ytui-music
+    psst
 
     batmon
+    keepassxc # look at alternative credential stores (??)
 
     # tuisky
     # tuir
@@ -58,11 +60,14 @@
     rclone
     fastfetch
 
-    zed-editor
+    zed-editor-fhs # allows install of extentions (??)
     ghostty
+    jujutsu
+    # lazyjj
+    # gg-jj
 
-    darktable
-    kicad
+    # darktable
+    # kicad
     # freecad-wayland
 
     inputs.zen-browser.packages.${system}.twilight

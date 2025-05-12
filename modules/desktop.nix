@@ -40,7 +40,8 @@
     # networkmanagerapplet
     dunst
     libnotify
-    nautilus
+    kdePackages.dolphin
+    # nautilus
     vulkan-tools
   ];
 

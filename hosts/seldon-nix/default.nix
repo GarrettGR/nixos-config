@@ -8,7 +8,7 @@
     ./hardware.nix
     ../../modules/desktop.nix
     ../../modules/networking.nix
-    ../../modules/filesystems.nix
+    # ../../modules/filesystems.nix
   ];
 
   networking.hostName = "seldon-nix";

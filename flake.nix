@@ -4,6 +4,8 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    # TODO: follow a nixpkgs Wayland option (nix community repo)
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -74,6 +76,8 @@
         ./modules/base.nix
         ./modules/users.nix
         ./modules/nvf.nix
+        ./modules/display-manager.nix
+        ./modules/keyboard.nix
       ];
     };
   };

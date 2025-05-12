@@ -6,6 +6,6 @@
     shell = pkgs.zsh;
     extraGroups = [ "wheel" "networkmanager" "lp" ];
   };
-  
+
   programs.zsh.enable = true;
 }

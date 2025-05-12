@@ -5,14 +5,14 @@
     enable = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
-    
+
     history = {
       size = 10000;
       path = "${config.xdg.dataHome}/zsh/history";
       ignoreDups = true;
       expireDuplicatesFirst = true;
     };
-    
+
     shellAliases = {
       c = "clear";
       l = "command ls -l";
@@ -29,14 +29,13 @@
       gc = "git commit";
       gd = "git diff";
     };
-    
-    initExtra = ''
-      # Additional zsh configuration
+
+    initContent = ''
       bindkey '^[[A' up-line-or-search
       bindkey '^[[B' down-line-or-search
     '';
   };
-  
+
   programs.starship = {
     enable = true;
     enableZshIntegration = true;
@@ -48,13 +47,13 @@
       };
     };
   };
-  
+
   programs.zoxide = {
     enable = true;
     enableZshIntegration = true;
     options = [ "--cmd cd" ];
   };
-  
+
   programs.atuin = {
     enable = true;
     enableZshIntegration = true;
@@ -63,7 +62,7 @@
       update_check = true;
     };
   };
-  
+
   home.packages = with pkgs; [
     eza
     bat
@@ -73,7 +72,7 @@
     yazi
     xclip
   ];
-  
+
   programs.alacritty = {
     enable = true;
     settings = {

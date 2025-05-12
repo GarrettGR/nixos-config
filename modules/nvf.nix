@@ -10,6 +10,7 @@
       config.vim = {
         viAlias = false;
         vimAlias = true;
+
         debugMode = {
           enable = false;
           level = 16;
@@ -21,6 +22,7 @@
         };
 
         lsp = {
+          enable = true;
           formatOnSave = true;
           lspkind.enable = false;
           lightbulb.enable = true;
@@ -40,7 +42,6 @@
         };
 
         languages = {
-          enableLSP = true;
           enableFormat = true;
           enableTreesitter = true;
           enableExtraDiagnostics = true;
@@ -100,8 +101,8 @@
           enable = true;
           name = "catppuccin";
           style = "mocha";
-          # transparent = true;
-          transparent = false;
+          transparent = true;
+          # transparent = false;
         };
 
         autopairs.nvim-autopairs.enable = true;
@@ -119,7 +120,7 @@
           nvimBufferline.enable = true;
         };
 
-        treesitter.context.enable = true;
+        # treesitter.context.enable = true;
 
         binds = {
           whichKey.enable = true;
@@ -173,7 +174,7 @@
         };
 
         notes = {
-          obsidian.enable = false; # FIXME: neovim fails to build if obsidian is enabled
+          # obsidian.enable = true; # FIXME: neovim fails to build if obsidian is enabled
           neorg.enable = false;
           orgmode.enable = false;
           mind-nvim.enable = true;
@@ -232,7 +233,7 @@
         };
 
         presence = {
-          neocord.enable = false;
+          neocord.enable = true;
         };
 
         options = {

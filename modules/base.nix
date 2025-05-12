@@ -1,13 +1,15 @@
-{ config, lib, pkgs, ... }:
-
 {
-  
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   system.stateVersion = "25.05";
-  
+
   nix = {
     package = pkgs.lix;
     settings = {
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = ["nix-command" "flakes"];
       auto-optimise-store = true;
     };
     gc = {
@@ -16,7 +18,7 @@
       options = "--delete-older-than 30d";
     };
   };
-  
+
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
@@ -34,13 +36,18 @@
     NIXOS_OZONE_WL = "1";
     EDITOR = "vim";
   };
-  
+
   services = {
     openssh.enable = true;
     timesyncd.enable = true;
     printing = {
       enable = true;
       browsing = true;
+      drivers = with pkgs; [
+        hplip
+        brlaser
+        gutenprint
+      ];
       browsedConf = ''
         BrowseDNSSDSubTypes _cups,_print
         BrowseLocalProtocols all
@@ -58,6 +65,6 @@
   };
 
   security.sudo.wheelNeedsPassword = true;
-  
+
   i18n.defaultLocale = "en_US.UTF-8";
 }
