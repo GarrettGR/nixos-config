@@ -51,8 +51,9 @@
   environment.systemPackages = with pkgs; [
     mesa
     alsa-utils
+    muvm
+    fex
     # alsaequal
-    # mesa.drivers
   ];
 
   # services.displayManager.sddm.wayland.enable = true;
