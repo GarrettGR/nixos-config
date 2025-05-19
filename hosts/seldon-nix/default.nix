@@ -8,6 +8,7 @@
     ./hardware.nix
     ../../modules/desktop.nix
     ../../modules/networking.nix
+    # ../../modules/steam.nix
     # ../../modules/filesystems.nix
   ];
 
@@ -20,7 +21,7 @@
     efiInstallAsRemovable = true;
     device = "nodev";
     gfxmodeEfi = "2560x1664";
-    theme = "${pkgs.kdePackages.breeze-grub}/grub/themes/breeze";
+    theme = "${pkgs.minimal-grub-theme}"; # FIXME: probably needs a path specified from here...
   };
   boot.kernelParams = ["apple_dcp.show_notch=1"];
 
@@ -53,6 +54,7 @@
     alsa-utils
     muvm
     fex
+    # (pkgs.extend inputs.nixos-mmuvm-fex.overlays.default).muvm # https://github.com/nrabulinski/nixos-muvm-fex.git
     # alsaequal
   ];
 

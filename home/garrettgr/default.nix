@@ -60,7 +60,7 @@
     rclone
     fastfetch
 
-    zed-editor-fhs # allows install of extentions (??)
+    zed-editor # allows install of extentions (??)
     ghostty
     jujutsu
     # lazyjj
