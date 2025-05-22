@@ -1,6 +1,9 @@
-{ config, lib, pkgs, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   programs.zsh = {
     enable = true;
     autosuggestion.enable = true;
@@ -33,6 +36,8 @@
     initContent = ''
       bindkey '^[[A' up-line-or-search
       bindkey '^[[B' down-line-or-search
+
+      # any-nix-shell zsh --info-right | source /dev/stdin
     '';
   };
 
@@ -51,7 +56,7 @@
   programs.zoxide = {
     enable = true;
     enableZshIntegration = true;
-    options = [ "--cmd cd" ];
+    options = ["--cmd cd"];
   };
 
   programs.atuin = {
@@ -71,6 +76,7 @@
     fzf
     yazi
     xclip
+    # any-nix-shell
   ];
 
   programs.alacritty = {

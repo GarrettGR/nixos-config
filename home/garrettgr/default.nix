@@ -52,6 +52,9 @@
 
     legcord
     telegram-desktop
+    signal-desktop
+    slacky
+    slack-cli # slack-term
 
     speedread
     nmap

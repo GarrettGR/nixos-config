@@ -8,6 +8,7 @@
     ./hardware.nix
     ../../modules/desktop.nix
     ../../modules/networking.nix
+    ../../modules/packages.nix
     # ../../modules/steam.nix
     # ../../modules/filesystems.nix
   ];
