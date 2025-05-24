@@ -22,7 +22,7 @@
     efiInstallAsRemovable = true;
     device = "nodev";
     gfxmodeEfi = "2560x1664";
-    theme = "${pkgs.minimal-grub-theme}"; # FIXME: probably needs a path specified from here...
+    theme = "${pkgs.minimal-grub-theme}";
   };
   boot.kernelParams = ["apple_dcp.show_notch=1"];
 
@@ -32,7 +32,6 @@
     trusted-users = ["garrettgr"];
   };
 
-  # Asahi-specific configuration
   hardware.asahi = {
     withRust = true;
     useExperimentalGPUDriver = true;
@@ -42,7 +41,6 @@
     peripheralFirmwareDirectory = /etc/nixos/firmware;
   };
 
-  # Swap configuration - defined here rather than hardware-configuration.nix ??
   swapDevices = [
     {
       device = "/var/lib/swapfile";
@@ -59,10 +57,7 @@
     # alsaequal
   ];
 
-  # services.displayManager.sddm.wayland.enable = true;
-  # services.desktopManager.plasma6.enable = true;
-
-  # external DisplayLink adapter (since dp-alt mode for usb-c doesn't work yet)
+  services.mbpfan.enable = false; #NOTE: macbook air has no fan, don't need the fan controller daemon
   services.xserver.videoDrivers = ["displaylink" "modesetting"];
 
   time.timeZone = "America/New_York";
