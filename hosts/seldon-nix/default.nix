@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }: {
   imports = [
@@ -9,7 +10,7 @@
     ../../modules/desktop.nix
     ../../modules/networking.nix
     ../../modules/packages.nix
-    # ../../modules/steam.nix
+    # ../../modules/muvm.nix
     # ../../modules/filesystems.nix
   ];
 
@@ -51,9 +52,10 @@
   environment.systemPackages = with pkgs; [
     mesa
     alsa-utils
-    muvm
+    # muvm
+    erofs-utils
     fex
-    # (pkgs.extend inputs.nixos-mmuvm-fex.overlays.default).muvm # https://github.com/nrabulinski/nixos-muvm-fex.git
+    (pkgs.extend inputs.nixos-muvm-fex.overlays.default).muvm # https://github.com/nrabulinski/nixos-muvm-fex.git
     # alsaequal
   ];
 

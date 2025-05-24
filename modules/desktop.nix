@@ -29,7 +29,7 @@
 
   environment.systemPackages = with pkgs; [
     wofi
-    ewww
+    eww
     hyprpaper
     hyprshot
     # grim
