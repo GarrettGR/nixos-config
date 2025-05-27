@@ -53,8 +53,9 @@
     legcord
     telegram-desktop
     signal-desktop
-    slacky
-    slack-cli # slack-term
+    # slacky # FIXME: THIS DOENST WORK (says unsupported browser)
+    slack-cli
+    # slack-term
 
     speedread
     nmap
