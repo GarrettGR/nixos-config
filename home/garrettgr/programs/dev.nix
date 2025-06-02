@@ -4,6 +4,9 @@
   pkgs,
   ...
 }: {
+  imports = [
+    ./zed.nix
+  ];
   home.packages = with pkgs; [
     # C/C++
     gnumake

@@ -54,8 +54,8 @@
     alsa-utils
     # muvm
     erofs-utils
-    fex
-    (pkgs.extend inputs.nixos-muvm-fex.overlays.default).muvm # https://github.com/nrabulinski/nixos-muvm-fex.git
+    # fex
+    # (pkgs.extend inputs.nixos-muvm-fex.overlays.default).muvm # https://github.com/nrabulinski/nixos-muvm-fex.git
     # alsaequal
   ];
 

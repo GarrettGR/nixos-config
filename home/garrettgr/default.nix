@@ -64,7 +64,7 @@
     rclone
     fastfetch
 
-    zed-editor # allows install of extentions (??)
+    # zed-editor
     ghostty
     jujutsu
     # lazyjj
@@ -73,6 +73,13 @@
     # darktable
     # kicad
     # freecad-wayland
+
+    # gimp3
+    # audacity
+    # obs-studio
+    # davinci-resolve # davinci-resolve-studio
+
+    # ffmpeg # ffmpeg-full
 
     inputs.zen-browser.packages.${system}.twilight
   ];
