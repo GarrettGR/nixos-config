@@ -1,10 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  inputs,
-  ...
-}: {
+{ pkgs, ... }: {
   imports = [
     ./hardware.nix
     ../../modules/desktop.nix

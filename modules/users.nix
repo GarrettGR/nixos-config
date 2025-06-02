@@ -1,9 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: {
+{ pkgs,...}: {
   users.users.garrettgr = {
     isNormalUser = true;
     shell = pkgs.zsh;

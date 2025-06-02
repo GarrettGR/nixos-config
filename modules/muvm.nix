@@ -1,10 +1,4 @@
-{
-  pkgs,
-  system,
-  lib,
-  inputs,
-  ...
-}: {
+{ pkgs, inputs, ... }: {
   environment.systemPackages = let
     # pkgsFex = import pkgs.path {
     #   config.nixos-muvm-fex.mesaDoCross = true;
