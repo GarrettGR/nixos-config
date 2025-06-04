@@ -4,7 +4,16 @@
   inputs = {
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-NUR.url = "github:nix-community/NUR";
+    
+    nixpkgs-NUR = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    
+    nixpkgs-wayland = {
+      url = "github:nix-community/nixpkgs-wayland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # TODO: follow a nixpkgs Wayland option (nix community repo)
 
@@ -39,6 +48,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
+
     apple-silicon-support = {
       # url = "github:tpwrules/nixos-apple-silicon";
       url = "github:flokli/nixos-apple-silicon/wip";
@@ -67,60 +78,64 @@
     sops-nix,
     nvf,
     apple-silicon-support,
+    nixos-wsl,
     nixos-muvm-fex,
     zen-browser,
     ...
   } @ inputs: let
-    system = "aarch64-linux";
     lib = nixpkgs.lib;
-    pkgs = import nixpkgs {
+
+    mkSystem = { system, hostname, extraModules ? [] }: lib.nixosSystem {
       inherit system;
-      config.allowUnfree = true;
+      specialArgs = { inherit inputs system; };
+      pkgs = import inputs.nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
+      modules = [
+        ./hosts/${hostname}
+
+        ./modules/base.nix
+        ./modules/users.nix
+        ./modules/nvf.nix
+
+        nvf.nixosModules.default
+        # sops-nix.nixosModules.sops
+        # nvf.homeManagerModules.defaullt
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.extraSpecialArgs = { inherit inputs system; };
+        }
+      ] ++ extraModules;
     };
-    # systems = [
-    #   "aarch64-darwin"
-    #   "riscv64-linux"
-    #   "aarch64-linux"
-    #   "x86_64-linux"
-    # ];
-    # nixpkgsFor = lib.genAttrs systems (
-    #   system:
-    #     import nixpkgs.outPath {
-    #       inherit system;
-    #       # overlays = builtins.attrValues overlays;
-    #       config = {
-    #         allowUnfree = true;
-    #       };
-    #     }
-    # );
   in {
     nixosConfigurations = {
-      seldon-nix = lib.nixosSystem {
-        inherit system;
-        specialArgs = {inherit inputs system;};
-        modules = [
-          # Host specific configuration
-          ./hosts/seldon-nix
-          # Import apple silicon support
-          apple-silicon-support.nixosModules.apple-silicon-support
-
-          nvf.nixosModules.default
-          # nvf.homeManagerModules.default
-          # sops-nix.nixosModules.sops
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.garrettgr = import ./home/garrettgr;
-            home-manager.extraSpecialArgs = {inherit inputs system;};
-          }
-
-          # Apply common modules
-          ./modules/base.nix
-          ./modules/users.nix
-          ./modules/nvf.nix
-          ./modules/display-manager.nix
+      seldon-nix = mkSystem {
+        system = "aarch64-linux";
+        hostname = "seldon-nix";
+        extraModules = [
           ./modules/keyboard.nix
+          ./modules/display-manager.nix
+          apple-silicon-support.nixosModules.apple-silicon-support
+        ];
+      };
+      
+      rocinante-nix-wsl = mkSystem {
+        system = "x86_64-linux";
+        hostname = "rocinante-nix-wsl";
+        extraModules = [
+          nixos-wsl.nixosModules.default
+          {
+            wsl = {
+              enable = true;
+              defaultUser = "garrettgr";
+              startMenuLaunchers = true;
+              # usbip.enable = true;
+              useWindowsDriver = true;
+            };
+          }
         ];
       };
     };

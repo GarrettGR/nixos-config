@@ -40,28 +40,6 @@
   services = {
     openssh.enable = true;
     timesyncd.enable = true;
-    printing = {
-      enable = true;
-      browsing = true;
-      drivers = with pkgs; [
-        hplip
-        brlaser
-        gutenprint
-      ];
-      browsedConf = ''
-        BrowseDNSSDSubTypes _cups,_print
-        BrowseLocalProtocols all
-        BrowseRemoteProtocols all
-        CreateIPPPrinterQueues All
-
-        BrowseProtocols all
-      '';
-    };
-    avahi = {
-      enable = true;
-      nssmdns4 = true;
-      openFirewall = true;
-    };
   };
 
   security.sudo.wheelNeedsPassword = true;
