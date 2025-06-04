@@ -1,6 +1,10 @@
-{ ... }: {
-
-  imports = [ hardware.nix ];
+{pkgs, ...}: {
+  imports = [
+    ./hardware.nix
+    ../../modules/desktop.nix
+    ../../modules/packages.nix
+    ../../modules/networking.nix
+  ];
 
   boot = {
     loader.systemd-boot.enable = true;
@@ -10,26 +14,14 @@
   };
 
   networking = {
-    hostname = "arrakis-nix";
+    hostName = "arrakis-nix";
     networkmanager.enable = true;
   };
 
   time.timeZone = "America/New_York";
 
-  i18n = {
-    defaultLocale = "en_US.UTF-8";
-    supportedLocales = [ "en_US.UTF-8" ];
-  };
-
-  i18n.extraLocaleConfig = {
-    LC_ALL = "en_US.UTF-8";
-    LC_IDENTIFICATION = "en_US.UTF-8";
-    LC_MEASUREMENT = "en_US.UTF-8";
-    LC_MONETARY = "en_US.UTF-8";
-    LC_NAME = "en_US.UTF-8";
-    LC_NUMERIC = "en_US.UTF-8";
-    LC_PAPER = "en_US.UTF-8";
-    LC_TELEPHONE = "en_US.UTF-8";
-    LC_TIME = "en_US.UTF-8";
-  };
+  # i18n = {
+  #   defaultLocale = "en_US.UTF-8";
+  #   supportedLocales = [ "en_US.UTF-8" ];
+  # };
 }
