@@ -11,9 +11,10 @@
 
   boot = {
     initrd = {
-      availableKernelModules = [ "xhci_pci" "nvme" "ahci" "usbhid" "usb_storage" "sd_mod" ];
+      availableKernelModules = ["xhci_pci" "nvme" "ahci" "usbhid" "usb_storage" "sd_mod"];
+      kernelModules = ["amdgpu"];
     };
-    kernelModules = [ "kvm-amd" ];
+    kernelModules = ["kvm-amd"];
   };
 
   fileSystems = {
@@ -31,5 +32,17 @@
 
   networking.useDHCP = lib.mkDefault true;
 
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware = {
+    graphics.enable = true;
+    nvidia = {
+      modesetting = true;
+      powerManagement.enable = true;
+      powerManagement.finegrained = false;
+      open = false; # open = true;
+      nvidiaSettings = true;
+      package = config.boot.kernelPackages.nvidiaPackages.beta; # nvidiaPackages.dc; # <- datacenter drivers
+    };
+
+    cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  };
 }
