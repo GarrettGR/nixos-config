@@ -122,20 +122,11 @@
         ];
       };
       
-      rocinante-nix-wsl = mkSystem {
+      rocinante-wsl-nix = mkSystem {
         system = "x86_64-linux";
-        hostname = "rocinante-nix-wsl";
+        hostname = "rocinante-wsl-nix";
         extraModules = [
           nixos-wsl.nixosModules.default
-          {
-            wsl = {
-              enable = true;
-              defaultUser = "garrettgr";
-              startMenuLaunchers = true;
-              # usbip.enable = true;
-              useWindowsDriver = true;
-            };
-          }
         ];
       };
     };
