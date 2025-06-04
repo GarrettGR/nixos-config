@@ -1,0 +1,11 @@
+font-family = "JetBrainsMonoNL Nerd Font Mono"
+background-opacity = 0.85
+window-decoration = none
+clipboard-read = allow
+clipboard-write = allow
+shell-integration = zsh
+focus-follows-mouse = true
+confirm-close-surface = false
+linux-cgroup = always
+linux-cgroup-hard-fail = false
+# command = "/home/garrettgr/nixos-config/tmux_script.sh 2>/dev/null || $SHELL"
