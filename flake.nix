@@ -133,6 +133,16 @@
           nixos-wsl.nixosModules.default
         ];
       };
+
+
+      arrakis-nix = mkSystem {
+        system = "x86_64-linux";
+        hostname = "arrakis-nix";
+        extraModules = [
+          ./modules/keyboard.nix
+          ./modules/display-manager.nix
+        ];
+      };
     };
   };
 }
