@@ -1,4 +1,4 @@
-{ pkgs,...}: {
+{pkgs, ...}: {
   users = {
     mutableUsers = false;
     users.garrettgr = {
@@ -13,7 +13,6 @@
     users.garrettgr = import ../home/garrettgr;
     useGlobalPkgs = true;
     useUserPackages = true;
-    extraSpecialArgs = { inherit inputs system; };
   };
   programs.zsh.enable = true;
 }

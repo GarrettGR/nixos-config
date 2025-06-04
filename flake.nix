@@ -4,18 +4,15 @@
   inputs = {
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    
+
     nixpkgs-NUR = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
     nixpkgs-wayland = {
       url = "github:nix-community/nixpkgs-wayland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # TODO: follow a nixpkgs Wayland option (nix community repo)
 
     hyprland.url = "github:hyprwm/Hyprland";
     hypr-contrib = {
@@ -85,31 +82,38 @@
   } @ inputs: let
     lib = nixpkgs.lib;
 
-    mkSystem = { system, hostname, extraModules ? [] }: lib.nixosSystem {
-      inherit system;
-      specialArgs = { inherit inputs system; };
-      pkgs = import inputs.nixpkgs {
+    mkSystem = {
+      system,
+      hostname,
+      extraModules ? [],
+    }:
+      lib.nixosSystem {
         inherit system;
-        config.allowUnfree = true;
+        specialArgs = {inherit inputs system;};
+        pkgs = import inputs.nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+        };
+        modules =
+          [
+            ./hosts/${hostname}
+
+            ./modules/base.nix
+            ./modules/users.nix
+            ./modules/nvf.nix
+
+            nvf.nixosModules.default
+            # sops-nix.nixosModules.sops
+            # nvf.homeManagerModules.defaullt
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = {inherit inputs system;};
+            }
+          ]
+          ++ extraModules;
       };
-      modules = [
-        ./hosts/${hostname}
-
-        ./modules/base.nix
-        ./modules/users.nix
-        ./modules/nvf.nix
-
-        nvf.nixosModules.default
-        # sops-nix.nixosModules.sops
-        # nvf.homeManagerModules.defaullt
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = { inherit inputs system; };
-        }
-      ] ++ extraModules;
-    };
   in {
     nixosConfigurations = {
       seldon-nix = mkSystem {
@@ -121,7 +125,7 @@
           apple-silicon-support.nixosModules.apple-silicon-support
         ];
       };
-      
+
       rocinante-wsl-nix = mkSystem {
         system = "x86_64-linux";
         hostname = "rocinante-wsl-nix";
