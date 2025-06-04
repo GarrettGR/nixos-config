@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ./hardware.nix
+    ./packages.nix
     ../../modules/desktop.nix
     ../../modules/packages.nix
     ../../modules/networking.nix
