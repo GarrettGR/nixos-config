@@ -1,6 +1,6 @@
-{} : {
+{ ... } : {
   networking.hostName = "rocinante-wsl-nix";
-  time.timezone = "America/New_York";
+  time.timeZone = "America/New_York";
 
   wsl = {
     enable = true;
