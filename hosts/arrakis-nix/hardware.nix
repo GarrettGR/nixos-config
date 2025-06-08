@@ -32,11 +32,13 @@
 
   networking.useDHCP = lib.mkDefault true;
 
+  services.xserver.videoDrivers = ["nvidia" "amdgpu"];
+
   hardware = {
     graphics.enable = true;
     nvidia = {
       modesetting.enable = true;
-      powerManagement.enable = true;
+      powerManagement.enable = false;
       powerManagement.finegrained = false;
       open = false; # open = true;
       nvidiaSettings = true;
