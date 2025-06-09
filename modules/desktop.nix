@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   services.xserver = {
     enable = true;
     xkb = {
@@ -9,7 +9,7 @@
 
   programs.hyprland = {
     enable = true;
-    xwayland.enable = false; # true;
+    xwayland.enable = true;
     withUWSM = true;
   };
 

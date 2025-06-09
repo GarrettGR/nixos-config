@@ -11,7 +11,9 @@
     gimp3
     audacity
     obs-studio
-    davinci-resolve
+    # davinci-resolve
+    (pkgs.callPackage ../../modules/davinci-resolve-paid.nix {})
     ffmpeg
+    kdePackages.dolphin
   ];
 }
