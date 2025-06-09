@@ -39,6 +39,7 @@
     # kdePackages.dolphin
     # nautilus
     vulkan-tools
+    waypipe
   ];
 
   programs.firefox.enable = true;
