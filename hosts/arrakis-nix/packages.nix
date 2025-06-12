@@ -5,6 +5,8 @@
   ...
 }: {
   environment.systemPackages = with pkgs; [
+    sunshine
+    moonlight-embedded # moonlight-qt
     darktable
     kicad
     freecad-wayland
