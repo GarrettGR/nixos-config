@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   imports = [
     ./hardware.nix
     ../../modules/desktop.nix
@@ -51,6 +51,7 @@
     # fex
     # (pkgs.extend inputs.nixos-muvm-fex.overlays.default).muvm # https://github.com/nrabulinski/nixos-muvm-fex.git
     # alsaequal
+    moonlight-embedded # moonlight-qt
   ];
 
   services.mbpfan.enable = false; #NOTE: macbook air has no fan, don't need the fan controller daemon
