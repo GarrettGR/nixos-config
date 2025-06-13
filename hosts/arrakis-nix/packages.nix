@@ -5,7 +5,6 @@
   ...
 }: {
   environment.systemPackages = with pkgs; [
-    sunshine
     moonlight-embedded # moonlight-qt
     darktable
     kicad
@@ -19,4 +18,10 @@
     ffmpeg
     kdePackages.dolphin
   ];
+
+  services.sunshine = {
+    enable = true;
+    openFirewall = true;
+    # applications = {};
+  };
 }
