@@ -1,13 +1,18 @@
-{ config, lib, pkgs, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   programs.zed-editor = {
     enable = true;
     installRemoteServer = true;
-    extensions = [ "nix" "xy-zed" ];
+    extensions = ["nix" "xy-zed"];
     extraPackages = with pkgs; [
       nixd
     ];
     userSettings = {
-      features ={
+      features = {
         copilot = true;
         edit_prediction_provider = "zed";
       };
@@ -26,8 +31,6 @@
       ui_font_size = 12;
       buffer_font_size = 14;
     };
-    userKeymaps = {
-
-    };
+    # userKeymaps = { };
   };
 }
