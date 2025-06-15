@@ -1,4 +1,8 @@
-{ config, pkgs, ... }: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   programs.zsh = {
     enable = true;
     autosuggestion.enable = true;
@@ -21,7 +25,6 @@
       lr = "eza --recurse --level=2 $eza_params";
       cat = "bat";
       ccat = "command cat";
-      top = "btop";
       rl = "exec zsh";
       gs = "git status";
       gc = "git commit";
