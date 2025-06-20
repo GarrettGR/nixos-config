@@ -17,12 +17,12 @@
   services.fstrim.enable = true;
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/b86b6661-7f8b-419a-94ba-d49f990041fd";
-    fsType = "ext4";
+    device = "/dev/disk/by-uuid/09ed13ff-e4a7-4e46-89d5-8dcc54b0667c";
+    fsType = "btrfs";
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/A0EF-1C05";
+    device = "/dev/disk/by-uuid/0E0F-1D0B";
     fsType = "vfat";
     options = ["fmask=0022" "dmask=0022"];
   };
