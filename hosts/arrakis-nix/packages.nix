@@ -18,6 +18,8 @@
     ffmpeg
     kdePackages.dolphin
 
+    rocmPackages.amdsmi
+
     protonup-rs
     lutris
     wineWowPackages.waylandFull

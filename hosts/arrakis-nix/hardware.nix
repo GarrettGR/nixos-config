@@ -35,7 +35,10 @@
   services.xserver.videoDrivers = ["nvidia" "amdgpu"];
 
   hardware = {
-    graphics.enable = true;
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
     nvidia = {
       modesetting.enable = true;
       powerManagement.enable = false;
@@ -43,6 +46,10 @@
       open = false; # open = true;
       nvidiaSettings = true;
       package = config.boot.kernelPackages.nvidiaPackages.beta; # nvidiaPackages.dc; # <- datacenter drivers
+    };
+    amdgpu.amdvlk = {
+      enable = true;
+      support32Bit.enable = true;
     };
 
     cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
