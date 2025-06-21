@@ -17,11 +17,23 @@
     # (pkgs.callPackage ../../modules/davinci-resolve-multistage.nix {})
     ffmpeg
     kdePackages.dolphin
+
+    protonup-rs
+    lutris
+    wineWowPackages.waylandFull
   ];
 
   services.sunshine = {
     enable = true;
     openFirewall = true;
     # applications = {};
+  };
+
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+    localNetworkGameTransfers.openFirewall = true;
+    extraCompatPackages = with pkgs; [proton-ge-bin];
   };
 }
