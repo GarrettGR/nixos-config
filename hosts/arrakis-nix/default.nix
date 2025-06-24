@@ -5,6 +5,7 @@
     ../../modules/desktop.nix
     ../../modules/packages.nix
     ../../modules/networking.nix
+    ../../modules/nfs.nix
   ];
 
   boot = {
