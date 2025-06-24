@@ -28,6 +28,7 @@
     tldr
     ripgrep
     bat
+    bitwarden-cli
   ];
 
   environment.sessionVariables = {
