@@ -7,7 +7,7 @@
   services.rpcbind.enable = true;
 
   fileSystems = {
-    "/mnt" = {
+    "/mnt/nfs" = {
       device = "100.102.164.18:";
       fsType = "nfs";
       options = [
