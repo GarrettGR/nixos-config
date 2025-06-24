@@ -10,6 +10,7 @@
     ./programs/tmux.nix
     ./programs/dev.nix
     # ./programs/hyprland.nix
+    ./programs/zen.nix
   ];
 
   home.username = "garrettgr";
@@ -78,8 +79,6 @@
     # davinci-resolve # davinci-resolve-studio
 
     # ffmpeg # ffmpeg-full
-
-    inputs.zen-browser.packages.${system}.twilight
   ];
 
   xdg = {
