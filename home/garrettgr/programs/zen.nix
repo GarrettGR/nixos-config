@@ -40,15 +40,7 @@
   programs.zen-browser = {
     enable = true;
     nativeMessagingHosts = [pkgs.firefoxpwa];
-    profiles.default = {
-      containersForce = true;
-      search.force = true;
-      extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
-        ublock-origin
-        bitwarden
-        darkreader
-      ];
-    };
+
     policies = {
       AutofillAddressEnabled = true;
       AutofillCreditCardEnabled = false;
@@ -60,6 +52,18 @@
       DontCheckDefaultBrowser = true;
       NoDefaultBookmarks = true;
       OfferToSaveLogins = false;
+    };
+
+    profiles.default = {
+      containersForce = true;
+      search.force = true;
+      extensions = {
+        packages = with inputs.firefox-addons.packages.${pkgs.system}; [
+          ublock-origin
+          bitwarden
+          darkreader
+        ];
+      };
     };
   };
 }
