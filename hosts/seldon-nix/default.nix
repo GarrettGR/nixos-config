@@ -6,7 +6,7 @@
     ../../modules/networking.nix
     ../../modules/packages.nix
     # ../../modules/muvm.nix
-    # ../../modules/filesystems.nix
+    ../../modules/filesystems.nix
   ];
 
   networking.hostName = "seldon-nix";
