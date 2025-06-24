@@ -41,7 +41,7 @@
     enable = true;
     nativeMessagingHosts = [pkgs.firefoxpwa];
     profiles.default = {
-      containers.force = true;
+      containersForce = true;
       search.force = true;
       extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
         ublock-origin
