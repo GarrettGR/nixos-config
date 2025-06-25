@@ -62,6 +62,9 @@
           ublock-origin
           bitwarden
           darkreader
+          web-clipper-obsidian
+          better-canvas
+          zotero-connector # is this a recognized addon?? do I need to add it another way ??
         ];
       };
     };
