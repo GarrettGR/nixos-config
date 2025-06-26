@@ -50,7 +50,9 @@
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
 
     apple-silicon-support = {
-      url = "github:nix-community/nixos-apple-silicon";
+      # url = "github:nix-community/nixos-apple-silicon";
+      url = "github:yuyuyureka/nixos-apple-silicon/minimize-patches";
+
       # url = "github:flokli/nixos-apple-silicon/wip";
       #  inputs.nixpkgs.follows = "nixpkgs";
     };
