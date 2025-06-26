@@ -116,7 +116,7 @@
 
             ./modules/base.nix
             ./modules/users.nix
-            ./modules/stylix.nix
+            # ./modules/stylix.nix
             ./modules/nvf.nix
 
             nvf.nixosModules.default
