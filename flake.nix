@@ -77,7 +77,7 @@
     };
 
     titdb = {
-      url = "github:garrettgr/titdb-nix/wip";
+      url = "github:garrettgr/titdb-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
