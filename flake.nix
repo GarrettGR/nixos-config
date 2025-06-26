@@ -76,6 +76,11 @@
       # inputs.obsidian-nvim.follows = "obsidian-nvim";
     };
 
+    titdb = {
+      url = "github:garrettgr/titdb-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     stylix.url = "github:danth/stylix";
   };
 
