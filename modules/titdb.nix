@@ -6,7 +6,7 @@
   services.titdb = {
     enable = true;
 
-    device = "/dev/input/event3";
+    device = "/dev/input/by-path/platform-24eb30000.input-event-mouse";
 
     mode = "flex";
 
