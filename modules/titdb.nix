@@ -7,23 +7,21 @@
     enable = true;
 
     device = "/dev/input/by-path/platform-24eb30000.input-event-mouse";
+    # # user = "garrettgr";
 
     mode = "flex";
-
     margins = {
-      left = 50;
-      right = 10;
-      top = 0;
-      bottom = 15;
+      left = 15;
+      right = 15;
+      top = 10;
+      bottom = 10;
     };
-
-    # user = "garrettgr";
 
     # extraArgs = [ "--verbose" ];
   };
 
   environment.systemPackages = [
     pkgs.libinput
-    inputs.titdb.packages.${pkgs.system}.default
+    inputs.titdb.packages.${pkgs.system}.default # NOTE: including it as a package is mostly for testing
   ];
 }
