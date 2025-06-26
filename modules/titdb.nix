@@ -1,17 +1,17 @@
 {
-  config,
-  lib,
+  inputs,
+  pkgs,
   ...
 }: {
   services.titdb = {
     enable = true;
 
-    device = "/dev/input/event2";
+    device = "/dev/input/event3";
 
     mode = "flex";
 
     margins = {
-      left = 10;
+      left = 50;
       right = 10;
       top = 0;
       bottom = 15;
@@ -22,5 +22,8 @@
     # extraArgs = [ "--verbose" ];
   };
 
-  # environment.systemPackages = [ inputs.titdb.packages.${pkgs.system}.default ];
+  environment.systemPackages = [
+    pkgs.libinput
+    inputs.titdb.packages.${pkgs.system}.default
+  ];
 }
