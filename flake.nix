@@ -75,6 +75,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
       # inputs.obsidian-nvim.follows = "obsidian-nvim";
     };
+
+    stylix.url = "github:danth/stylix";
   };
 
   outputs = {
@@ -109,9 +111,11 @@
 
             ./modules/base.nix
             ./modules/users.nix
+            ./modules/stylix.nix
             ./modules/nvf.nix
 
             nvf.nixosModules.default
+            inputs.stylix.nixosModules.stylix
             # sops-nix.nixosModules.sops
             # nvf.homeManagerModules.defaullt
             home-manager.nixosModules.home-manager
