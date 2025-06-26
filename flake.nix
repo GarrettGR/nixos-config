@@ -139,6 +139,7 @@
         hostname = "seldon-nix";
         extraModules = [
           ./modules/keyboard.nix
+          inputs.titdb.nixosModules.default
           ./modules/titdb.nix
           ./modules/display-manager.nix
           apple-silicon-support.nixosModules.apple-silicon-support
