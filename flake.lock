@@ -1368,15 +1368,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1750968750,
-        "narHash": "sha256-ZsZN3fsDNLWAQBPv+JYYyiQy02g15PGNCCXKMLotPRw=",
+        "lastModified": 1750977645,
+        "narHash": "sha256-qRPw5OAFwUJ7C0FzOBMtqmE5FaroV97oFFSMsopNmcs=",
         "owner": "garrettgr",
         "repo": "titdb-nix",
-        "rev": "a2dda6f4c251ece98ce7634dd1e76b027f8b4f3a",
+        "rev": "9b280eeb78949c760f4e0564cdbc9905783a7cc2",
         "type": "github"
       },
       "original": {
         "owner": "garrettgr",
+        "ref": "wip",
         "repo": "titdb-nix",
         "type": "github"
       }
