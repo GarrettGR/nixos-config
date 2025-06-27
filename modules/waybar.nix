@@ -12,9 +12,9 @@
         layer = "top";
         position = "top";
         height = 26;
-        margin-top = 4;
-        margin-left = 16;
-        margin-right = 16;
+        margin-top = 1;
+        margin-left = 1;
+        margin-right = 1;
 
         modules-left = [
           "hyprland/workspaces"
@@ -124,10 +124,10 @@
 
       /* Notch accommodation - add gap in center */
       .modules-left {
-        margin-right: 82px;
+        margin-right: 80px;
       }
       .modules-right {
-        margin-left: 82px;
+        margin-left: 80px;
       }
 
       #workspaces button {
