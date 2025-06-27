@@ -13,8 +13,8 @@
         position = "top";
         height = 26;
         margin-top = 1;
-        margin-left = 1;
-        margin-right = 1;
+        margin-left = 2;
+        margin-right = 2;
 
         modules-left = [
           "hyprland/workspaces"
@@ -117,8 +117,8 @@
       .modules-left, .modules-right {
         background-color: alpha(@base00, 0.8);
         border-radius: 10px;
-        margin: 0 2px 0 2px;
-        padding: 0;
+        margin: 0;
+        padding: 0 4px 0 2px;
         border: 2px solid alpha(@base0C, 0.5);
       }
 
