@@ -6,11 +6,11 @@
 }: {
   imports = [
     ./programs/shell.nix
-    # ./programs/neovim.nix
     ./programs/tmux.nix
     ./programs/dev.nix
     # ./programs/hyprland.nix
     ./programs/zen.nix
+    ./programs/ghostty.nix
   ];
 
   home.username = "garrettgr";
@@ -64,7 +64,6 @@
     fastfetch
 
     # zed-editor
-    ghostty
     jujutsu
     # lazyjj
     # gg-jj
