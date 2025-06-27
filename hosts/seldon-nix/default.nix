@@ -45,6 +45,10 @@
   ];
 
   environment.systemPackages = with pkgs; [
+    asahi-btsync
+    asahi-wifisync
+    # asahi-nvram
+    # asahi-bless
     mesa
     alsa-utils
     # muvm
