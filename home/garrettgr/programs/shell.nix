@@ -76,12 +76,4 @@
     xclip
     # any-nix-shell
   ];
-
-  programs.alacritty = {
-    enable = true;
-    settings = {
-      font.normal.family = "JetBrainsMono Nerd Font";
-      font.size = 12;
-    };
-  };
 }

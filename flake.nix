@@ -29,6 +29,11 @@
         systems.follows = "hyprland/systems";
       };
     };
+    rose-pine-hyprcursor = {
+      url = "github:ndom91/rose-pine-hyprcursor";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.hyprlang.follows = "hyprland/hyprlang";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -116,7 +121,7 @@
 
             ./modules/base.nix
             ./modules/users.nix
-            # ./modules/stylix.nix
+            ./modules/stylix.nix
             ./modules/nvf.nix
 
             nvf.nixosModules.default

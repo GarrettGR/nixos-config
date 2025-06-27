@@ -18,7 +18,7 @@
     efiInstallAsRemovable = true;
     device = "nodev";
     gfxmodeEfi = "2560x1664";
-    theme = "${pkgs.minimal-grub-theme}";
+    # theme = "${pkgs.minimal-grub-theme}";
   };
   boot.kernelParams = ["apple_dcp.show_notch=1"];
 

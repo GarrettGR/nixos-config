@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   programs.nvf = {
     enable = true;
     settings = {
@@ -88,17 +88,16 @@
         statusline = {
           lualine = {
             enable = true;
-            theme = "catppuccin";
+            # theme = "catppuccin";
           };
         };
 
-        theme = {
-          enable = true;
-          name = "catppuccin";
-          style = "mocha";
-          transparent = true;
-          # transparent = false;
-        };
+        # theme = {
+        #   enable = true;
+        #   name = "catppuccin";
+        #   style = "mocha";
+        #   transparent = true;
+        # };
 
         autopairs.nvim-autopairs.enable = true;
 

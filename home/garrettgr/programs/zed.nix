@@ -28,8 +28,8 @@
         metrics = false;
       };
       vim_mode = true;
-      ui_font_size = 12;
-      buffer_font_size = 14;
+      # ui_font_size = 12;
+      # buffer_font_size = 14;
     };
     # userKeymaps = { };
   };
