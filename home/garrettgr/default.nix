@@ -1,9 +1,4 @@
-{
-  pkgs,
-  inputs,
-  system,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ./programs/shell.nix
     ./programs/tmux.nix
@@ -13,10 +8,11 @@
     ./programs/ghostty.nix
   ];
 
-  home.username = "garrettgr";
-  home.homeDirectory = "/home/garrettgr";
-
-  home.stateVersion = "25.05";
+  home = {
+    username = "garrettgr";
+    homeDirectory = "/home/garrettgr";
+    stateVersion = "25.05";
+  };
 
   programs.home-manager.enable = true;
 
@@ -85,6 +81,10 @@
     userDirs = {
       enable = true;
       createDirectories = true;
+    };
+    portal = {
+      enable = true;
+      extraPortals = [pkgs.xdg-desktop-portal-hyprland];
     };
   };
 }
