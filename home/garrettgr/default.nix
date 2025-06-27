@@ -6,6 +6,7 @@
     # ./programs/hyprland.nix
     ./programs/zen.nix
     ./programs/ghostty.nix
+    ../../modules/waybar.nix
   ];
 
   home = {
