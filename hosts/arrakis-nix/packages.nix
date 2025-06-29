@@ -4,6 +4,8 @@
   lib,
   ...
 }: {
+  programs.hyprland.xwayland.enable = lib.mkDefault false;
+
   environment.systemPackages = with pkgs; [
     moonlight-embedded # moonlight-qt
     darktable
