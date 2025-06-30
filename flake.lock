@@ -879,15 +879,16 @@
         "nixpkgs-muvm": "nixpkgs-muvm"
       },
       "locked": {
-        "lastModified": 1745398532,
-        "narHash": "sha256-bh/qp2g/CV+9PFKqTsw0amaejJTzyORDt8yZj/kgEaA=",
+        "lastModified": 1747923214,
+        "narHash": "sha256-rva/48UdH1TdrlI8gX6LEd0W/3NxE4OVPWB3FMSYzfo=",
         "owner": "nrabulinski",
         "repo": "nixos-muvm-fex",
-        "rev": "b9980c797c36c7998d8a024cb8c37d6c87331dd6",
+        "rev": "9bf86173ca62ab64e63c1c83b27b664e3df3e03a",
         "type": "github"
       },
       "original": {
         "owner": "nrabulinski",
+        "ref": "native-build",
         "repo": "nixos-muvm-fex",
         "type": "github"
       }

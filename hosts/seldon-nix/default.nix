@@ -5,7 +5,7 @@
     ../../modules/desktop.nix
     ../../modules/networking.nix
     ../../modules/packages.nix
-    ../../modules/muvm.nix
+    ../../modules/muvm-overlay.nix
     ../../modules/filesystems.nix
   ];
 
