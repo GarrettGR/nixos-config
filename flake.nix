@@ -62,7 +62,8 @@
       #  inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixos-muvm-fex.url = "github:nrabulinski/nixos-muvm-fex/native-build";
+    # nixos-muvm-fex.url = "github:nrabulinski/nixos-muvm-fex/native-build";
+    nixos-muvm-fex.url = "path:/home/garrettgr/Documents/nixos-muvm-fex";
 
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
