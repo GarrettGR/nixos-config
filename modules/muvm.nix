@@ -31,6 +31,8 @@
 
   environment.systemPackages = with pkgs; [
     fex
+    box64
+
     muvm
 
     libsForQt5.qt5.qtwayland
