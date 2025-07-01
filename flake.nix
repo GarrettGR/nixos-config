@@ -108,13 +108,20 @@
       system,
       hostname,
       extraModules ? [],
+      extraPkgsConfig ? {},
+      extraOverlays ? [],
     }:
       lib.nixosSystem {
         inherit system;
         specialArgs = {inherit inputs system;};
         pkgs = import inputs.nixpkgs {
           inherit system;
-          config.allowUnfree = true;
+          config =
+            {
+              allowUnfree = true;
+            }
+            // extraPkgsConfig;
+          overlays = extraOverlays;
         };
         modules =
           [
@@ -143,6 +150,13 @@
       seldon-nix = mkSystem {
         system = "aarch64-linux";
         hostname = "seldon-nix";
+        extraPkgsConfig = {
+          nixos-muvm-fex.mesaDoCross = true;
+          allowUnsupportedSystem = true;
+        };
+        extraOverlays = [
+          inputs.nixos-muvm-fex.overlays.default
+        ];
         extraModules = [
           ./modules/keyboard.nix
           inputs.titdb.nixosModules.default
