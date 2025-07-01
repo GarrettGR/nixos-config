@@ -4,7 +4,7 @@
   lib,
   ...
 }: {
-  programs.hyprland.xwayland.enable = lib.mkDefault false;
+  programs.hyprland.xwayland.enable = lib.mkForce true;
 
   environment.systemPackages = with pkgs; [
     moonlight-embedded # moonlight-qt
