@@ -7,7 +7,6 @@
   programs.hyprland.xwayland.enable = lib.mkForce true;
 
   environment.systemPackages = with pkgs; [
-    moonlight-embedded
     darktable
     kicad
     freecad-wayland
@@ -18,6 +17,8 @@
     (pkgs.callPackage ../../modules/davinci-resolve-paid.nix {})
     # (pkgs.callPackage ../../modules/davinci-resolve-multistage.nix {})
     ffmpeg
+
+    alacritty
     kdePackages.dolphin
 
     rocmPackages.amdsmi
