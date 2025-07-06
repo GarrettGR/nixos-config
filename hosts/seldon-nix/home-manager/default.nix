@@ -4,5 +4,7 @@
   lib,
   ...
 }: {
-  virtualisation.docker.enable = true;
+  imports = [
+    ./waybar.nix
+  ];
 }

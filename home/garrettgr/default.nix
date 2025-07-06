@@ -1,4 +1,9 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  hostname,
+  ...
+}: {
   imports = [
     ./programs/shell.nix
     ./programs/tmux.nix

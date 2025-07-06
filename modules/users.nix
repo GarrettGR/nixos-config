@@ -1,4 +1,9 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  hostname,
+  ...
+}: {
   users = {
     mutableUsers = false;
     users.garrettgr = {
@@ -10,7 +15,11 @@
   };
 
   home-manager = {
-    users.garrettgr = import ../home/garrettgr;
+    users.garrettgr.imports =
+      [
+        ../home/garrettgr
+      ]
+      ++ lib.optional (builtins.pathExists ./../hosts/${hostname}/home-manager/default.nix) ./../hosts/${hostname}/home-manager;
     useGlobalPkgs = true;
     useUserPackages = true;
   };

@@ -113,7 +113,7 @@
     }:
       lib.nixosSystem {
         inherit system;
-        specialArgs = {inherit inputs system;};
+        specialArgs = {inherit inputs system hostname;};
         pkgs = import inputs.nixpkgs {
           inherit system;
           config =

@@ -5,7 +5,6 @@
 
   programs.waybar = {
     enable = true;
-    # package = pkgs.waybar;
     systemd.enable = true;
     settings = {
       mainBar = {
@@ -24,8 +23,6 @@
         modules-right = [
           "pulseaudio"
           "network"
-          "backlight"
-          "battery"
           "clock"
           "tray"
         ];
@@ -53,25 +50,6 @@
           format-alt = " {:%Y-%m-%d}";
           tooltip-format = "<big>{:%Y %B %d}</big>\n<tt><small>{calendar}</small></tt>";
           on-click = "mode";
-        };
-
-        backlight = {
-          format = "{icon} {percent}%";
-          format-icons = ["󰃞" "󰃟" "󰃠"];
-          on-scroll-up = "brightnessctl set +5%";
-          on-scroll-down = "brightnessctl set 5%-";
-        };
-
-        battery = {
-          states = {
-            good = 75;
-            warning = 30;
-            critical = 10;
-          };
-          format = "{icon} {capacity}%";
-          format-charging = "󰂄 {capacity}%";
-          format-plugged = "󰚥 {capacity}%";
-          format-icons = ["󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
         };
 
         network = {
@@ -125,14 +103,6 @@
         border: 2px solid alpha(@base0C, 0.5);
       }
 
-      /* Notch accommodation - add gap in center */
-      .modules-left {
-        margin-right: 80px;
-      }
-      .modules-right {
-        margin-left: 80px;
-      }
-
       #workspaces button {
         color: @base05;
         padding: 0 4px 0 4px;
@@ -151,37 +121,11 @@
       }
 
       #clock,
-      #battery,
-      #backlight,
       #network,
       #pulseaudio,
       #tray {
         padding: 0 4px 0 4px;
         color: @base05;
-      }
-
-      #battery.charging {
-        color: @base0B;
-      }
-
-      #battery.warning:not(.charging) {
-        color: @base09;
-      }
-
-      #battery.critical:not(.charging) {
-        color: @base08;
-        animation-name: blink;
-        animation-duration: 0.5s;
-        animation-timing-function: linear;
-        animation-iteration-count: infinite;
-        animation-direction: alternate;
-      }
-
-      @keyframes blink {
-        to {
-          color: @base00;
-          background-color: @base08;
-        }
       }
 
       #waybar {

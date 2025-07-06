@@ -1,5 +1,5 @@
-{ ... } : {
-  networking.hostName = "rocinante-wsl-nix";
+{hostname, ...}: {
+  networking.hostName = "${hostname}";
   time.timeZone = "America/New_York";
 
   wsl = {

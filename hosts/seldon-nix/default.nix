@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  hostname,
+  ...
+}: {
   imports = [
     ./hardware.nix
     ./packages.nix
@@ -9,7 +13,7 @@
     ../../modules/filesystems.nix
   ];
 
-  networking.hostName = "seldon-nix";
+  networking.hostName = "${hostname}";
 
   boot.loader.efi.canTouchEfiVariables = false;
   boot.loader.grub = {

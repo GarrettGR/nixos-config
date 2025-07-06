@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  hostname,
+  ...
+}: {
   imports = [
     ./hardware.nix
     ./packages.nix
@@ -16,7 +20,7 @@
   };
 
   networking = {
-    hostName = "arrakis-nix";
+    hostName = "${hostname}";
     networkmanager.enable = true;
   };
 
