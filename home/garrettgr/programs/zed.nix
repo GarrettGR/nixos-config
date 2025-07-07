@@ -4,6 +4,11 @@
   pkgs,
   ...
 }: {
+  home.sessionVariables = {
+    ZED_ALLOW_EMULATED_GPU = 1;
+    # MESA_VK_DEVICE_SELECT="10005:0"; # NOTE: set mesa to use LLVM-pipe
+  };
+
   programs.zed-editor = {
     enable = true;
     installRemoteServer = true;
