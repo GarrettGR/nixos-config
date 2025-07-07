@@ -10,9 +10,9 @@
       clipboard-write = "allow";
       background-opacity = 0.85;
       focus-follows-mouse = true;
-      confirm-close-surface = true;
-      linux-cgroup = "always"; # TODO: THIS NEEDS TO BE CHANGED FOR MACOS & WSL SYSTEMS !!
-      linux-cgroup-hard-fail = false;
+      confirm-close-surface = false;
+      # linux-cgroup = "always"; # TODO: THIS NEEDS TO BE CHANGED FOR MACOS & WSL SYSTEMS !!
+      # linux-cgroup-hard-fail = false;
     };
   };
 }
