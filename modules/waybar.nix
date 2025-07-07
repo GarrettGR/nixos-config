@@ -23,8 +23,8 @@
         modules-right = [
           "pulseaudio"
           "network"
-          "clock"
           "tray"
+          "clock"
         ];
 
         "hyprland/workspaces" = {
