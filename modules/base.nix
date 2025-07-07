@@ -4,6 +4,11 @@
   pkgs,
   ...
 }: {
+  # TODO: move more of the shared configuration imports here and rename to `default.nix`
+  imports = [
+    ./containers
+  ];
+
   system.stateVersion = "25.05";
 
   nix = {
