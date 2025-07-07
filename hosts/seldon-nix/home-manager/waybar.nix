@@ -6,6 +6,7 @@
 }: {
   home.packages = with pkgs; [
     brightnessctl
+    playerctl
     lxqt.pavucontrol-qt
   ];
 
@@ -35,7 +36,7 @@
         format-icons = ["󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
       };
 
-      pulseaudio.on-click = lib.mkForce "pavucontrol-qt";
+      pulseaudio.on-click = lib.mkForce "${pkgs.lxqt.pavucontrol-qt}/bin/pavucontrol-qt";
     };
 
     style = lib.mkAfter ''
