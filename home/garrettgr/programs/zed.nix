@@ -7,7 +7,13 @@
   programs.zed-editor = {
     enable = true;
     installRemoteServer = true;
-    extensions = ["nix" "xy-zed"];
+    extensions = [
+      "nix"
+      "toml"
+      "dockerfile"
+      # "make"
+      "neocmake"
+    ];
     extraPackages = with pkgs; [
       nixd
     ];
