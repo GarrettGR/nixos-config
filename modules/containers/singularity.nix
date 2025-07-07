@@ -22,8 +22,6 @@ in {
     # TODO: setup / allow GPU passthrough on systems with supported hardware (??)
 
     users.groups.singularity = {};
-    users.users = lib.mkIf (config.users.users ? ${cfg.user}) {
-      ${cfg.user}.extraGroups = ["singularity"];
-    };
+    users.users.${cfg.user}.extraGroups = ["singularity"];
   };
 }

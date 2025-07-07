@@ -20,7 +20,7 @@ in {
 
     enableSingularity = lib.mkOption {
       type = lib.types.bool;
-      default = !cfg.enableDocker; # NOTE: default to singularity if docker not enabled
+      default = true;
       description = "Enable Singularity container runtime";
     };
 
@@ -32,7 +32,7 @@ in {
 
     enableBuildTools = lib.mkOption {
       type = lib.types.bool;
-      default = cfg.enableDocker;
+      default = false;
       description = "Enable container build tools (buildah, podman, etc.)";
     };
   };

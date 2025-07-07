@@ -15,9 +15,7 @@ in {
     # TODO: setup / allow GPU pass-through on systems with supported hardware (??)
     # i.e. nvidia container toolkit or something else (??)
 
-    users.users = lib.mkIf (config.users.users ? ${cfg.user}) {
-      ${cfg.user}.extraGroups = ["docker"];
-    };
+    users.users.${cfg.user}.extraGroups = ["docker"];
 
     environment.systemPackages = with pkgs; [
       docker-compose
