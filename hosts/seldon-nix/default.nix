@@ -34,10 +34,7 @@
 
   hardware.asahi = {
     withRust = true;
-    # useExperimentalGPUDriver = true;
-    # experimentalGPUInstallMode = "replace";
     setupAsahiSound = true;
-    # peripheralFirmwareDirectory = ../../firmware;
     peripheralFirmwareDirectory = /etc/nixos/firmware;
   };
 
