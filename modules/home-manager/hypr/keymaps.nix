@@ -10,8 +10,8 @@
         "SUPER, R, exec, $menu"
 
         "SUPER, B, exec, smart-launch $browser browser"
-        "SUPER, L, exec, smart-launch Legcord discord"
-        "SUPER, O, exec, smart-launch Obsidian notes"
+        "SUPER, L, exec, smart-launch legcord discord"
+        "SUPER, O, exec, smart-launch obsidian notes"
 
         "SUPER, C, killactive,"
         "SUPER, J, togglesplit,"

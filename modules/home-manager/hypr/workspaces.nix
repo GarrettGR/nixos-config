@@ -8,12 +8,12 @@
     APP_COMMAND="$1"
     WORKSPACE_NAME="$2"
 
-    if pgrep -f "$APP_COMMAND" > /dev/null; then # if app is running, switch to its workspace
-      hyprctl dispatch workspace "name:$WORKSPACE_NAME"
+    if hyprctl clients | grep -iq "class:.$APP_COMMAND";  then
+      hyprctl dispatch workspace "name:$WORKSPACE_NAME" 1> /dev/null
     else
-      hyprctl dispatch exec "[workspace name:$WORKSPACE_NAME silent] $APP_COMMAND"
+      hyprctl dispatch exec "[workspace name:$WORKSPACE_NAME silent] $APP_COMMAND" 1> /dev/null
       sleep 0.1
-      hyprctl dispatch workspace "name:$WORKSPACE_NAME"
+      hyprctl dispatch workspace "name:$WORKSPACE_NAME" 1> /dev/null
     fi
   '';
 in {
