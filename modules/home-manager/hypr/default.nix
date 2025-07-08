@@ -15,10 +15,6 @@
     ./hyprpaper.nix
   ];
 
-  home.file.".config/hypr/wallpaper.jpg" = lib.mkIf (!builtins.pathExists "${config.home.homeDirectory}/.config/hypr/wallpaper.jpg") {
-    source = ../../../assets/wallpaper.jpg;
-  };
-
   home.packages = with pkgs; [
     hyprland
     hyprpaper
@@ -27,8 +23,11 @@
     hyprshot
 
     wofi
+    wlogout
     brightnessctl
     playerctl
     wireplumber
+    waypipe
+    pavucontrol
   ];
 }
