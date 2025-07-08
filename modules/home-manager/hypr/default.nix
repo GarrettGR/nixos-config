@@ -5,11 +5,11 @@
   ...
 }: {
   imports = [
-    # ./core.nix
-    # ./monitors.nix
-    # ./visuals.nix
-    # ./keymaps.nix
-    # ./workspaces.nix
+    ./hyprland.nix
+    ./monitors.nix
+    ./visuals.nix
+    ./keymaps.nix
+    ./workspaces.nix
     ./hyprlock.nix
     ./hypridle.nix
     ./hyprpaper.nix
