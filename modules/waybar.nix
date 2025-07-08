@@ -23,7 +23,6 @@
         modules-right = [
           "pulseaudio"
           "network"
-          "tray"
           "clock"
         ];
 
@@ -80,12 +79,6 @@
           };
           on-click = "${pkgs.pavucontrol}/bin/pavucontrol";
         };
-
-        tray = {
-          icon-size = 12;
-          spacing = 4;
-          show-passive-items = true;
-        };
       };
     };
 
@@ -122,9 +115,8 @@
 
       #clock,
       #network,
-      #pulseaudio,
-      #tray {
-        padding: 0 4px 0 4px;
+      #pulseaudio {
+        padding: 0 6px 0 4px;
         color: @base05;
       }
 
