@@ -21,11 +21,6 @@
       "$browser" = "zen";
       "$menu" = "wofi --show drun";
 
-      exec-once = [
-        "hypridle"
-        "hyprpaper" # NOTE: do I need this? (it seems to be started by default)
-      ];
-
       general = {
         gaps_in = 3;
         gaps_out = 2;
