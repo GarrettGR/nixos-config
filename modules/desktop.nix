@@ -17,6 +17,9 @@
   programs.hyprlock.enable = true;
   programs.uwsm.enable = true;
 
+  security.pam.services.hyprlock = {};
+  security.pam.services.hyprlock.fprintAuth = false;
+
   programs.waybar = {
     enable = true;
     # package = pkgs.waybar-hyprland;

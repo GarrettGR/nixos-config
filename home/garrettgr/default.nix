@@ -12,6 +12,7 @@
     ./programs/zen.nix
     ./programs/ghostty.nix
     ../../modules/waybar.nix
+    ../../modules/home-manager/hypr
   ];
 
   home = {
