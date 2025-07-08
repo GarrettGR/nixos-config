@@ -39,7 +39,7 @@
             "discord" = "";
             "browser" = "󰖟";
             "terminal" = "󰆍";
-            "obsidian" = "";
+            "notes" = "";
           };
           on-click = "activate";
           all-outputs = true;
