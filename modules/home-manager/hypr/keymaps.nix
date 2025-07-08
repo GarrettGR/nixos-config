@@ -6,7 +6,7 @@
   wayland.windowManager.hyprland.settings = {
     bind =
       [
-        "SUPER, Q, exec, ghostty"
+        "SUPER, Q, exec, $terminal"
         "SUPER, R, exec, $menu"
 
         "SUPER, B, exec, smart-launch $browser browser"
