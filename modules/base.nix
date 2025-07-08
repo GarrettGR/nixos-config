@@ -6,7 +6,7 @@
 }: {
   # TODO: move more of the shared configuration imports here and rename to `default.nix`
   imports = [
-    ./containers
+    ./nixos/containers
   ];
 
   system.stateVersion = "25.05";
