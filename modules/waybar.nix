@@ -63,11 +63,11 @@
         };
 
         pulseaudio = {
-          format = "{icon} {volume}% | {format_source}";
-          format-bluetooth = "󰂯 {volume}% | {format_source}";
-          format-bluetooth-muted = "󰂲 | {format_source}";
-          format-muted = "󰝟 | {format_source}";
-          format-source = "󰍬 {volume}%";
+          format = "{icon}:{volume}% {format_source}";
+          format-bluetooth = "󰂯:{volume}% {format_source}";
+          format-bluetooth-muted = "󰂲 {format_source}";
+          format-muted = "󰝟 {format_source}";
+          format-source = "󰍬:{volume}%";
           format-source-muted = "󰍭";
           format-icons = {
             headphone = "󰋋";
@@ -124,7 +124,7 @@
       #network,
       #pulseaudio,
       #tray {
-        padding: 0 4px 0 4px;
+        padding: 0 6px 0 4px;
         color: @base05;
       }
 

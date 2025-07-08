@@ -12,7 +12,7 @@
 
   programs.waybar = {
     settings.mainBar = {
-      modules-right = lib.mkAfter [
+      modules-right = lib.mkBefore [
         "backlight"
         "battery"
       ];
