@@ -34,6 +34,8 @@
     };
   };
 
+  programs.zathura.enable = true;
+
   home.packages = with pkgs; [
     spotify-player
     # spotify-cli-linux
