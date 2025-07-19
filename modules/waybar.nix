@@ -23,7 +23,6 @@
         modules-right = [
           "pulseaudio"
           "network"
-          "tray"
           "clock"
         ];
 
@@ -39,7 +38,7 @@
             "discord" = "";
             "browser" = "󰖟";
             "terminal" = "󰆍";
-            "obsidian" = "";
+            "notes" = "";
           };
           on-click = "activate";
           all-outputs = true;
@@ -80,12 +79,6 @@
           };
           on-click = "${pkgs.pavucontrol}/bin/pavucontrol";
         };
-
-        tray = {
-          icon-size = 12;
-          spacing = 4;
-          show-passive-items = true;
-        };
       };
     };
 
@@ -122,8 +115,7 @@
 
       #clock,
       #network,
-      #pulseaudio,
-      #tray {
+      #pulseaudio {
         padding: 0 6px 0 4px;
         color: @base05;
       }

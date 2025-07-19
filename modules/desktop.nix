@@ -13,33 +13,23 @@
     withUWSM = true;
   };
 
-  services.hypridle.enable = true;
-  programs.hyprlock.enable = true;
   programs.uwsm.enable = true;
 
-  programs.waybar = {
-    enable = true;
-    # package = pkgs.waybar-hyprland;
-  };
+  security.pam.services.hyprlock = {};
+  security.pam.services.hyprlock.fprintAuth = false;
 
   environment.systemPackages = with pkgs; [
-    wofi
     eww
-    hyprpaper
-    hyprshot
     # grim
     # slurp
-    brightnessctl
-    pavucontrol
     wl-clipboard
-    wlogout
+    wtype
     # networkmanagerapplet
     dunst
     libnotify
     # kdePackages.dolphin
     # nautilus
     vulkan-tools
-    waypipe
   ];
 
   programs.firefox.enable = true;

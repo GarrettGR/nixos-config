@@ -12,6 +12,7 @@
     ./programs/zen.nix
     ./programs/ghostty.nix
     ../../modules/waybar.nix
+    ../../modules/home-manager/hypr
   ];
 
   home = {
@@ -32,6 +33,8 @@
       rebase.autoStash = true;
     };
   };
+
+  programs.zathura.enable = true;
 
   home.packages = with pkgs; [
     spotify-player
