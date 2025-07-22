@@ -24,9 +24,6 @@
     networkmanager.enable = true;
   };
 
-  services.containers.enableDocker = true;
-  services.containers.enableSingularity = true;
-
   time.timeZone = "America/New_York";
 
   # i18n = {
