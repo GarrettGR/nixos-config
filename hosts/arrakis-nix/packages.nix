@@ -7,9 +7,9 @@
   programs.hyprland.xwayland.enable = lib.mkForce true;
 
   environment.systemPackages = with pkgs; [
-    darktable
-    kicad
-    freecad-wayland
+    # darktable
+    # kicad
+    # freecad-wayland
     gimp3
     audacity
     obs-studio
