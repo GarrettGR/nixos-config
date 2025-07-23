@@ -8,6 +8,8 @@
     inputs.zen-browser.homeModules.twilight
   ];
 
+  stylix.targets.zen-browser.profileNames = ["default"];
+
   xdg.mimeApps = let
     associations = builtins.listToAttrs (map (name: {
         inherit name;
@@ -64,7 +66,7 @@
           darkreader
           web-clipper-obsidian
           better-canvas
-          zotero-connector # is this a recognized addon?? do I need to add it another way ??
+          zotero-connector
         ];
       };
     };
