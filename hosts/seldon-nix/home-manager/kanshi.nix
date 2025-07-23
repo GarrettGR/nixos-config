@@ -1,7 +1,7 @@
 {
   services.kanshi = {
     enable = true;
-    # systemdTarget = "hyprland-session.target";
+    systemdTarget = "graphical.target"; # "hyprland-session.target";
 
     settings = [
       {
