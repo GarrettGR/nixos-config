@@ -13,6 +13,8 @@
     [
       btop-rocm
       nvtopPackages.amd
+      amdgpu_top
+      adaptivecppWithRocm
     ]
     ++ (with rocmPackages; [
       amdsmi

@@ -10,6 +10,7 @@
       nvidia_oc # gwe
       nvtopPackages.nvidia
       nvidia-vaapi-driver
+      adaptivecppWithCuda
     ]
     ++ (with cudaPackages; [
       cudatoolkit

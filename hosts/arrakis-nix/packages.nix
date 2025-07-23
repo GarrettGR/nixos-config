@@ -19,6 +19,19 @@
     ffmpeg
 
     kompute
+    mkl
+    # level-zero
+    sycl
+    adaptivecpp
+
+    distcc
+
+    taco
+
+    # gpuvis
+    # gpustat
+    # gpufetch
+    gpu-viewer
 
     alacritty
     kdePackages.dolphin
