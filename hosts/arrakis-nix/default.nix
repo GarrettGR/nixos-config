@@ -7,7 +7,7 @@
     ./hardware.nix
     ./packages.nix
     ./cuda.nix
-    ./rocm.nix
+    # ./rocm.nix
     ../../modules/desktop.nix
     ../../modules/packages.nix
     ../../modules/networking.nix
