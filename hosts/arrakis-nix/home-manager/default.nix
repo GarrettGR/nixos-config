@@ -7,5 +7,6 @@
   imports = [
     ./waybar.nix
     ./hyprland.nix
+    ./monitors.nix
   ];
 }
