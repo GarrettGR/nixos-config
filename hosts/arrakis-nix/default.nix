@@ -21,6 +21,10 @@
     kernelPackages = pkgs.linuxPackages_latest;
   };
 
+  environment.systemPackages = with pkgs; [
+    lact
+  ];
+
   networking = {
     hostName = "${hostname}";
     networkmanager.enable = true;

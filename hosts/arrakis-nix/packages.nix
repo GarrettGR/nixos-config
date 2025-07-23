@@ -18,6 +18,8 @@
     # (pkgs.callPackage ../../modules/davinci-resolve-multistage.nix {})
     ffmpeg
 
+    kompute
+
     alacritty
     kdePackages.dolphin
 
