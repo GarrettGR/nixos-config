@@ -1,8 +1,9 @@
 {...}: {
   wayland.windowManager.hyprland.settings = {
     monitor = [
-      "desc:Samsung Electric Company SAMSUNG, 1920x1080@60, 0x334, 1, cm, auto"
-      "desc:ASUSTek COMPUTER INC VG279QR N5LMQS176221, 1920x1080@120, 1920x0, 1, cm, auto"
+      "desc:Samsung Electric Company SAMSUNG, 1920x1080@60, 1920x0, 1, cm, auto"
+      "desc:Dell Inc. DELL SE2222H 622PZG3, 1920x1080@60, 0x0, 1, cm, auto"
+      "desc:ASUSTek COMPUTER INC VG279QR N5LMQS176221, 1920x1080@120, 0x334, 1, cm, auto"
     ];
   };
 }
