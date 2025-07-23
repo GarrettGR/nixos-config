@@ -21,7 +21,7 @@
     kompute
     mkl
     # level-zero
-    sycl
+    sycl-info
     adaptivecpp
 
     distcc
