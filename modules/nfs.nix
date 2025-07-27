@@ -19,7 +19,7 @@
       enable = true;
       createMountPoints = true;
       exports = ''
-        /srv            *.halley-census.ts.net(insecure,rw,sync,no_root_squash,no_subtree_check,crossmnt,fsid=0)
+        /srv            100.108.152.77(insecure,rw,sync,no_root_squash,no_subtree_check,crossmnt,fsid=0)
         /srv/nfs       	*.halley-census.ts.net(insecure,rw,sync,no_root_squash,no_subtree_check,nohide)
         # /nfs/scratch	10.0.0.0/24(insecure,rw,sync,no_root_squash,no_subtree_check,nohide)
       '';
