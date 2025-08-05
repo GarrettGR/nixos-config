@@ -4,11 +4,12 @@
   pkgs,
   ...
 }: {
+  boot.supportedFilesystems = ["nfs"];
   services.rpcbind.enable = true;
 
   fileSystems = {
     "/mnt/nfs" = {
-      device = "100.102.164.18:";
+      device = "100.102.164.18:/nfs";
       fsType = "nfs";
       options = [
         "x-systemd.automount"

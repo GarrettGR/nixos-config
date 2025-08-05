@@ -8,19 +8,31 @@
     "d /srv/nfs 0755 root root -"
   ];
 
-  services.nfs.server.enable = true;
-  services.nfs.server.createMountPoints = true;
-  services.nfs.server.exports = ''
-    /nfs 		*.halley-census.ts.net(insecure,rw,sync,no_root_squash,no_subtree_check,crossmnt,fsid=0)
-    # /nfs/project 	10.0.0.0/24(insecure,rw,sync,no_root_squash,no_subtree_check)
-    # /nfs/scratch	10.0.0.0/24(insecure,rw,sync,no_root_squash,no_subtree_check,nohide)
-  '';
-  services.nfs.server.statdPort = 4000;
-  services.nfs.server.lockdPort = 4001;
-  services.nfs.server.mountdPort = 4002;
-  services.nfs.server.extraNfsdConfig = ''
-    udp=y
-    vers3=on
-    vers4=on
-  '';
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [111 2049 4000 4001 4002 20048];
+    allowedUDPPorts = [111 2049 4000 4001 4002 20048];
+  };
+
+  services.nfs = {
+    server = {
+      enable = true;
+      createMountPoints = true;
+      exports = ''
+        /srv            100.108.152.77(insecure,rw,sync,no_root_squash,no_subtree_check,crossmnt,fsid=0)
+        /srv/nfs       	*.halley-census.ts.net(insecure,rw,sync,no_root_squash,no_subtree_check,nohide)
+        # /nfs/scratch	10.0.0.0/24(insecure,rw,sync,no_root_squash,no_subtree_check,nohide)
+      '';
+      statdPort = 4000;
+      lockdPort = 4001;
+      mountdPort = 4002;
+    };
+    settings = {
+      nfsd = {
+        udp = true;
+        vers3 = true;
+        vers4 = true;
+      };
+    };
+  };
 }
