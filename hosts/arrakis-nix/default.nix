@@ -5,9 +5,9 @@
 }: {
   imports = [
     ./hardware.nix
-    ./packages.nix
     ./cuda.nix
     # ./rocm.nix
+    ./packages.nix
     ../../modules/desktop.nix
     ../../modules/packages.nix
     ../../modules/networking.nix
