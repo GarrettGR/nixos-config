@@ -32,6 +32,7 @@
     # gpustat
     # gpufetch
     gpu-viewer
+    nvtopPackages.full
 
     alacritty
     kdePackages.dolphin
