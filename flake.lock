@@ -1,21 +1,5 @@
 {
   "nodes": {
-    "__flake-compat": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1743448263,
-        "narHash": "sha256-PplvwAEkj+/MFkM6Q9V59L6f6i3Tbdc/9yLRf/iwECg=",
-        "ref": "refs/heads/main",
-        "rev": "6588972962297c7abd300a72c55b2c7e21c1dc54",
-        "revCount": 85,
-        "type": "git",
-        "url": "https://git.lix.systems/lix-project/flake-compat.git"
-      },
-      "original": {
-        "type": "git",
-        "url": "https://git.lix.systems/lix-project/flake-compat.git"
-      }
-    },
     "apple-silicon-support": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -750,49 +734,10 @@
         "type": "github"
       }
     },
-    "nixos-apple-silicon": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1747085439,
-        "narHash": "sha256-YjJ1K5XYMT7dn68iE7RK4wyPgofiBnN5jkkcJKHD/VA=",
-        "owner": "yuyuyureka",
-        "repo": "nixos-apple-silicon",
-        "rev": "09b6f9693c04cd8df950b7711db731d5c7b2166f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "yuyuyureka",
-        "ref": "minimize-patches",
-        "repo": "nixos-apple-silicon",
-        "type": "github"
-      }
-    },
-    "nixos-muvm-fex": {
-      "inputs": {
-        "__flake-compat": "__flake-compat",
-        "nixos-apple-silicon": "nixos-apple-silicon",
-        "nixpkgs": "nixpkgs_3",
-        "nixpkgs-muvm": "nixpkgs-muvm"
-      },
-      "locked": {
-        "lastModified": 1747923214,
-        "narHash": "sha256-rva/48UdH1TdrlI8gX6LEd0W/3NxE4OVPWB3FMSYzfo=",
-        "owner": "nrabulinski",
-        "repo": "nixos-muvm-fex",
-        "rev": "9bf86173ca62ab64e63c1c83b27b664e3df3e03a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nrabulinski",
-        "ref": "native-build",
-        "repo": "nixos-muvm-fex",
-        "type": "github"
-      }
-    },
     "nixos-wsl": {
       "inputs": {
         "flake-compat": "flake-compat_3",
-        "nixpkgs": "nixpkgs_4"
+        "nixpkgs": "nixpkgs_3"
       },
       "locked": {
         "lastModified": 1755261305,
@@ -821,23 +766,6 @@
       "original": {
         "owner": "nixos",
         "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs-muvm": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1746131127,
-        "narHash": "sha256-Ean8ZaL0+2clYRNzOnBdNYTloXvFw4IfG8XXCUYV4Yw=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "8a30e8fcec6df3bdea313b05067a39840756255f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "refs/pull/397932/head",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -876,22 +804,6 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1747885982,
-        "narHash": "sha256-rSuxACdwx5Ndr2thpjqcG89fj8mSSp96CFoCt0yrdkY=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "a16efe5d2fc7455d7328a01f4692bfec152965b3",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixpkgs-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_4": {
-      "locked": {
         "lastModified": 1754725699,
         "narHash": "sha256-iAcj9T/Y+3DBy2J0N+yF9XQQQ8IEb5swLFzs23CdP88=",
         "owner": "NixOS",
@@ -906,7 +818,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_5": {
+    "nixpkgs_4": {
       "locked": {
         "lastModified": 1755615617,
         "narHash": "sha256-HMwfAJBdrr8wXAkbGhtcby1zGFvs+StOp19xNsbqdOg=",
@@ -922,7 +834,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_6": {
+    "nixpkgs_5": {
       "locked": {
         "lastModified": 1751792365,
         "narHash": "sha256-J1kI6oAj25IG4EdVlg2hQz8NZTBNYvIS0l4wpr9KcUo=",
@@ -1018,9 +930,8 @@
         "home-manager": "home-manager",
         "hyprland": "hyprland",
         "hyprlock": "hyprlock",
-        "nixos-muvm-fex": "nixos-muvm-fex",
         "nixos-wsl": "nixos-wsl",
-        "nixpkgs": "nixpkgs_5",
+        "nixpkgs": "nixpkgs_4",
         "nixpkgs-stable": "nixpkgs-stable",
         "nvf": "nvf",
         "rose-pine-hyprcursor": "rose-pine-hyprcursor",
@@ -1084,7 +995,7 @@
         "firefox-gnome-theme": "firefox-gnome-theme",
         "flake-parts": "flake-parts_2",
         "gnome-shell": "gnome-shell",
-        "nixpkgs": "nixpkgs_6",
+        "nixpkgs": "nixpkgs_5",
         "nur": "nur",
         "systems": "systems_4",
         "tinted-foot": "tinted-foot",

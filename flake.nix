@@ -5,20 +5,7 @@
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    # nixpkgs-NUR = {
-    #   url = "github:nix-community/NUR";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-    # nixpkgs-wayland = {
-    #   url = "github:nix-community/nixpkgs-wayland";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
     hyprland.url = "github:hyprwm/Hyprland";
-    # hypr-contrib = {
-    #   url = "github:hyprwm/contrib";
-    #   inputs.nixpkgs.follows = "hyprland/nixpkgs";
-    # };
     hyprlock = {
       url = "github:hyprwm/hyprlock";
       inputs = {
@@ -56,14 +43,9 @@
 
     apple-silicon-support = {
       url = "github:nix-community/nixos-apple-silicon";
-
-      # url = "github:yuyuyureka/nixos-apple-silicon/minimize-patches";
       # url = "github:flokli/nixos-apple-silicon/wip";
-      #  inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # nixos-muvm-fex.url = "github:nrabulinski/nixos-muvm-fex/native-build";
-    # nixos-muvm-fex.url = "path:/home/garrettgr/Documents/nixos-muvm-fex";
 
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
@@ -98,7 +80,6 @@
     nvf,
     apple-silicon-support,
     nixos-wsl,
-    # nixos-muvm-fex,
     zen-browser,
     ...
   } @ inputs: let
@@ -135,7 +116,6 @@
             nvf.nixosModules.default
             inputs.stylix.nixosModules.stylix
             # sops-nix.nixosModules.sops
-            # nvf.homeManagerModules.defaullt
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
@@ -150,13 +130,6 @@
       seldon-nix = mkSystem {
         system = "aarch64-linux";
         hostname = "seldon-nix";
-        extraPkgsConfig = {
-          # nixos-muvm-fex.mesaDoCross = true;
-          allowUnsupportedSystem = true;
-        };
-        extraOverlays = [
-          # inputs.nixos-muvm-fex.overlays.default
-        ];
         extraModules = [
           ./modules/keyboard.nix
           inputs.titdb.nixosModules.default
