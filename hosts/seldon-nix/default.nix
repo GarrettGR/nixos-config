@@ -33,7 +33,6 @@
   };
 
   hardware.asahi = {
-    withRust = true;
     setupAsahiSound = true;
     peripheralFirmwareDirectory = /etc/nixos/firmware;
   };

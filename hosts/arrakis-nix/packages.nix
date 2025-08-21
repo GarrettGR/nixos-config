@@ -7,9 +7,9 @@
   programs.hyprland.xwayland.enable = lib.mkForce true;
 
   environment.systemPackages = with pkgs; [
-    darktable
-    kicad
-    freecad-wayland
+    # darktable
+    # kicad
+    # freecad-wayland
     gimp3
     audacity
     obs-studio
@@ -18,10 +18,24 @@
     # (pkgs.callPackage ../../modules/davinci-resolve-multistage.nix {})
     ffmpeg
 
+    kompute
+    mkl
+    # level-zero
+    sycl-info
+    adaptivecpp
+
+    distcc
+
+    taco
+
+    # gpuvis
+    # gpustat
+    # gpufetch
+    gpu-viewer
+    nvtopPackages.full
+
     alacritty
     kdePackages.dolphin
-
-    rocmPackages.amdsmi
 
     protonup-rs
     lutris

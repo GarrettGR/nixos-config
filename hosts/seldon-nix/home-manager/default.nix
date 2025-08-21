@@ -6,5 +6,7 @@
 }: {
   imports = [
     ./waybar.nix
+    ./monitors.nix
+    ./kanshi.nix
   ];
 }

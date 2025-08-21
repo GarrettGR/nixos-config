@@ -5,6 +5,8 @@
 }: {
   imports = [
     ./hardware.nix
+    ./cuda.nix
+    # ./rocm.nix
     ./packages.nix
     ../../modules/desktop.nix
     ../../modules/packages.nix
@@ -19,9 +21,18 @@
     kernelPackages = pkgs.linuxPackages_latest;
   };
 
+  environment.systemPackages = with pkgs; [
+    lact
+  ];
+
   networking = {
     hostName = "${hostname}";
     networkmanager.enable = true;
+  };
+
+  services.containers = {
+    enableDocker = true;
+    enableSingularity = true;
   };
 
   time.timeZone = "America/New_York";

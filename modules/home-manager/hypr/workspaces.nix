@@ -26,7 +26,7 @@ in {
 
       "workspace name:browser, class:^(zen-alpha|zen-twilight|firefox)$"
       "workspace name:discord, class:^(legcord|discord)$"
-      "workspace name:notes, class:^(obsidian)$"
+      "workspace name:notes, class:^(obsidian|org.pwmt.zathura)$"
     ];
   };
 }
