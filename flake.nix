@@ -139,6 +139,18 @@
         ];
       };
 
+      hardin-nix = mkSystem {
+        system = "aarch64-linux";
+        hostname = "hardin-nix";
+        extraModules = [
+          ./modules/keyboard.nix
+          inputs.titdb.nixosModules.default
+          ./modules/titdb.nix
+          ./modules/display-manager.nix
+          apple-silicon-support.nixosModules.apple-silicon-support
+        ];
+      };
+
       rocinante-wsl-nix = mkSystem {
         system = "x86_64-linux";
         hostname = "rocinante-wsl-nix";
