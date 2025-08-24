@@ -6,8 +6,8 @@
   services.titdb = {
     enable = true;
 
-    device = "/dev/input/by-path/platform-24eb30000.input-event-mouse";
-    # # user = "garrettgr";
+    device = "/dev/input/event2"; # NOTE: THIS HAS TO BE SET TO THE PROPER PATH PER MACHINE
+    # user = "garrettgr";
 
     mode = "flex";
     margins = {

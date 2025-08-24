@@ -16,6 +16,8 @@
 
   services.fstrim.enable = true;
 
+  services.titdb.device = lib.mkForce "/dev/input/by-path/platform-24eb30000.input-event-mouse";
+
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/a408ae20-8eef-4f46-9091-4cf1620cb2b9";
     fsType = "btrfs";
