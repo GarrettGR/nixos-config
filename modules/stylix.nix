@@ -10,6 +10,8 @@
     # base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine-moon.yaml";
     base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
 
+    polarity = "dark";
+
     # targets.hyprland.hyprpaper.enable = true;
     # targets.hyprpaper.enable = true;
     image = pkgs.fetchurl {
