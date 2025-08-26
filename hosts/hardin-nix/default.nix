@@ -25,7 +25,7 @@
   };
   boot.kernelParams = ["apple_dcp.show_notch=1"];
 
-  boot.binfmt.emulatedSystems = ["x86_64-linux"];
+  # boot.binfmt.emulatedSystems = ["x86_64-linux"];
   nix.settings = {
     extra-platforms = ["x86_64-linux"];
     trusted-users = ["garrettgr"];
@@ -45,16 +45,12 @@
     # asahi-bless
     mesa
     alsa-utils
-    # muvm
-    erofs-utils
-    # fex
-    # (pkgs.extend inputs.nixos-muvm-fex.overlays.default).muvm # https://github.com/nrabulinski/nixos-muvm-fex.git
     # alsaequal
     lxqt.pavucontrol-qt
     moonlight-embedded
   ];
 
-  services.mbpfan.enable = true; #NOTE: do I need this with the M2 Macbook Pro? Is this even right?
+  # services.mbpfan.enable = true; #NOTE: do I need this with the M2 Macbook Pro? Is this even right?
   services.xserver.videoDrivers = ["displaylink" "modesetting"];
 
   time.timeZone = "America/New_York";
