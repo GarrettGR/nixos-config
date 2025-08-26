@@ -1,4 +1,5 @@
 {
+  lib,
   pkgs,
   hostname,
   ...
@@ -13,7 +14,20 @@
     ../../modules/filesystems.nix
   ];
 
-  networking.hostName = "${hostname}";
+  networking = {
+    hostName = "${hostname}";
+    networkmanager = {
+      enable = true;
+      wifi = {
+        backend = lib.mkForce "iwd";
+        powersave = true;
+      };
+    };
+    wireless.iwd = {
+      enable = true;
+      settings.General.EnableNetworkConfiguration = true;
+    };
+  };
 
   boot.loader.efi.canTouchEfiVariables = false;
   boot.loader.grub = {

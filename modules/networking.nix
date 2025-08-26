@@ -1,13 +1,13 @@
-{ pkgs, ... }: {
-  networking.nameservers = ["1.1.1.1" "9.9.9.9"];
-
-  networking.networkmanager.enable = true;
-  networking.networkmanager.wifi.backend = "iwd";
-  networking.networkmanager.wifi.powersave = true;
-
-  networking.wireless.iwd = {
-    enable = true;
-    settings.General.EnableNetworkConfiguration = true;
+{pkgs, ...}: {
+  networking = {
+    nameservers = ["1.1.1.1" "9.9.9.9"];
+    networkmanager = {
+      enable = true;
+      wifi = {
+        backend = "wpa_supplicant";
+        powersave = true;
+      };
+    };
   };
 
   services.tailscale.enable = true;
