@@ -828,22 +828,6 @@
     "nixpkgs-muvm": {
       "flake": false,
       "locked": {
-        "lastModified": 1746131127,
-        "narHash": "sha256-Ean8ZaL0+2clYRNzOnBdNYTloXvFw4IfG8XXCUYV4Yw=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "8a30e8fcec6df3bdea313b05067a39840756255f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "refs/pull/397932/head",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs-stable": {
-      "locked": {
         "lastModified": 1755922037,
         "narHash": "sha256-wY1+2JPH0ZZC4BQefoZw/k+3+DowFyfOxv17CN/idKs=",
         "owner": "NixOS",
