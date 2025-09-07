@@ -9,31 +9,45 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = ["usb_storage"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = [];
-  boot.extraModulePackages = [];
+  boot = {
+    initrd = {
+      availableKernelModules = ["usb_storage"];
+      kernelModules = [];
+    };
+    kernelModules = [];
+    kernelParams = ["apple_dcp.show_notch=1"];
+    extraModulePackages = [];
+    loader.efi.canTouchEfiVariables = false;
+  };
 
   services.fstrim.enable = true;
 
   services.titdb.device = lib.mkForce "/dev/input/by-path/platform-24eb30000.input-event-mouse";
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/a408ae20-8eef-4f46-9091-4cf1620cb2b9";
-    fsType = "btrfs";
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-uuid/a408ae20-8eef-4f46-9091-4cf1620cb2b9";
+      fsType = "btrfs";
+    };
+    "/boot" = {
+      device = "/dev/disk/by-uuid/2743-1F1C";
+      fsType = "vfat";
+      options = ["fmask=0022" "dmask=0022"];
+    };
   };
 
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/2743-1F1C";
-    fsType = "vfat";
-    options = ["fmask=0022" "dmask=0022"];
-  };
-
-  networking.useDHCP = lib.mkDefault true;
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 16 * 1024;
+    }
+  ];
 
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
 
-  services.logind.extraConfig = "HandlePowerKey=ignore";
+  services.logind.settings.Login = {
+    HandlePowerKey = "ignore";
+  };
 
   systemd.services.power-button = {
     wantedBy = ["multi-user.target"];
@@ -84,7 +98,12 @@
     });
   '';
 
-  hardware.graphics.enable = true;
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true;
+  hardware = {
+    graphics.enable = true;
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
+    asahi.setupAsahiSound = true;
+  };
 }

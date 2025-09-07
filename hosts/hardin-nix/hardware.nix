@@ -33,7 +33,9 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
 
-  services.logind.extraConfig = "HandlePowerKey=ignore";
+  services.logind.settings.Login = {
+    HandlePowerKey = "ignore";
+  };
 
   systemd.services.power-button = {
     wantedBy = ["multi-user.target"];
