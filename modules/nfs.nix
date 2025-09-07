@@ -19,9 +19,9 @@
       enable = true;
       createMountPoints = true;
       exports = ''
-        /srv            100.108.152.77(insecure,rw,sync,no_root_squash,no_subtree_check,crossmnt,fsid=0)
-        /srv/nfs       	*.halley-census.ts.net(insecure,rw,sync,no_root_squash,no_subtree_check,nohide)
-        # /nfs/scratch	10.0.0.0/24(insecure,rw,sync,no_root_squash,no_subtree_check,nohide)
+        /srv            100.76.2.56(insecure,rw,sync,no_root_squash,no_subtree_check,crossmnt,fsid=0)
+        /srv           	100.72.156.101(insecure,rw,sync,no_root_squash,no_subtree_check,crossmnt,fsid=0)
+        # /srv        	10.0.0.0/24(insecure,rw,sync,no_root_squash,no_subtree_check,nohide)
       '';
       statdPort = 4000;
       lockdPort = 4001;
