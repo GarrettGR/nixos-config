@@ -9,37 +9,46 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = ["usb_storage"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = [];
-  boot.extraModulePackages = [];
+  boot = {
+    initrd = {
+      availableKernelModules = ["usb_storage"];
+      kernelModules = [];
+    };
+    kernelModules = [];
+    kernelParams = ["apple_dcp.show_notch=1"];
+    extraModulePackages = [];
+    loader.efi.canTouchEfiVariables = false;
+  };
 
   services.fstrim.enable = true;
 
   services.titdb.device = lib.mkForce "/dev/input/by-path/platform-2a9b30000.input-event-mouse";
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/c3ba93f4-02bb-45a2-b400-7f9e77759676";
-    fsType = "btrfs";
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-uuid/c3ba93f4-02bb-45a2-b400-7f9e77759676";
+      fsType = "btrfs";
+    };
+    "/boot" = {
+      device = "/dev/disk/by-uuid/F7C0-190A";
+      fsType = "vfat";
+      options = ["fmask=0022" "dmask=0022"];
+    };
   };
 
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/F7C0-190A";
-    fsType = "vfat";
-    options = ["fmask=0022" "dmask=0022"];
-  };
-
-  swapDevices = [
-    {
-      device = "/var/lib/swapfile";
-      size = 16 * 1024;
-    }
-  ];
+  # TODO: setup zram/zswap (whichever is recommended by asahi upstream)
+  # swapDevices = [
+  #   {
+  #     device = "/var/lib/swapfile";
+  #     size = 16 * 1024;
+  #   }
+  # ];
 
   networking.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
 
+  # TODO: move the powerbutton config to a new module file
   services.logind.settings.Login = {
     HandlePowerKey = "ignore";
   };
@@ -93,7 +102,12 @@
     });
   '';
 
-  hardware.graphics.enable = true;
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true;
+  hardware = {
+    graphics.enable = true;
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
+    asahi.setupAsahiSound = true;
+  };
 }
