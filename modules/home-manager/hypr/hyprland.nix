@@ -48,10 +48,6 @@
           natural_scroll = true;
         };
       };
-
-      gestures = {
-        workspace_swipe = false;
-      };
     };
   };
 }
