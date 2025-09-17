@@ -5,6 +5,8 @@
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
+
     hyprland.url = "github:hyprwm/Hyprland";
     hyprlock = {
       url = "github:hyprwm/hyprlock";
@@ -75,6 +77,7 @@
   outputs = {
     self,
     nixpkgs,
+    determinate,
     home-manager,
     sops-nix,
     nvf,
@@ -145,6 +148,7 @@
         extraModules = [
           ./modules/keyboard.nix
           inputs.titdb.nixosModules.default
+          determinate.nixosModules.default
           ./modules/titdb.nix
           ./modules/display-manager.nix
           apple-silicon-support.nixosModules.apple-silicon-support
