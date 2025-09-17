@@ -41,6 +41,8 @@
         disable_hyprland_logo = true;
       };
 
+      ecosystem.no_update_news = true;
+
       input = {
         follow_mouse = 1;
         sensitivity = 0;
