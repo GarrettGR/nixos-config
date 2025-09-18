@@ -21,7 +21,7 @@
     };
 
     animations = {
-      enabled = false;
+      enabled = true;
 
       bezier = [
         "easeOutQuint,0.23,1,0.32,1"
@@ -32,22 +32,22 @@
       ];
 
       animation = [
-        "global, 1, 10, default"
-        "border, 1, 5.39, easeOutQuint"
-        "windows, 1, 4.79, easeOutQuint"
-        "windowsIn, 1, 4.1, easeOutQuint, popin 87%"
-        "windowsOut, 1, 1.49, linear, popin 87%"
-        "fadeIn, 1, 1.73, almostLinear"
-        "fadeOut, 1, 1.46, almostLinear"
-        "fade, 1, 3.03, quick"
-        "layers, 1, 3.81, easeOutQuint"
-        "layersIn, 1, 4, easeOutQuint, fade"
-        "layersOut, 1, 1.5, linear, fade"
-        "fadeLayersIn, 1, 1.79, almostLinear"
-        "fadeLayersOut, 1, 1.39, almostLinear"
-        "workspaces, 1, 1.94, almostLinear, fade"
-        "workspacesIn, 1, 1.21, almostLinear, fade"
-        "workspacesOut, 1, 1.94, almostLinear, fade"
+        "global, 1, 7, default"
+        "border, 1, 3, easeOutQuint"
+        "windows, 1, 2, easeOutQuint"
+        "windowsIn, 1, 3.1, easeOutQuint, popin 87%"
+        "windowsOut, 1, 1, linear, popin 87%"
+        "fadeIn, 1, 1, almostLinear"
+        "fadeOut, 1, 1, almostLinear"
+        "fade, 1, 2, quick"
+        "layers, 1, 2, easeOutQuint"
+        "layersIn, 1, 3, easeOutQuint, fade"
+        "layersOut, 1, 1, linear, fade"
+        "fadeLayersIn, 1, 1, almostLinear"
+        "fadeLayersOut, 1, 1, almostLinear"
+        "workspaces, 1, 1, almostLinear, fade"
+        "workspacesIn, 1, 1, almostLinear, fade"
+        "workspacesOut, 1, 1, almostLinear, fade"
       ];
     };
   };
