@@ -22,10 +22,6 @@
     gfxmodeEfi = "2560x1664";
   };
 
-  nix.settings = {
-    trusted-users = ["garrettgr"];
-  };
-
   hardware.asahi.peripheralFirmwareDirectory = /etc/nixos/firmware;
 
   environment.systemPackages = with pkgs; [

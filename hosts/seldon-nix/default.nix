@@ -39,10 +39,7 @@
   };
 
   # boot.binfmt.emulatedSystems = ["x86_64-linux"];
-  nix.settings = {
-    # extra-platforms = ["x86_64-linux"];
-    trusted-users = ["garrettgr"];
-  };
+  # nix.settings.extra-platforms = ["x86_64-linux"];
 
   hardware.asahi.peripheralFirmwareDirectory = /etc/nixos/firmware;
 
