@@ -41,6 +41,10 @@
         disable_hyprland_logo = true;
       };
 
+      windowrulev2 = [
+        "float, pin, opacity 1.0 override 1.0 override 1.0 override, initialTitle:^(Picture-in-Picture)$"
+      ];
+
       ecosystem.no_update_news = true;
 
       input = {
