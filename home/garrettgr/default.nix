@@ -8,6 +8,7 @@
     ./programs/shell.nix
     ./programs/tmux.nix
     ./programs/dev.nix
+    ./programs/git.nix
     # ./programs/hyprland.nix
     ./programs/zen.nix
     ./programs/ghostty.nix
@@ -22,17 +23,6 @@
   };
 
   programs.home-manager.enable = true;
-
-  programs.git = {
-    enable = true;
-    userName = "Garrett Gonzalez-Rivas";
-    userEmail = "grg@njit.edu";
-    extraConfig = {
-      init.defaultBranch = "main";
-      pull.rebase = true;
-      rebase.autoStash = true;
-    };
-  };
 
   programs.zathura.enable = true;
 
