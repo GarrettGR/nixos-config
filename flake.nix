@@ -168,7 +168,11 @@
         hostname = "arrakis-nix";
         extraModules = [
           ./modules/keyboard.nix
-          ./modules/display-manager.nix
+          # ./modules/display-manager.nix
+          {
+            services.displayManager.sddm.enable = true;
+            services.desktopManager.plasma6.enable = true;
+          }
         ];
       };
     };
