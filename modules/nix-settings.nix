@@ -7,7 +7,7 @@
     package = lib.mkDefault pkgs.lix;
     settings = {
       trusted-users = ["garrettgr"]; # Move this to users.nix ??
-      
+
       experimental-features = ["nix-command" "flakes"];
       auto-optimise-store = true;
 
@@ -21,7 +21,7 @@
     gc = {
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than 30d"
+      options = "--delete-older-than 30d";
     };
   };
 }

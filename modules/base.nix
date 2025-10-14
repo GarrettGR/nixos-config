@@ -7,6 +7,7 @@
   # TODO: move more of the shared configuration imports here and rename to `default.nix`
   imports = [
     ./nixos/containers
+    ./nix-settings.nix
   ];
 
   system.stateVersion = "25.05";
