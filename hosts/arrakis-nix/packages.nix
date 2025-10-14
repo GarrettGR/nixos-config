@@ -1,9 +1,12 @@
 {
   pkgs,
   system,
+  inputs,
   lib,
   ...
-}: {
+}: let
+  pkgs-stable = inputs.nixpkgs-stable.legacyPackages.${pkgs.system};
+in {
   programs.hyprland.xwayland.enable = lib.mkForce true;
 
   environment.systemPackages = with pkgs; [
@@ -27,6 +30,7 @@
     distcc
 
     # taco
+    (pkgs-stable.taco)
 
     # gpuvis
     # gpustat
