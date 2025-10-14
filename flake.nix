@@ -92,20 +92,13 @@
       system,
       hostname,
       extraModules ? [],
-      extraPkgsConfig ? {},
-      extraOverlays ? [],
     }:
       lib.nixosSystem {
         inherit system;
         specialArgs = {inherit inputs system hostname;};
         pkgs = import inputs.nixpkgs {
           inherit system;
-          config =
-            {
-              allowUnfree = true;
-            }
-            // extraPkgsConfig;
-          overlays = extraOverlays;
+          config.allowUnfree = true;
         };
         modules =
           [
