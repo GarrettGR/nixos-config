@@ -26,7 +26,7 @@
 
     distcc
 
-    taco
+    # taco
 
     # gpuvis
     # gpustat
