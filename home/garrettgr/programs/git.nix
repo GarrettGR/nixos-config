@@ -7,9 +7,10 @@
   programs.git = {
     enable = true;
     lfs.enable = true;
-    userName = "Garrett Gonzalez-Rivas";
-    userEmail = "grg@njit.edu";
-    extraConfig = {
+    settings = {
+      user.name = "Garrett Gonzalez-Rivas";
+      user.email = "grg@njit.edu";
+
       push.autoSetupRemote = true;
       init.defaultBranch = "main";
       pull.rebase = true;
