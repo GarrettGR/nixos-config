@@ -28,6 +28,17 @@
           }
         ];
       }
+      {
+        profile.name = "desk";
+        profile.outputs = [
+          {
+            criteria = "eDP-1";
+          }
+          {
+            criteria = "HDMI-A-1";
+          }
+        ];
+      }
     ];
   };
 }

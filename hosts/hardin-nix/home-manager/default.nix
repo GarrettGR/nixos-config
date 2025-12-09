@@ -7,6 +7,6 @@
   imports = [
     ./waybar.nix
     ./monitors.nix
-    # ./kanshi.nix
+    ./kanshi.nix
   ];
 }
