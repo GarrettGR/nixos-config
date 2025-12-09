@@ -42,7 +42,7 @@
     # wikitui
 
     obsidian
-    bitwarden
+    bitwarden-desktop
 
     legcord
     telegram-desktop
