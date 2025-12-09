@@ -5,7 +5,7 @@
   ...
 }: {
   home.sessionVariables = {
-    ZED_ALLOW_EMULATED_GPU = 1;
+    # ZED_ALLOW_EMULATED_GPU = 1;
     # MESA_VK_DEVICE_SELECT="10005:0"; # NOTE: set mesa to use LLVM-pipe
   };
 
@@ -13,10 +13,16 @@
     enable = true;
     installRemoteServer = true;
     extensions = [
-      "nix"
-      "toml"
-      "dockerfile"
+      # "nix"
+      # "toml"
+      "rust"
+      # "dockerfile"
       # "make"
+      "basher"
+      "ocaml"
+      "assembly language server"
+      # "discord presence"
+      "autocorrect"
       "neocmake"
     ];
     extraPackages = with pkgs; [
@@ -39,8 +45,12 @@
         metrics = false;
       };
       vim_mode = true;
-      # ui_font_size = 12;
-      # buffer_font_size = 14;
+      base_keymap = "VSCode";
+      confirm_quit = false;
+
+      bottom_dock_layout = "contained";
+      ui_font_size = lib.mkForce 12;
+      buffer_font_size = lib.mkForce 14;
     };
     # userKeymaps = { };
   };
