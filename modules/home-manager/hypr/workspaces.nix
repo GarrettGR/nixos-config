@@ -24,7 +24,7 @@ in {
       "suppressevent maximize, class:.*"
       "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
 
-      "workspace name:browser, class:^(zen-alpha|zen-twilight|firefox)$"
+      "workspace name:browser, class:^(zen-alpha|zen-twilight|firefox|chromium-browser)$"
       "workspace name:discord, class:^(legcord|discord)$"
       "workspace name:notes, class:^(obsidian|org.pwmt.zathura)$"
     ];
