@@ -9,5 +9,6 @@
     moonlight-embedded
     distrobox
     chromium
+    whatsapp-electron
   ];
 }
