@@ -28,6 +28,9 @@ in {
     adaptivecpp
 
     distcc
+    mpi
+    mpich
+    blas
 
     # taco
     (pkgs-stable.taco)
@@ -40,6 +43,8 @@ in {
 
     alacritty
     kdePackages.dolphin
+
+    distrobox
 
     protonup-rs
     lutris
