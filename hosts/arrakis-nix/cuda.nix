@@ -39,11 +39,11 @@
       # cuda_nvprof
 
       libcusparse
-      cusparselt
+      libcusparse_lt
       libcublas
       libcurand
       libcusolver
-      cutensor
+      libcutensor
 
       libcufile
       # cuda_nvdisasm
