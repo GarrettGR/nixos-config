@@ -51,7 +51,7 @@
           sql.enable = true;
           java.enable = true;
           # kotlin.enable = true;
-          ts.enable = true;
+          # ts.enable = true;
           go.enable = true;
           lua.enable = true;
           zig.enable = true;
@@ -59,7 +59,7 @@
           # typst.enable = true;
           rust = {
             enable = true;
-            extensions.crates-nvim.enable = true;
+            crates.enable = true;
           };
           assembly.enable = true;
           # csharp.enable = false;
@@ -168,7 +168,7 @@
         };
 
         notes = {
-          obsidian.enable = true;
+          # obsidian.enable = true; # FIXME: neovim fails to build if obsidian is enabled
           neorg.enable = false;
           orgmode.enable = false;
           mind-nvim.enable = true;
