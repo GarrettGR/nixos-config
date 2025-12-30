@@ -54,7 +54,8 @@
     lxqt.pavucontrol-qt
   ];
 
-  services.xserver.videoDrivers = ["displaylink" "modesetting"];
-
-  time.timeZone = "America/New_York";
+  services = {
+    xserver.videoDrivers = ["displaylink" "modesetting"];
+    automatic-timezoned.enable = true;
+  };
 }

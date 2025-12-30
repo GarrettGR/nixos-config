@@ -1,6 +1,5 @@
 {hostname, ...}: {
   networking.hostName = "${hostname}";
-  time.timeZone = "America/New_York";
 
   wsl = {
     enable = true;
