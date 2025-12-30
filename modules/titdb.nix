@@ -22,6 +22,6 @@
 
   environment.systemPackages = [
     pkgs.libinput
-    inputs.titdb.packages.${pkgs.system}.default # NOTE: including it as a package is mostly for testing
+    inputs.titdb.packages.${pkgs.stdenv.hostPlatform.system}.default # NOTE: including it as a package is mostly for testing
   ];
 }

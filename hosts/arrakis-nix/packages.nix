@@ -5,7 +5,7 @@
   lib,
   ...
 }: let
-  pkgs-stable = inputs.nixpkgs-stable.legacyPackages.${pkgs.system};
+  pkgs-stable = inputs.nixpkgs-stable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
 in {
   programs.hyprland.xwayland.enable = lib.mkForce true;
 
