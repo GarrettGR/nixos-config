@@ -144,6 +144,7 @@
           determinate.nixosModules.default
           ./modules/titdb.nix
           ./modules/display-manager.nix
+          ./modules/ios_usb.nix
           apple-silicon-support.nixosModules.apple-silicon-support
         ];
       };
