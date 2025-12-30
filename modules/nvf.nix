@@ -59,7 +59,7 @@
           # typst.enable = true;
           rust = {
             enable = true;
-            crates.enable = true;
+            extensions.crates-nvim.enable = true;
           };
           assembly.enable = true;
           # csharp.enable = false;
