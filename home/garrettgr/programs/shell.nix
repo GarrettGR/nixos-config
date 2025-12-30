@@ -8,6 +8,8 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
 
+    dotDir = "${config.xdg.configHome}/zsh";
+
     history = {
       size = 10000;
       path = "${config.xdg.dataHome}/zsh/history";
