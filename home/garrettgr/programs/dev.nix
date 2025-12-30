@@ -31,6 +31,7 @@
     # nodejs_20
 
     # Development tools
+
     claude-code
     ripgrep
     fzf
@@ -39,6 +40,12 @@
     yq
     tldr
     tio
+
+    jetbrains.webstorm
+    jetbrains.idea
+    jetbrains.clion
+    jetbrains.pycharm
+    jetbrains.rust-rover
 
     # Build tools
     cmake
