@@ -2,6 +2,7 @@
   pkgs,
   system,
   lib,
+  inputs,
   ...
 }: {
   services.containers.enableDocker = true;
@@ -10,5 +11,8 @@
     distrobox
     chromium
     whatsapp-electron
+
+    inputs.librepods.packages.${pkgs.stdenv.hostPlatform.system}.default
+
   ];
 }

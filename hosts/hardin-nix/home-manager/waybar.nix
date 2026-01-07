@@ -13,9 +13,16 @@
   programs.waybar = {
     settings.mainBar = {
       modules-right = lib.mkBefore [
+        "tray"
         "backlight"
         "battery"
       ];
+
+      tray = {
+        icon-size = 12;
+        spacing = 4;
+        show-passive-items = true;
+      };
 
       backlight = {
         format = "{icon} {percent}%";
