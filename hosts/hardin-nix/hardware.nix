@@ -15,7 +15,7 @@
       kernelModules = [];
     };
     kernelModules = [];
-    kernelParams = ["apple_dcp.show_notch=1"];
+    kernelParams = ["appledrm.show_notch=1"];
     extraModulePackages = [];
     loader.efi.canTouchEfiVariables = false;
   };
