@@ -45,7 +45,6 @@
 
     apple-silicon-support = {
       url = "github:nix-community/nixos-apple-silicon";
-      # url = "github:flokli/nixos-apple-silicon/wip";
       # inputs.nixpkgs.follows = "nixpkgs";
     };
 
