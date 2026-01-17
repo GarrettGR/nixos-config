@@ -32,8 +32,6 @@
     vulkan-tools
   ];
 
-  programs.firefox.enable = true;
-
   fonts.packages = with pkgs; [
     nerd-fonts.fira-code
     nerd-fonts.monaspace
