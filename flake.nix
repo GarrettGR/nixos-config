@@ -76,6 +76,8 @@
     };
 
     stylix.url = "github:danth/stylix";
+
+    nixflix.url = "github:kiriwalawren/nixflix";
   };
 
   outputs = {
@@ -166,6 +168,17 @@
         extraModules = [
           ./modules/keyboard.nix
           ./modules/display-manager.nix
+        ];
+      };
+
+      hyperion-nix = mkSystem {
+        system = "x86_64-linux";
+        hostname = "hyperion-nix";
+        extraModules = [
+          ./modules/keyboard.nix
+          ./modules/display-manager.nix
+          inputs.nixflix.nixosModules.default
+          ./modules/nixflix.nix
         ];
       };
     };
