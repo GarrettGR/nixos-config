@@ -8,6 +8,7 @@
     ./cuda.nix
     # ./rocm.nix
     ./packages.nix
+    ./users.nix
     ../../modules/desktop.nix
     ../../modules/packages.nix
     ../../modules/networking.nix
