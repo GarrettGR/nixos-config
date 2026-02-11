@@ -8,7 +8,7 @@
     APP_COMMAND="$1"
     WORKSPACE_NAME="$2"
 
-    if hyprctl clients | grep -iq "match:class .$APP_COMMAND";  then
+    if hyprctl clients | grep -iq "class:.$APP_COMMAND";  then
       hyprctl dispatch workspace "name:$WORKSPACE_NAME" 1> /dev/null
     else
       hyprctl dispatch exec "[workspace name:$WORKSPACE_NAME silent] $APP_COMMAND" 1> /dev/null
@@ -22,7 +22,7 @@ in {
   wayland.windowManager.hyprland.settings = {
     windowrule = [
       "suppress_event maximize, match:class .*"
-      "no_focus on,match:class ^$,match:title ^$,match:xwayland 1,match:float 1,match:fullscreen 0,match:pin 0"
+      "no_focus on, match:class ^$, match:title ^$, match:xwayland 1, match:float 1, match:fullscreen 0, match:pin 0"
 
       "workspace name:browser, match:class ^(zen-alpha|zen-twilight|firefox|chromium-browser)$"
       "workspace name:discord, match:class ^(legcord|discord)$"
