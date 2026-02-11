@@ -8,7 +8,7 @@
     APP_COMMAND="$1"
     WORKSPACE_NAME="$2"
 
-    if hyprctl clients | grep -iq "class:.$APP_COMMAND";  then
+    if hyprctl clients | grep -iq "match:class .$APP_COMMAND";  then
       hyprctl dispatch workspace "name:$WORKSPACE_NAME" 1> /dev/null
     else
       hyprctl dispatch exec "[workspace name:$WORKSPACE_NAME silent] $APP_COMMAND" 1> /dev/null
@@ -20,13 +20,13 @@ in {
   home.packages = [smart-launch];
 
   wayland.windowManager.hyprland.settings = {
-    windowrulev2 = [
-      "suppressevent maximize, class:.*"
-      "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
+    windowrule = [
+      "suppress_event maximize, match:class .*"
+      "no_focus on,match:class ^$,match:title ^$,match:xwayland 1,match:float 1,match:fullscreen 0,match:pin 0"
 
-      "workspace name:browser, class:^(zen-alpha|zen-twilight|firefox|chromium-browser)$"
-      "workspace name:discord, class:^(legcord|discord)$"
-      "workspace name:notes, class:^(obsidian|org.pwmt.zathura)$"
+      "workspace name:browser, match:class ^(zen-alpha|zen-twilight|firefox|chromium-browser)$"
+      "workspace name:discord, match:class ^(legcord|discord)$"
+      "workspace name:notes, match:class ^(obsidian|org.pwmt.zathura)$"
     ];
   };
 }
