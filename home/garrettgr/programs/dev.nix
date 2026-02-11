@@ -35,7 +35,7 @@
     claude-code
     ripgrep
     fzf
-    meld
+    serie
     jq
     yq
     tldr
