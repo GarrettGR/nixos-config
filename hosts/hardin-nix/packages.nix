@@ -12,6 +12,7 @@ in {
     moonlight-embedded
     distrobox
     whatsapp-electron
+    slacky
 
     inputs.librepods.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
