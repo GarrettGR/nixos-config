@@ -10,10 +10,11 @@
     ./programs/dev.nix
     ./programs/git.nix
     # ./programs/hyprland.nix
-    ./programs/zen.nix
+    # ./programs/zen.nix
     ./programs/ghostty.nix
     ../../modules/waybar.nix
     ../../modules/home-manager/hypr
+    ../../modules/home-manager/zen
   ];
 
   home = {
