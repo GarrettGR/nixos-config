@@ -12,6 +12,7 @@
         "SUPER, B, exec, smart-launch $browser browser"
         "SUPER, L, exec, smart-launch legcord discord"
         "SUPER, O, exec, smart-launch obsidian notes"
+        "SUPER, Z, exec, smart-launch zathura notes"
 
         "SUPER, C, killactive,"
         "SUPER, J, togglesplit,"

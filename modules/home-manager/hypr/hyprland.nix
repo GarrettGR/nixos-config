@@ -15,7 +15,7 @@
       ];
 
       "$terminal" = "ghostty";
-      "$browser" = "zen";
+      "$browser" = "zen-twilight";
       "$menu" = "wofi --show drun";
 
       general = {
