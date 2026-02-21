@@ -33,10 +33,33 @@
         profile.outputs = [
           {
             criteria = "eDP-1";
+            status = "enable";
           }
           {
             criteria = "HDMI-A-1";
+            status = "enable";
           }
+        ];
+        profile.exec = [
+          "hyprctl keyword monitor 'eDP-1,preferred,auto,auto'"
+          "hyprctl keyword monitor 'HDMI-A-1,preferred,auto,auto'"
+        ];
+      }
+      {
+        profile.name = "presenting";
+        profile.outputs = [
+          {
+            criteria = "eDP-1";
+            status = "enable";
+          }
+          {
+            criteria = "HDMI-A-1";
+            status = "enable";
+          }
+        ];
+        profile.exec = [
+          "hyprctl keyword monitor 'HDMI-A-1,preferred,auto,auto'"
+          "hyprctl keyword monitor 'eDP-1,preferred,auto,1,mirror,HDMI-A-1'"
         ];
       }
     ];
