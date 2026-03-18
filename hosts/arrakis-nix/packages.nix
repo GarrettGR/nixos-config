@@ -48,7 +48,7 @@ in {
 
     protonup-rs
     lutris
-    wineWowPackages.waylandFull
+    # wineWowPackages.waylandFull
   ];
 
   services.sunshine = {

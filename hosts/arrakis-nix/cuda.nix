@@ -23,7 +23,7 @@
       # libnvjitlink
       # cuda_sandbox_dev
       cudnn
-      cudnn-frontend
+      # cudnn-frontend
 
       saxpy
 
