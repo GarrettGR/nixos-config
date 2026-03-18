@@ -25,7 +25,6 @@
     wl-clipboard
     wtype
     # networkmanagerapplet
-    dunst
     libnotify
     # kdePackages.dolphin
     # nautilus

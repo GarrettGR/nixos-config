@@ -27,6 +27,8 @@
 
   programs.zathura.enable = true;
 
+  services.dunst.enable = true;
+
   home.packages = with pkgs; [
     spotify-player
     # spotify-cli-linux
