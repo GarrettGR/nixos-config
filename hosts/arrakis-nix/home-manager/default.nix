@@ -8,5 +8,6 @@
     ./waybar.nix
     ./hyprland.nix
     ./monitors.nix
+    ./jetbrains.nix
   ];
 }
