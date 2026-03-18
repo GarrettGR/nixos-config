@@ -19,9 +19,9 @@
       enable = true;
       createMountPoints = true;
       exports = ''
-        /srv            100.106.173.3(insecure,rw,sync,no_root_squash,no_subtree_check,crossmnt,fsid=0)
-        /srv           	100.86.194.36(insecure,rw,sync,no_root_squash,no_subtree_check,crossmnt,fsid=0)
-        /srv           	100.86.120.83(insecure,rw,sync,no_root_squash,no_subtree_check,crossmnt,fsid=0)
+        /srv            100.106.173.3(insecure,rw,sync,no_root_squash,no_subtree_check,crossmnt,fsid=0) # hardin-nix
+        /srv           	100.81.253.114(insecure,rw,sync,no_root_squash,no_subtree_check,crossmnt,fsid=0) # hardin-osx
+        /srv           	100.98.175.99(insecure,rw,sync,no_root_squash,no_subtree_check,crossmnt,fsid=0) # hyperion-nix
       '';
       statdPort = 4000;
       lockdPort = 4001;
