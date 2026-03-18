@@ -10,6 +10,7 @@
     # ../../modules/desktop.nix
     # ../../modules/packages.nix
     ../../modules/networking.nix
+    ../../modules/filesystems.nix
     # ../../modules/nfs.nix
   ];
 
