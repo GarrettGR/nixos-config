@@ -10,9 +10,12 @@
     postgres.enable = true;
     jellyfin = {
       enable = true;
-      users.garrettgr = {
-        policy.isAdministrator = true;
-        password = "3bm3bmchtrJ";
+      users = {
+        garrettgr = {
+          policy.isAdministrator = true;
+        };
+        shikhar = {
+        };
       };
     };
     # sonarr.enable = true;
