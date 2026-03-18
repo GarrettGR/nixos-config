@@ -1,8 +1,8 @@
-{ config, ... }:
+{ ... }:
 {
   xdg.mimeApps =
     let
-      desktopFile = config.programs.zen-browser.package.meta.desktopFileName;
+      desktopFile = "zen-twilight.desktop";
       mimeTypes = [
         "application/x-extension-shtml"
         "application/x-extension-xhtml"

@@ -14,7 +14,7 @@ in
 
   programs.zen-browser = {
     enable = true;
-    suppressXdgMigrationWarning = true;
+    # suppressXdgMigrationWarning = true;
     policies = import ./policies.nix;
 
     profiles.garrettgr = {
