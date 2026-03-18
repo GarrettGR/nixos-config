@@ -168,6 +168,7 @@
         extraModules = [
           ./modules/keyboard.nix
           ./modules/display-manager.nix
+          ./modules/n8n.nix
         ];
       };
 
