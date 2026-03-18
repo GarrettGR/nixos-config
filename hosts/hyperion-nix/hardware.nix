@@ -40,6 +40,10 @@
       enable = true;
       enable32Bit = true;
     };
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
     nvidia = {
       modesetting.enable = true;
       powerManagement.enable = false;
