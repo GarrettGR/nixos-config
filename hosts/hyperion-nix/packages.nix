@@ -16,7 +16,23 @@ in {
     settings.X11Forwarding = true;
   };
 
-  services.desktopManager.plasma6.enable = true;
+  programs.waybar.enable = lib.mkForce false;
+  services = {
+    hypridle.enable = lib.mkForce false;
+    # hyprpaper.enable = lib.mkForce false;
+    desktopManager.plasma6.enable = true;
+    displayManager = {
+      sddm = {
+        enable = true;
+        wayland.enable = true;
+      };
+      defaultSession = "plasma";
+      autoLogin = {
+        enable = true;
+        user = "garrettgr";
+      };
+    };
+  };
 
   services.sunshine = {
     enable = true;

@@ -177,7 +177,7 @@
         hostname = "hyperion-nix";
         extraModules = [
           ./modules/keyboard.nix
-          ./modules/display-manager.nix
+          # ./modules/display-manager.nix
           inputs.nixflix.nixosModules.default
           ./modules/nixflix.nix
         ];
