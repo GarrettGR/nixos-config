@@ -151,6 +151,7 @@
           ./modules/display-manager.nix
           ./modules/ios_usb.nix
           apple-silicon-support.nixosModules.apple-silicon-support
+          ./modules/linux-asahi-fairydust.nix
         ];
       };
 
