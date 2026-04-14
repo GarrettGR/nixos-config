@@ -1,5 +1,6 @@
 {
   pkgs,
+  lib,
   hostname,
   ...
 }: {
@@ -13,6 +14,8 @@
   ];
 
   networking.hostName = "${hostname}";
+
+  nix.package = lib.mkDefault pkgs.nix;
 
   boot = {
     kernelPatches = [ ];
