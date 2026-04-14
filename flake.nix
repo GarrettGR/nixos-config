@@ -70,11 +70,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    librepods = {
-      url = "github:kavishdevar/librepods/linux/rust";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     stylix.url = "github:danth/stylix";
 
     nixflix.url = "github:kiriwalawren/nixflix";

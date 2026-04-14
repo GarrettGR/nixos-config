@@ -15,7 +15,5 @@ in {
     whatsapp-electron
     slacky
     jellyfin-desktop
-
-    inputs.librepods.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }
