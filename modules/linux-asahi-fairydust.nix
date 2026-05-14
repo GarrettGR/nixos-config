@@ -7,8 +7,8 @@
             src = final.fetchFromGitHub {
               owner = "AsahiLinux";
               repo = "linux";
-              rev = "fairydust";
-              hash = "sha256-G32SzJW1paAUaBCnw5cou20WwpuVR8OZSDRpV58IUJU=";
+              rev = "asahi-wip"; # "fairydust";
+              hash = "sha256-rfsPnOyHltP9EXrXRorcQuWRvXBJSmCNUlfVNGIaMb8=";
             };
           });
         in
