@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: {
-  boot.supportedFilesystems = ["nfs"];
+  boot.supportedFilesystems = ["nfs" "ntfs"];
   services.rpcbind.enable = true;
 
   fileSystems = {
