@@ -147,6 +147,7 @@
           ./modules/ios_usb.nix
           apple-silicon-support.nixosModules.apple-silicon-support
           # ./modules/linux-asahi-fairydust.nix
+          ./modules/logitech.nix
         ];
       };
 
