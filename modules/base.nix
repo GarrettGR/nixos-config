@@ -31,6 +31,7 @@
 
   services = {
     openssh.enable = true;
+    pcscd.enable = true;
     timesyncd.enable = true;
   };
 
