@@ -15,5 +15,6 @@ in {
     whatsapp-electron
     slacky
     jellyfin-desktop
+    obs-studio
   ];
 }
