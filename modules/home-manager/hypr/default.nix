@@ -10,14 +10,15 @@
     ./visuals.nix
     ./keymaps.nix
     ./workspaces.nix
+    ./gestures.nix
     ./hyprlock.nix
     ./hypridle.nix
-    ./hyprpaper.nix
+    # ./hyprpaper.nix
   ];
 
   home.packages = with pkgs; [
     hyprland
-    hyprpaper
+    # hyprpaper
     hyprlock
     hypridle
     hyprshot

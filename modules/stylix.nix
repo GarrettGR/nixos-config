@@ -12,12 +12,10 @@
 
     polarity = "dark";
 
-    # targets.hyprland.hyprpaper.enable = true;
-    # targets.hyprpaper.enable = true;
-    image = pkgs.fetchurl {
-      url = "https://images.pexels.com/photos/1141853/pexels-photo-1141853.jpeg";
-      hash = "sha256-GG7/ySi7clvbN8pZYgwMEKt8Yl6PHeU2cZd697AiYZA=";
-    };
+    # image = pkgs.fetchurl {
+    #   url = "https://images.pexels.com/photos/1141853/pexels-photo-1141853.jpeg";
+    #   hash = "sha256-GG7/ySi7clvbN8pZYgwMEKt8Yl6PHeU2cZd697AiYZA=";
+    # };
 
     cursor = {
       package = inputs.rose-pine-hyprcursor.packages.${pkgs.stdenv.hostPlatform.system}.default;

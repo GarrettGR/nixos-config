@@ -9,25 +9,30 @@
         "SUPER, Q, exec, $terminal"
         "SUPER, R, exec, $menu"
 
-        "SUPER, B, exec, smart-launch $browser browser"
-        "SUPER, L, exec, smart-launch legcord discord"
-        "SUPER, O, exec, smart-launch obsidian notes"
-        "SUPER, Z, exec, smart-launch zathura notes"
+        "SUPER, B, workspace, 6"
+        "SUPER, L, workspace, 7"
+        "SUPER, O, workspace, 8"
+        "SUPER CTRL, Q, workspace, 9"
 
         "SUPER, C, killactive,"
-        "SUPER, J, togglesplit,"
         "SUPER, F, togglefloating,"
+
+        "SUPER, J, layoutmsg, togglesplit"
+        "SUPER SHIFT, J, layoutmsg, swapsplit"
+        "SUPER CTRL, J, layoutmsg, rotatesplit"
 
         "SUPER, left, movefocus, l"
         "SUPER, right, movefocus, r"
         "SUPER, up, movefocus, u"
         "SUPER, down, movefocus, d"
 
-        "SUPER ALT, Q, workspace, name:terminal"
-        "SUPER SHIFT, Q, movetoworkspace, name:terminal"
-        "SUPER SHIFT, B, movetoworkspace, name:browser"
-        "SUPER SHIFT, L, movetoworkspace, name:discord"
-        "SUPER SHIFT, O, movetoworkspace, name:notes"
+        "SUPER, period, cyclenext,"
+        "SUPER, comma, cyclenext, prev"
+
+        "SUPER SHIFT, Q, movetoworkspace, 9"
+        "SUPER SHIFT, B, movetoworkspace, 6"
+        "SUPER SHIFT, L, movetoworkspace, 7"
+        "SUPER SHIFT, O, movetoworkspace, 8"
 
         "SUPER CTRL, S, togglespecialworkspace, scratchpad"
         "SUPER CTRL SHIFT, S, movetoworkspace, special:scratchpad"

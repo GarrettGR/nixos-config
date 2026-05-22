@@ -12,6 +12,7 @@
     # ./programs/hyprland.nix
     # ./programs/zen.nix
     ./programs/ghostty.nix
+    ./programs/awww.nix
     ../../modules/waybar.nix
     ../../modules/home-manager/hypr
     ../../modules/home-manager/zen

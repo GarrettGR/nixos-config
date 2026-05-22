@@ -2,12 +2,10 @@
   services.hyprpaper = {
     enable = true;
     settings = {
-      ipc = "off";
+      ipc = false;
       splash = false;
 
-      # NOTE: these are set by stylix
-      # preload = ["${config.home.homeDirectory}/.config/hypr/wallpaper.jpg"];
-      # wallpaper = ["${config.home.homeDirectory}/.config/hypr/wallpaper.jpg"];
+      # wallpaper = [{ monitor = ""; path = "..."; fit_mode = "cover"; }];
     };
   };
 }
