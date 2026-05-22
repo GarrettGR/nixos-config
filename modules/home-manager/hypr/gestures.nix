@@ -1,5 +1,7 @@
 {...}: {
   wayland.windowManager.hyprland.settings = {
+    gestures.workspace_swipe_create_new = false;
+
     gesture = [
       "3, horizontal, workspace"
       "3, down, special, scratchpad"
