@@ -2,12 +2,24 @@
   config,
   pkgs,
   ...
-}: {
+}: let
+  toggleLayout = pkgs.writeShellScript "hypr-toggle-layout" ''
+    id=$(${pkgs.hyprland}/bin/hyprctl activeworkspace -j | ${pkgs.jq}/bin/jq -r '.id')
+    layout=$(${pkgs.hyprland}/bin/hyprctl activeworkspace -j | ${pkgs.jq}/bin/jq -r '.tiledLayout')
+    case "$layout" in
+      monocle) new=dwindle ;;
+      *) new=monocle ;;
+    esac
+    ${pkgs.hyprland}/bin/hyprctl keyword workspace "$id, layout:$new"
+  '';
+in {
   wayland.windowManager.hyprland.settings = {
     bind =
       [
         "SUPER, Q, exec, $terminal"
         "SUPER, R, exec, $menu"
+
+        ", XF86LaunchA, exec, ${toggleLayout}"
 
         "SUPER, B, workspace, 6"
         "SUPER, L, workspace, 7"
