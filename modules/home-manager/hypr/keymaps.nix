@@ -49,6 +49,9 @@ in {
         "SUPER CTRL, S, togglespecialworkspace, scratchpad"
         "SUPER CTRL SHIFT, S, movetoworkspace, special:scratchpad"
 
+        "SUPER CTRL, O, togglespecialworkspace, obs"
+        "SUPER CTRL SHIFT, O, movetoworkspace, special:obs"
+
         # "SUPER, mouse_down, workspace, e+1"
         # "SUPER, mouse_up, workspace, e-1"
 
