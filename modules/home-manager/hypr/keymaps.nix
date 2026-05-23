@@ -38,8 +38,8 @@ in {
         "SUPER, up, movefocus, u"
         "SUPER, down, movefocus, d"
 
-        "SUPER, period, cyclenext,"
-        "SUPER, comma, cyclenext, prev"
+        "SUPER, period, cyclenext, tiled"
+        "SUPER, comma, cyclenext, tiled prev"
 
         "SUPER SHIFT, Q, movetoworkspace, 9"
         "SUPER SHIFT, B, movetoworkspace, 6"
