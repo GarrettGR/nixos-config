@@ -23,6 +23,12 @@
       fsType = "ext4";
     };
 
+    "/mnt/drive" = {
+      device = "/dev/disk/by-uuid/1838c59d-1c31-4b84-ad85-50d6f9a0e9a3";
+      fsType = "btrfs";
+      options = [ "nofail" ];
+    };
+
     "/boot" = { 
       device = "/dev/disk/by-uuid/306E-4804";
       fsType = "vfat";
@@ -50,7 +56,7 @@
       powerManagement.finegrained = false;
       open = false; # open = true;
       nvidiaSettings = true;
-      package = config.boot.kernelPackages.nvidiaPackages.beta; # nvidiaPackages.dc; # <- datacenter drivers
+      package = config.boot.kernelPackages.nvidiaPackages.latest;
     };
 
     cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
