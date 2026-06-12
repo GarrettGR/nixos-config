@@ -41,10 +41,10 @@
     tldr
     tio
 
-    jetbrains.webstorm
-    jetbrains.idea
+    # jetbrains.webstorm
+    # jetbrains.idea
     jetbrains.clion
-    jetbrains.pycharm
+    # jetbrains.pycharm
     jetbrains.rust-rover
 
     # Build tools
