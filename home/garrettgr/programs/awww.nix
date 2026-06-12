@@ -28,7 +28,7 @@
     })
     (pkgs.fetchurl {
       url = "https://images.pexels.com/photos/18997075/pexels-photo-18997075.jpeg";
-      hash = "sha256-J6LUPrp5tvoTDQDwBEIIYxajuXKgoxRWrnSejfWGRVI=";
+      hash = "sha256-fOmAjYzf1o4/jKDhcJRj2nTQo/8NZlGR6X9xunAZm/w=";
     })
     (pkgs.fetchurl {
       url = "https://images.pexels.com/photos/3013995/pexels-photo-3013995.jpeg";
