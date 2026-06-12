@@ -177,6 +177,7 @@
           # ./modules/display-manager.nix
           inputs.nixflix.nixosModules.default
           ./modules/nixflix.nix
+          ./modules/cloudflare_tunnel.nix
         ];
       };
     };
