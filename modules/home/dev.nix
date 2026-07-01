@@ -1,38 +1,46 @@
 {...}: {
-  flake.modules.homeManager.dev = {pkgs, ...}: {
-    home.packages = with pkgs; [
-      # C/C++
-      gnumake
-      gcc
-      libgcc
+  flake.modules.homeManager.dev = {
+    lib,
+    pkgs,
+    ...
+  }: {
+    home.packages = with pkgs;
+      [
+        # C/C++
+        gnumake
+        gcc
 
-      # Rust
-      rustup
+        # Rust
+        rustup
 
-      # OCaml
-      ocaml
-      ocamlPackages.utop
+        # OCaml
+        ocaml
+        ocamlPackages.utop
 
-      # Python
-      python314
+        # Python
+        python314
 
-      # Development tools
-      claude-code
-      ripgrep
-      fzf
-      serie
-      jq
-      yq
-      tldr
-      tio
+        # Development tools
+        claude-code
+        ripgrep
+        fzf
+        serie
+        jq
+        yq
+        tldr
+        tio
 
-      jetbrains.clion
-      jetbrains.rust-rover
+        jetbrains.clion
+        jetbrains.rust-rover
 
-      # Build tools
-      cmake
-      ninja
-    ];
+        # Build tools
+        cmake
+        ninja
+      ]
+      # Linux-only toolchain bits (glibc's libgcc); darwin uses its own.
+      ++ lib.optionals pkgs.stdenv.isLinux [
+        libgcc
+      ];
 
     programs.direnv = {
       enable = true;
