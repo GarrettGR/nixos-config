@@ -1,49 +1,20 @@
+# hardin-nix host-local config. Shared features (base, users, stylix, nvf, asahi,
+# desktop, networking, titdb, …) are attached by modules/flake/hosts-nixos.nix.
 {
-  pkgs,
+  flakeUser,
   lib,
-  hostname,
+  pkgs,
   ...
 }: {
   imports = [
     ./hardware.nix
     ./packages.nix
-    ../../modules/desktop.nix
-    ../../modules/networking.nix
-    ../../modules/packages.nix
-    ../../modules/filesystems.nix
   ];
 
-  networking.hostName = "${hostname}";
+  networking.hostName = "hardin-nix";
 
+  # determinate provides nix; keep it instead of the lix default from nix-settings.
   nix.package = lib.mkDefault pkgs.nix;
 
-  boot = {
-    kernelPatches = [ ];
-    loader.grub = {
-      enable = true;
-      efiSupport = true;
-      efiInstallAsRemovable = true;
-      device = "nodev";
-      gfxmodeEfi = "2560x1664";
-    };
-  };
-
-  hardware.asahi.peripheralFirmwareDirectory = /etc/nixos/firmware;
-
-  environment.systemPackages = with pkgs; [
-    asahi-bless
-    asahi-btsync
-    asahi-wifisync
-    # asahi-nvram
-    # asahi-bless
-    mesa
-    alsa-utils
-    # alsaequal
-    lxqt.pavucontrol-qt
-  ];
-
-  services = {
-    xserver.videoDrivers = ["displaylink" "modesetting"];
-    automatic-timezoned.enable = true;
-  };
+  home-manager.users.${flakeUser.name}.imports = [./home-manager];
 }

@@ -33,7 +33,8 @@
     services = {
       openssh.enable = true;
       pcscd.enable = true;
-      timesyncd.enable = true;
+      # mkDefault so hosts like WSL (which force timesyncd off) don't conflict.
+      timesyncd.enable = lib.mkDefault true;
     };
 
     security.sudo.wheelNeedsPassword = true;

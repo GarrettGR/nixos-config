@@ -1,11 +1,8 @@
-{
-  pkgs,
-  system,
-  lib,
-  ...
-}: {
+# hardin-nix host-local home config. The shared home (core, linux, desktop,
+# waybar-laptop, zen) is attached by the builder; only the display layout is
+# host-specific here.
+{...}: {
   imports = [
-    ./waybar.nix
     ./monitors.nix
     ./kanshi.nix
   ];

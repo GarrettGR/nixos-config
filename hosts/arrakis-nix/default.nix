@@ -1,18 +1,15 @@
+# arrakis-nix host-local config. Shared features (base, users, stylix, nvf,
+# desktop, gaming, networking, nfs, n8n, …) are attached by the builder.
 {
+  flakeUser,
   pkgs,
-  hostname,
   ...
 }: {
   imports = [
     ./hardware.nix
     ./cuda.nix
-    # ./rocm.nix
     ./packages.nix
     ./users.nix
-    ../../modules/desktop.nix
-    ../../modules/packages.nix
-    ../../modules/networking.nix
-    ../../modules/nfs.nix
   ];
 
   boot = {
@@ -26,19 +23,12 @@
     lact
   ];
 
-  networking = {
-    hostName = "${hostname}";
-    networkmanager.enable = true;
-  };
+  networking.hostName = "arrakis-nix";
 
   services.containers = {
     enableDocker = true;
     enableSingularity = true;
   };
 
-
-  # i18n = {
-  #   defaultLocale = "en_US.UTF-8";
-  #   supportedLocales = [ "en_US.UTF-8" ];
-  # };
+  home-manager.users.${flakeUser.name}.imports = [./home-manager];
 }

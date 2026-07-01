@@ -87,109 +87,11 @@
     nixflix.url = "github:kiriwalawren/nixflix";
   };
 
-  # Dendritic entry point: flake-parts + import-tree over ./dendritic (the
-  # migration-in-progress tree; renamed to ./modules at the Phase 4 cutover).
-  #
-  # The legacy `mkSystem` block below still builds the live fleet from the
-  # untouched ./modules tree and is retired in Phase 4 once
-  # dendritic/flake/hosts-nixos.nix takes over flake.nixosConfigurations.
+  # Dendritic entry point: flake-parts + import-tree over ./modules. Every file
+  # under ./modules is a flake-parts module; hosts are assembled from named
+  # modules by modules/flake/hosts-{nixos,darwin}.nix.
   outputs = inputs @ {flake-parts, ...}:
-    flake-parts.lib.mkFlake {inherit inputs;} ({...}: {
-      imports = [(inputs.import-tree ./dendritic)];
-
-      flake.nixosConfigurations = let
-        lib = inputs.nixpkgs.lib;
-
-        mkSystem = {
-          system,
-          hostname,
-          extraModules ? [],
-        }:
-          lib.nixosSystem {
-            specialArgs = {inherit inputs system hostname;};
-            pkgs = import inputs.nixpkgs {
-              inherit system;
-              config.allowUnfree = true;
-            };
-            modules =
-              [
-                ./hosts/${hostname}
-
-                ./modules/base.nix
-                ./modules/users.nix
-                ./modules/stylix.nix
-                ./modules/nvf.nix
-
-                inputs.nvf.nixosModules.default
-                inputs.stylix.nixosModules.stylix
-                # sops-nix.nixosModules.sops
-                inputs.home-manager.nixosModules.home-manager
-                {
-                  home-manager.useGlobalPkgs = true;
-                  home-manager.useUserPackages = true;
-                  home-manager.extraSpecialArgs = {inherit inputs system;};
-                }
-              ]
-              ++ extraModules;
-          };
-      in {
-        seldon-nix = mkSystem {
-          system = "aarch64-linux";
-          hostname = "seldon-nix";
-          extraModules = [
-            ./modules/keyboard.nix
-            inputs.titdb.nixosModules.default
-            ./modules/titdb.nix
-            ./modules/display-manager.nix
-            inputs.apple-silicon-support.nixosModules.apple-silicon-support
-          ];
-        };
-
-        hardin-nix = mkSystem {
-          system = "aarch64-linux";
-          hostname = "hardin-nix";
-          extraModules = [
-            ./modules/keyboard.nix
-            inputs.titdb.nixosModules.default
-            inputs.determinate.nixosModules.default
-            ./modules/titdb.nix
-            ./modules/display-manager.nix
-            ./modules/ios_usb.nix
-            inputs.apple-silicon-support.nixosModules.apple-silicon-support
-            # ./modules/linux-asahi-fairydust.nix
-            ./modules/logitech.nix
-          ];
-        };
-
-        rocinante-wsl-nix = mkSystem {
-          system = "x86_64-linux";
-          hostname = "rocinante-wsl-nix";
-          extraModules = [
-            inputs.nixos-wsl.nixosModules.default
-          ];
-        };
-
-        arrakis-nix = mkSystem {
-          system = "x86_64-linux";
-          hostname = "arrakis-nix";
-          extraModules = [
-            ./modules/keyboard.nix
-            ./modules/display-manager.nix
-            ./modules/n8n.nix
-          ];
-        };
-
-        hyperion-nix = mkSystem {
-          system = "x86_64-linux";
-          hostname = "hyperion-nix";
-          extraModules = [
-            ./modules/keyboard.nix
-            # ./modules/display-manager.nix
-            inputs.nixflix.nixosModules.default
-            ./modules/nixflix.nix
-            ./modules/cloudflare_tunnel.nix
-          ];
-        };
-      };
-    });
+    flake-parts.lib.mkFlake {inherit inputs;} {
+      imports = [(inputs.import-tree ./modules)];
+    };
 }
