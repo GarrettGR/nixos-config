@@ -5,6 +5,18 @@
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    # Dendritic pattern framework.
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+    import-tree.url = "github:vic/import-tree";
+
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
 
     hyprland.url = "github:hyprwm/Hyprland";
@@ -75,111 +87,109 @@
     nixflix.url = "github:kiriwalawren/nixflix";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    determinate,
-    home-manager,
-    sops-nix,
-    nvf,
-    apple-silicon-support,
-    nixos-wsl,
-    zen-browser,
-    ...
-  } @ inputs: let
-    lib = nixpkgs.lib;
+  # Dendritic entry point: flake-parts + import-tree over ./dendritic (the
+  # migration-in-progress tree; renamed to ./modules at the Phase 4 cutover).
+  #
+  # The legacy `mkSystem` block below still builds the live fleet from the
+  # untouched ./modules tree and is retired in Phase 4 once
+  # dendritic/flake/hosts-nixos.nix takes over flake.nixosConfigurations.
+  outputs = inputs @ {flake-parts, ...}:
+    flake-parts.lib.mkFlake {inherit inputs;} ({...}: {
+      imports = [(inputs.import-tree ./dendritic)];
 
-    mkSystem = {
-      system,
-      hostname,
-      extraModules ? [],
-    }:
-      lib.nixosSystem {
-        specialArgs = {inherit inputs system hostname;};
-        pkgs = import inputs.nixpkgs {
-          inherit system;
-          config.allowUnfree = true;
+      flake.nixosConfigurations = let
+        lib = inputs.nixpkgs.lib;
+
+        mkSystem = {
+          system,
+          hostname,
+          extraModules ? [],
+        }:
+          lib.nixosSystem {
+            specialArgs = {inherit inputs system hostname;};
+            pkgs = import inputs.nixpkgs {
+              inherit system;
+              config.allowUnfree = true;
+            };
+            modules =
+              [
+                ./hosts/${hostname}
+
+                ./modules/base.nix
+                ./modules/users.nix
+                ./modules/stylix.nix
+                ./modules/nvf.nix
+
+                inputs.nvf.nixosModules.default
+                inputs.stylix.nixosModules.stylix
+                # sops-nix.nixosModules.sops
+                inputs.home-manager.nixosModules.home-manager
+                {
+                  home-manager.useGlobalPkgs = true;
+                  home-manager.useUserPackages = true;
+                  home-manager.extraSpecialArgs = {inherit inputs system;};
+                }
+              ]
+              ++ extraModules;
+          };
+      in {
+        seldon-nix = mkSystem {
+          system = "aarch64-linux";
+          hostname = "seldon-nix";
+          extraModules = [
+            ./modules/keyboard.nix
+            inputs.titdb.nixosModules.default
+            ./modules/titdb.nix
+            ./modules/display-manager.nix
+            inputs.apple-silicon-support.nixosModules.apple-silicon-support
+          ];
         };
-        modules =
-          [
-            ./hosts/${hostname}
 
-            ./modules/base.nix
-            ./modules/users.nix
-            ./modules/stylix.nix
-            ./modules/nvf.nix
+        hardin-nix = mkSystem {
+          system = "aarch64-linux";
+          hostname = "hardin-nix";
+          extraModules = [
+            ./modules/keyboard.nix
+            inputs.titdb.nixosModules.default
+            inputs.determinate.nixosModules.default
+            ./modules/titdb.nix
+            ./modules/display-manager.nix
+            ./modules/ios_usb.nix
+            inputs.apple-silicon-support.nixosModules.apple-silicon-support
+            # ./modules/linux-asahi-fairydust.nix
+            ./modules/logitech.nix
+          ];
+        };
 
-            nvf.nixosModules.default
-            inputs.stylix.nixosModules.stylix
-            # sops-nix.nixosModules.sops
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = {inherit inputs system;};
-            }
-          ]
-          ++ extraModules;
-      };
-  in {
-    nixosConfigurations = {
-      seldon-nix = mkSystem {
-        system = "aarch64-linux";
-        hostname = "seldon-nix";
-        extraModules = [
-          ./modules/keyboard.nix
-          inputs.titdb.nixosModules.default
-          ./modules/titdb.nix
-          ./modules/display-manager.nix
-          apple-silicon-support.nixosModules.apple-silicon-support
-        ];
-      };
+        rocinante-wsl-nix = mkSystem {
+          system = "x86_64-linux";
+          hostname = "rocinante-wsl-nix";
+          extraModules = [
+            inputs.nixos-wsl.nixosModules.default
+          ];
+        };
 
-      hardin-nix = mkSystem {
-        system = "aarch64-linux";
-        hostname = "hardin-nix";
-        extraModules = [
-          ./modules/keyboard.nix
-          inputs.titdb.nixosModules.default
-          determinate.nixosModules.default
-          ./modules/titdb.nix
-          ./modules/display-manager.nix
-          ./modules/ios_usb.nix
-          apple-silicon-support.nixosModules.apple-silicon-support
-          # ./modules/linux-asahi-fairydust.nix
-          ./modules/logitech.nix
-        ];
-      };
+        arrakis-nix = mkSystem {
+          system = "x86_64-linux";
+          hostname = "arrakis-nix";
+          extraModules = [
+            ./modules/keyboard.nix
+            ./modules/display-manager.nix
+            ./modules/n8n.nix
+          ];
+        };
 
-      rocinante-wsl-nix = mkSystem {
-        system = "x86_64-linux";
-        hostname = "rocinante-wsl-nix";
-        extraModules = [
-          nixos-wsl.nixosModules.default
-        ];
+        hyperion-nix = mkSystem {
+          system = "x86_64-linux";
+          hostname = "hyperion-nix";
+          extraModules = [
+            ./modules/keyboard.nix
+            # ./modules/display-manager.nix
+            inputs.nixflix.nixosModules.default
+            ./modules/nixflix.nix
+            ./modules/cloudflare_tunnel.nix
+          ];
+        };
       };
-
-      arrakis-nix = mkSystem {
-        system = "x86_64-linux";
-        hostname = "arrakis-nix";
-        extraModules = [
-          ./modules/keyboard.nix
-          ./modules/display-manager.nix
-          ./modules/n8n.nix
-        ];
-      };
-
-      hyperion-nix = mkSystem {
-        system = "x86_64-linux";
-        hostname = "hyperion-nix";
-        extraModules = [
-          ./modules/keyboard.nix
-          # ./modules/display-manager.nix
-          inputs.nixflix.nixosModules.default
-          ./modules/nixflix.nix
-          ./modules/cloudflare_tunnel.nix
-        ];
-      };
-    };
-  };
+    });
 }
