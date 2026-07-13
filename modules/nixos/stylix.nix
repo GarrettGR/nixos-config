@@ -15,6 +15,11 @@
         name = "BreezX-RosePine-Linux";
         size = 24;
       };
+
+      # Stylix's ghostty target sets background-opacity from this option
+      # (default 1.0), which otherwise wins over modules/home/ghostty.nix's
+      # setting since ghostty config keys are last-write-wins.
+      opacity.terminal = 0.85;
     };
   };
 }

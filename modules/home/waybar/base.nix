@@ -37,11 +37,11 @@
               "3" = "󰎪";
               "4" = "󰎭";
               "5" = "󰎱";
-              "default" = "";
-              "discord" = "";
+              "default" = "";
+              "discord" = "";
               "browser" = "󰖟";
               "terminal" = "󰆍";
-              "notes" = "";
+              "notes" = "";
             };
             on-click = "activate";
             all-outputs = true;

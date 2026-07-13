@@ -16,7 +16,8 @@
           window-decoration = "none";
           clipboard-read = "allow";
           clipboard-write = "allow";
-          background-opacity = 0.85;
+          # Opacity is set via stylix.opacity.terminal (modules/nixos/stylix.nix)
+          # since stylix's ghostty target would otherwise override this value.
           focus-follows-mouse = true;
           confirm-close-surface = false;
           # linux-cgroup = "always"; # Linux-only; enable behind pkgs.stdenv.isLinux if re-adding
