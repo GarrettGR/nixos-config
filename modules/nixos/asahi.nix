@@ -5,6 +5,8 @@
   flake.modules.nixos.asahi = {pkgs, ...}: {
     imports = [inputs.apple-silicon-support.nixosModules.apple-silicon-support];
 
+    hardware.asahi.enable = true;
+
     boot.loader.grub = {
       enable = true;
       efiSupport = true;

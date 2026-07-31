@@ -11,6 +11,7 @@ in
   home.sessionVariables.MOZ_LEGACY_PROFILES = "1";
 
   # stylix.targets.zen-browser.profileNames = [ "garrettgr" ];
+  stylix.targets.zen-browser.enable = false;
 
   programs.zen-browser = {
     enable = true;

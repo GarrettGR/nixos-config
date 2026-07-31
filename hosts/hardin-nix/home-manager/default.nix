@@ -5,5 +5,6 @@
   imports = [
     ./monitors.nix
     ./kanshi.nix
+    ./chromium.nix
   ];
 }

@@ -24,7 +24,7 @@
         ls = "eza $eza_params";
         ll = "eza --all --header --long $eza_params";
         la = "eza --all $eza_params";
-        lt = "eza --icons --tree --color-scale --git --level=3";
+        lt = "eza --icons --tree --color-scale=all --git --level=3";
         lr = "eza --recurse --level=2 $eza_params";
         cat = "bat";
         ccat = "command cat";
@@ -44,7 +44,7 @@
           "--group-directories-first"
           "--time-style=long-iso"
           "--group"
-          "--color-scale"
+          "--color-scale=all"
         ];
       };
 

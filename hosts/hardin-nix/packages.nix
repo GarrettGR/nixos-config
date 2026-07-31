@@ -15,6 +15,5 @@ in {
     slacky
     jellyfin-desktop
     obs-studio
-    chromium
   ];
 }

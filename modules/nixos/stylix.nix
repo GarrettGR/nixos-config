@@ -19,7 +19,17 @@
       # Stylix's ghostty target sets background-opacity from this option
       # (default 1.0), which otherwise wins over modules/home/ghostty.nix's
       # setting since ghostty config keys are last-write-wins.
-      opacity.terminal = 0.85;
+      opacity = {
+        terminal = 0.85;
+        desktop = 0.85; # waybar background
+        popups = 0.85; # dunst notifications
+        applications = 0.85; # zen-browser chrome/content
+      };
+
+      fonts.monospace = {
+        package = pkgs.nerd-fonts.jetbrains-mono;
+        name = "JetBrainsMono Nerd Font Mono";
+      };
     };
   };
 }

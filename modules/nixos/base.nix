@@ -30,6 +30,16 @@
       EDITOR = "vim";
     };
 
+    programs.nix-ld = {
+      enable = true;
+      libraries = with pkgs; [
+        stdenv.cc.cc
+        zlib
+        openssl
+        curl
+      ];
+    };
+
     services = {
       openssh.enable = true;
       pcscd.enable = true;

@@ -8,6 +8,7 @@
     ...
   }:
     lib.mkIf pkgs.stdenv.isLinux {
+      home.pointerCursor.enable = true;
       home.packages = with pkgs; [
         spotify-player
         psst
