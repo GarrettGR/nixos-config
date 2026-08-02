@@ -20,7 +20,7 @@
 
     programs.uwsm.enable = true;
 
-    environment.sessionVariables.HYPRLAND_CONFIG = "$HOME/.config/hypr/hyprland.conf";
+    environment.sessionVariables.HYPRLAND_CONFIG = "$HOME/.config/hypr/hyprland.lua";
 
     security.pam.services.hyprlock = {};
     security.pam.services.hyprlock.fprintAuth = false;

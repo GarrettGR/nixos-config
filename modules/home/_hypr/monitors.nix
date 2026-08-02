@@ -1,6 +1,6 @@
 {...}: {
   wayland.windowManager.hyprland.settings = {
-    monitorv2 = [
+    monitor = [
       {
         output = "";
         mode = "preferred";

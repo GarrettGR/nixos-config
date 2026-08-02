@@ -1,99 +1,109 @@
-{
-  config,
-  pkgs,
-  ...
-}: let
-  toggleLayout = pkgs.writeShellScript "hypr-toggle-layout" ''
-    id=$(${pkgs.hyprland}/bin/hyprctl activeworkspace -j | ${pkgs.jq}/bin/jq -r '.id')
-    layout=$(${pkgs.hyprland}/bin/hyprctl activeworkspace -j | ${pkgs.jq}/bin/jq -r '.tiledLayout')
-    case "$layout" in
-      monocle) new=dwindle ;;
-      *) new=monocle ;;
-    esac
-    ${pkgs.hyprland}/bin/hyprctl keyword workspace "$id, layout:$new"
+{lib, ...}: let
+  inherit (lib.generators) mkLuaInline;
+
+  toggleLayout = ''
+    function()
+      local ws = hl.get_active_workspace()
+      if not ws then return end
+      local layout = ws.tiled_layout == "monocle" and "dwindle" or "monocle"
+      hl.workspace_rule({ workspace = tostring(ws.id), layout = layout })
+    end
   '';
+
+  bind = keys: dispatcher: {
+    _args = [keys (mkLuaInline dispatcher)];
+  };
+
+  bindWith = keys: dispatcher: opts: {
+    _args = [keys (mkLuaInline dispatcher) opts];
+  };
+
+  bindRepeat = keys: dispatcher:
+    bindWith keys dispatcher {
+      locked = true;
+      repeating = true;
+    };
+
+  bindLocked = keys: dispatcher: bindWith keys dispatcher {locked = true;};
+
+  bindMouse = keys: dispatcher: bindWith keys dispatcher {mouse = true;};
+
+  exec = cmd: "hl.dsp.exec_cmd(${builtins.toJSON cmd})";
 in {
   wayland.windowManager.hyprland.settings = {
     bind =
       [
-        "SUPER, Q, exec, $terminal"
-        "SUPER, R, exec, $menu"
+        (bind "SUPER + Q" "hl.dsp.exec_cmd(terminal)")
+        (bind "SUPER + R" "hl.dsp.exec_cmd(menu)")
 
-        ", XF86LaunchA, exec, ${toggleLayout}"
+        (bind "XF86LaunchA" toggleLayout)
 
-        "SUPER, B, workspace, 6"
-        "SUPER, L, workspace, 7"
-        "SUPER, O, workspace, 8"
-        "SUPER CTRL, Q, workspace, 9"
+        (bind "SUPER + B" "hl.dsp.focus({ workspace = 6 })")
+        (bind "SUPER + L" "hl.dsp.focus({ workspace = 7 })")
+        (bind "SUPER + O" "hl.dsp.focus({ workspace = 8 })")
+        (bind "SUPER + CTRL + Q" "hl.dsp.focus({ workspace = 9 })")
 
-        "SUPER, C, killactive,"
-        "SUPER, F, togglefloating,"
+        (bind "SUPER + C" "hl.dsp.window.close()")
+        (bind "SUPER + F" "hl.dsp.window.float({ action = \"toggle\" })")
 
-        "SUPER, J, layoutmsg, togglesplit"
-        "SUPER SHIFT, J, layoutmsg, swapsplit"
-        "SUPER CTRL, J, layoutmsg, rotatesplit"
+        (bind "SUPER + J" "hl.dsp.layout(\"togglesplit\")")
+        (bind "SUPER + SHIFT + J" "hl.dsp.layout(\"swapsplit\")")
+        (bind "SUPER + CTRL + J" "hl.dsp.layout(\"rotatesplit\")")
 
-        "SUPER, left, movefocus, l"
-        "SUPER, right, movefocus, r"
-        "SUPER, up, movefocus, u"
-        "SUPER, down, movefocus, d"
+        (bind "SUPER + left" "hl.dsp.focus({ direction = \"left\" })")
+        (bind "SUPER + right" "hl.dsp.focus({ direction = \"right\" })")
+        (bind "SUPER + up" "hl.dsp.focus({ direction = \"up\" })")
+        (bind "SUPER + down" "hl.dsp.focus({ direction = \"down\" })")
 
-        "SUPER, period, cyclenext, tiled"
-        "SUPER, comma, cyclenext, tiled prev"
+        (bind "SUPER + period" "hl.dsp.window.cycle_next({ tiled = true })")
+        (bind "SUPER + comma" "hl.dsp.window.cycle_next({ tiled = true, prev = true })")
 
-        "SUPER SHIFT, Q, movetoworkspace, 9"
-        "SUPER SHIFT, B, movetoworkspace, 6"
-        "SUPER SHIFT, L, movetoworkspace, 7"
-        "SUPER SHIFT, O, movetoworkspace, 8"
+        (bind "SUPER + SHIFT + Q" "hl.dsp.window.move({ workspace = 9 })")
+        (bind "SUPER + SHIFT + B" "hl.dsp.window.move({ workspace = 6 })")
+        (bind "SUPER + SHIFT + L" "hl.dsp.window.move({ workspace = 7 })")
+        (bind "SUPER + SHIFT + O" "hl.dsp.window.move({ workspace = 8 })")
 
-        "SUPER CTRL, S, togglespecialworkspace, scratchpad"
-        "SUPER CTRL SHIFT, S, movetoworkspace, special:scratchpad"
+        (bind "SUPER + CTRL + S" "hl.dsp.workspace.toggle_special(\"scratchpad\")")
+        (bind "SUPER + CTRL + SHIFT + S" "hl.dsp.window.move({ workspace = \"special:scratchpad\" })")
 
-        "SUPER CTRL, O, togglespecialworkspace, obs"
-        "SUPER CTRL SHIFT, O, movetoworkspace, special:obs"
+        (bind "SUPER + CTRL + O" "hl.dsp.workspace.toggle_special(\"obs\")")
+        (bind "SUPER + CTRL + SHIFT + O" "hl.dsp.window.move({ workspace = \"special:obs\" })")
 
-        # "SUPER, mouse_down, workspace, e+1"
-        # "SUPER, mouse_up, workspace, e-1"
-
-        "SUPER, S, exec, hyprshot -m window -o ~/Pictures/Screenshots/"
-        "SUPER SHIFT, S, exec, hyprshot -m region -z --clipboard-only"
+        (bind "SUPER + S" (exec "hyprshot -m window -o ~/Pictures/Screenshots/"))
+        (bind "SUPER + SHIFT + S" (exec "hyprshot -m region -z --clipboard-only"))
       ]
       ++ (
         builtins.concatLists (builtins.genList (
             i: let
               ws = i + 1;
+              key = "code:1${toString i}";
             in [
-              "SUPER, code:1${toString i}, workspace, ${toString ws}"
-              "SUPER SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
+              (bind "SUPER + ${key}" "hl.dsp.focus({ workspace = ${toString ws} })")
+              (bind "SUPER + SHIFT + ${key}" "hl.dsp.window.move({ workspace = ${toString ws} })")
             ]
           )
           5)
-      );
+      )
+      ++ [
+        (bindMouse "SUPER + mouse:272" "hl.dsp.window.drag()")
+        (bindMouse "SUPER + mouse:273" "hl.dsp.window.resize()")
 
-    bindm = [
-      "SUPER, mouse:272, movewindow"
-      "SUPER, mouse:273, resizewindow"
-    ];
+        (bindRepeat "XF86AudioRaiseVolume" (exec "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"))
+        (bindRepeat "XF86AudioLowerVolume" (exec "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"))
+        (bindRepeat "ALT + XF86AudioRaiseVolume" (exec "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%+"))
+        (bindRepeat "ALT + XF86AudioLowerVolume" (exec "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%-"))
+        (bindRepeat "XF86AudioMute" (exec "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"))
+        (bindRepeat "XF86AudioMicMute" (exec "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"))
 
-    bindel = [
-      ",XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
-      ",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-      "ALT,XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%+"
-      "ALT,XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%-"
-      ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-      ",XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+        (bindRepeat "XF86MonBrightnessUp" (exec "brightnessctl -e4 -n2 set 5%+"))
+        (bindRepeat "XF86MonBrightnessDown" (exec "brightnessctl -e4 -n2 set 5%-"))
+        (bindRepeat "ALT + XF86MonBrightnessUp" (exec "brightnessctl -d kbd_backlight s 10%+"))
+        (bindRepeat "ALT + XF86MonBrightnessDown" (exec "brightnessctl -d kbd_backlight s 10%-"))
 
-      ",XF86MonBrightnessUp, exec, brightnessctl -e4 -n2 set 5%+"
-      ",XF86MonBrightnessDown, exec, brightnessctl -e4 -n2 set 5%-"
-      "ALT, XF86MonBrightnessUp, exec, brightnessctl -d kbd_backlight s 10%+"
-      "ALT, XF86MonBrightnessDown, exec, brightnessctl -d kbd_backlight s 10%-"
-    ];
-
-    bindl = [
-      ", XF86AudioNext, exec, playerctl next"
-      ", XF86AudioPause, exec, playerctl play-pause"
-      ", XF86AudioPlay, exec, playerctl play-pause"
-      ", XF86AudioPrev, exec, playerctl previous"
-    ];
+        (bindLocked "XF86AudioNext" (exec "playerctl next"))
+        (bindLocked "XF86AudioPause" (exec "playerctl play-pause"))
+        (bindLocked "XF86AudioPlay" (exec "playerctl play-pause"))
+        (bindLocked "XF86AudioPrev" (exec "playerctl previous"))
+      ];
   };
 }
