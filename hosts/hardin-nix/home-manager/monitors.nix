@@ -1,5 +1,5 @@
 {lib, ...}: {
-  wayland.windowManager.hyprland.settings.monitorv2 = lib.mkBefore [
+  wayland.windowManager.hyprland.settings.monitor = lib.mkBefore [
     {
       output = "desc:Samsung Electric Company SAMSUNG";
       mode = "3840x2160@60";

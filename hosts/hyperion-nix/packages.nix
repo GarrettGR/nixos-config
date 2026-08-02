@@ -1,12 +1,11 @@
+# hyperion-nix host-local desktop/server bits. Steam + Sunshine now live in the
+# shared gaming module. Runs Plasma via SDDM with autologin.
 {
+  flakeUser,
   pkgs,
-  system,
-  inputs,
   lib,
   ...
-}: let
-  pkgs-stable = inputs.nixpkgs-stable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
-in {
+}: {
   environment.systemPackages = with pkgs; [
     xauth
   ];
@@ -16,10 +15,7 @@ in {
     settings.X11Forwarding = true;
   };
 
-  programs.waybar.enable = lib.mkForce false;
   services = {
-    hypridle.enable = lib.mkForce false;
-    # hyprpaper.enable = lib.mkForce false;
     desktopManager.plasma6.enable = true;
     displayManager = {
       sddm = {
@@ -29,24 +25,8 @@ in {
       defaultSession = "plasma";
       autoLogin = {
         enable = true;
-        user = "garrettgr";
+        user = flakeUser.name;
       };
     };
-  };
-
-  services.sunshine = {
-    enable = true;
-    openFirewall = true;
-    capSysAdmin = true;
-    autoStart = true;
-    # applications = {};
-  };
-
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
-    localNetworkGameTransfers.openFirewall = true;
-    extraCompatPackages = with pkgs; [proton-ge-bin];
   };
 }

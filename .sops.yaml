@@ -1,0 +1,17 @@
+# sops-nix key/creation rules. Replace the placeholder age recipients below with:
+#   - your personal age public key (age-keygen), and
+#   - each host's age key derived from its SSH host key:
+#       nix run nixpkgs#ssh-to-age -- -i /etc/ssh/ssh_host_ed25519_key.pub
+# then re-encrypt: `sops updatekeys secrets/secrets.yaml`.
+keys:
+  - &user_garrettgr age1REPLACE_WITH_YOUR_PERSONAL_AGE_PUBKEY
+  - &host_hyperion age1REPLACE_WITH_HYPERION_HOST_AGE_PUBKEY
+  - &host_arrakis age1REPLACE_WITH_ARRAKIS_HOST_AGE_PUBKEY
+
+creation_rules:
+  - path_regex: secrets/secrets\.yaml$
+    key_groups:
+      - age:
+          - *user_garrettgr
+          - *host_hyperion
+          - *host_arrakis

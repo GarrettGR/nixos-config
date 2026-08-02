@@ -1,17 +1,13 @@
+# hyperion-nix host-local config (headless media server). Shared features (base,
+# users, stylix, nvf, nixflix, cloudflare-tunnel, gaming, networking, …) are
+# attached by the builder. Runs Plasma (host-local), not the shared hypr desktop.
 {
   pkgs,
-  hostname,
   ...
 }: {
   imports = [
     ./hardware.nix
-    # ./cuda.nix
     ./packages.nix
-    # ../../modules/desktop.nix
-    # ../../modules/packages.nix
-    ../../modules/networking.nix
-    ../../modules/filesystems.nix
-    # ../../modules/nfs.nix
   ];
 
   boot = {
@@ -21,14 +17,7 @@
     kernelPackages = pkgs.linuxPackages_latest;
   };
 
-  environment.systemPackages = with pkgs; [
-    # lact
-  ];
-
-  networking = {
-    hostName = "${hostname}";
-    networkmanager.enable = true;
-  };
+  networking.hostName = "hyperion-nix";
 
   systemd.targets.sleep.enable = false;
   systemd.targets.suspend.enable = false;
@@ -46,9 +35,4 @@
     enableDocker = true;
     enableSingularity = false;
   };
-
-  # i18n = {
-  #   defaultLocale = "en_US.UTF-8";
-  #   supportedLocales = [ "en_US.UTF-8" ];
-  # };
 }
