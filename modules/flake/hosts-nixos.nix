@@ -62,7 +62,7 @@ in {
         m.nixos.desktop
         m.nixos.networking
         m.nixos.packages
-        m.nixos.filesystems
+        # m.nixos.filesystems
         inputs.determinate.nixosModules.default
       ];
       homeModules = [
@@ -102,7 +102,7 @@ in {
         m.nixos.cloudflare-tunnel
         m.nixos.gaming
         m.nixos.networking
-        m.nixos.filesystems
+        # m.nixos.filesystems
       ];
       homeModules = [
         m.homeManager.linux
