@@ -29,13 +29,16 @@
       options = [ "nofail" ];
     };
 
-    "/boot" = { 
+    "/boot" = {
       device = "/dev/disk/by-uuid/306E-4804";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };
   };
 
+  systemd.tmpfiles.rules = [
+    "z /mnt/drive 0755 root media -"
+  ];
 
   networking.useDHCP = lib.mkDefault true;
 
