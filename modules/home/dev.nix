@@ -38,7 +38,7 @@
         ninja
       ]
       # Linux-only toolchain bits (glibc's libgcc); darwin uses its own.
-      ++ lib.optionals pkgs.stdenv.isLinux [
+      ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
         libgcc
       ];
 

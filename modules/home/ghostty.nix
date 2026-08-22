@@ -6,7 +6,7 @@
     pkgs,
     ...
   }:
-    lib.mkIf pkgs.stdenv.isLinux {
+    lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
       programs.ghostty = {
         enable = true;
         enableZshIntegration = true;
@@ -20,7 +20,7 @@
           # since stylix's ghostty target would otherwise override this value.
           focus-follows-mouse = true;
           confirm-close-surface = false;
-          # linux-cgroup = "always"; # Linux-only; enable behind pkgs.stdenv.isLinux if re-adding
+          # linux-cgroup = "always"; # Linux-only; enable behind pkgs.stdenv.hostPlatform.isLinux if re-adding
           # linux-cgroup-hard-fail = false;
         };
       };

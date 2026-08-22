@@ -124,7 +124,7 @@
 
         dap.CodeLLDB.binary = codelldb;
 
-        agent_servers."Claude Code".command = exe pkgs.claude-code-acp "claude-agent-acp";
+        agent_servers."Claude Code".command = exe pkgs.claude-agent-acp "claude-agent-acp";
       };
     };
   };

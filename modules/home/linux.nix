@@ -7,7 +7,7 @@
     pkgs,
     ...
   }:
-    lib.mkIf pkgs.stdenv.isLinux {
+    lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
       home.pointerCursor.enable = true;
       home.packages = with pkgs; [
         spotify-player

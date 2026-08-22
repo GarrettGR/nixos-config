@@ -111,10 +111,7 @@
             gitsigns.codeActions.enable = false; # throws an annoying debug message
           };
 
-          minimap = {
-            minimap-vim.enable = false;
-            codewindow.enable = false; # lighter, faster, and uses lua for configuration
-          };
+          minimap.minimap-vim.enable = false;
 
           dashboard = {
             dashboard-nvim.enable = false;
