@@ -17,7 +17,6 @@
         keepassxc # look at alternative credential stores (??)
 
         obsidian
-        # bitwarden-desktop # FIXME: pulls in EOL electron-39.8.10
 
         legcord
         telegram-desktop
@@ -28,7 +27,6 @@
         speedread
         nmap
         speedtest-cli
-        localsend
         rclone
         fastfetch
 
