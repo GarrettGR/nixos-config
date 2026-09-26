@@ -32,6 +32,7 @@
 
         jetbrains.clion
         jetbrains.rust-rover
+        jetbrains.rider
 
         # Build tools
         cmake
