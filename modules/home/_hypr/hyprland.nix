@@ -67,6 +67,12 @@
           pin = true;
           opacity = "1.0 override 1.0 override 1.0 override";
         }
+        {
+          name = "nm-vpn-auth-dialog";
+          match.class = "^(nm-openconnect-auth-dialog)$";
+          float = true;
+          center = true;
+        }
       ];
     };
   };

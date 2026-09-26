@@ -60,6 +60,8 @@
 
     services.dunst.enable = true;
 
+    services.network-manager-applet.enable = true;
+
     xdg = {
       enable = true;
       portal = {
