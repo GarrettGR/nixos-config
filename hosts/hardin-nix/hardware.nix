@@ -15,7 +15,10 @@
       kernelModules = [];
     };
     kernelModules = [];
-    kernelParams = ["appledrm.show_notch=1"];
+    kernelParams = [
+      "appledrm.show_notch=1"
+      "asahi.debug_flags=0x40000"
+    ];
     extraModulePackages = [];
     loader.efi.canTouchEfiVariables = false;
   };
@@ -58,6 +61,9 @@
       enable = true;
       powerOnBoot = true;
     };
-    asahi.setupAsahiSound = true;
+    asahi = {
+      setupAsahiSound = true;
+      avd.vaapi-support = true; #NOTE: this has some compatability problems
+    };
   };
 }
