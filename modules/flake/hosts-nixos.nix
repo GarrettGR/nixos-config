@@ -99,6 +99,7 @@ in {
       nixosModules = [
         m.nixos.keyboard
         m.nixos.nixflix
+        m.nixos.thelounge
         m.nixos.cloudflare-tunnel
         m.nixos.gaming
         m.nixos.networking
