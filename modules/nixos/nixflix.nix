@@ -62,6 +62,7 @@
           };
         };
         users = {
+          garrettgr = {
           ${config.flake.user.name} = {
             mutable = false;
             policy.isAdministrator = true;
@@ -69,6 +70,47 @@
           shikhar = {};
           corinne = {};
         };
+
+        plugins.AniDB.enable = false; # breaking on `builtins.convertHash` (missing on lix version)
+      };
+
+      sonarr = {
+        enable = true;
+        mediaDirs = [
+          "/data/media/tv"
+          "/mnt/drive/media/tv"
+        ];
+      };
+
+      sonarr-anime = {
+        enable = true;
+        mediaDirs = [
+          "/data/media/anime"
+          "/mnt/drive/media/anime"
+        ];
+      };
+
+      radarr = {
+        enable = true;
+        mediaDirs = [
+          "/data/media/movies"
+          "/mnt/drive/media/movies"
+        ];
+      };
+
+      prowlarr = {
+        enable = true;
+      };
+
+      seerr = {
+        enable = true;
+        externalUrlScheme = "http";
+      };
+
+      recyclarr = {
+        enable = true;
+        radarrQuality = "1080p";
+        sonarrQuality = "1080p";
       };
     };
 
