@@ -17,7 +17,6 @@
     kernelModules = [];
     kernelParams = [
       "appledrm.show_notch=1"
-      "asahi.debug_flags=0x40000"
     ];
     extraModulePackages = [];
     loader.efi.canTouchEfiVariables = false;

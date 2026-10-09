@@ -62,6 +62,7 @@ in {
         m.nixos.desktop
         m.nixos.networking
         m.nixos.packages
+        m.nixos.asahi_debug
         # m.nixos.filesystems
         inputs.determinate.nixosModules.default
       ];

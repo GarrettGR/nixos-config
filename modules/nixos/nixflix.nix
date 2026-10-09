@@ -63,7 +63,6 @@
         };
         users = {
           garrettgr = {
-          ${config.flake.user.name} = {
             mutable = false;
             policy.isAdministrator = true;
           };
