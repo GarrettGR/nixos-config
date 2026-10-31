@@ -24,11 +24,11 @@
     wallpapers = [
       (pkgs.fetchurl {
         url = "https://images.pexels.com/photos/1141853/pexels-photo-1141853.jpeg";
-        hash = "sha256-GG7/ySi7clvbN8pZYgwMEKt8Yl6PHeU2cZd697AiYZA=";
+        hash = "sha256-YTyZXHSqBuKRghrm9/0QWjaO50z2xIea3ZsXzdlAx0c=";
       })
       (pkgs.fetchurl {
         url = "https://images.pexels.com/photos/3131634/pexels-photo-3131634.jpeg";
-        hash = "sha256-5ZtykbksGGCaVHRGrmVm/IwX77mIPY1+nHEkl+f94R4=";
+        hash = "sha256-jyI9gFBi6+Lp6aFGp8Qx8bjHLBhoUyg4iKI7ULYCzrY=";
       })
       (pkgs.fetchurl {
         url = "https://images.pexels.com/photos/18997075/pexels-photo-18997075.jpeg";
@@ -36,7 +36,7 @@
       })
       (pkgs.fetchurl {
         url = "https://images.pexels.com/photos/3013995/pexels-photo-3013995.jpeg";
-        hash = "sha256-Fxk6B8gDmlV9Zd6GtTJkFk65MxukxcWvFXezpWgg8Lc=";
+        hash = "sha256-gZnaD7VbYolsDmyRuYXLmH5LYbod/WJ5C1HsNEJF7MA=";
       })
     ];
 
