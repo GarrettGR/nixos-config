@@ -19,19 +19,29 @@
 
   fileSystems = {
     "/" = {
-      device = "/dev/disk/by-uuid/3d1bb2c3-43a5-4f68-8fd6-93e3802bd164";
-      fsType = "ext4";
+      device = "/dev/disk/by-uuid/a033f034-6e90-45ed-8d37-a6952a46946d";
+      fsType = "btrfs";
+      options = [ "subvol=@" "compress=zstd" "noatime" ];
     };
-
-    "/mnt/drive" = {
-      device = "/dev/disk/by-uuid/6b64989c-5ae9-4e99-b86a-44fb1648f765";
-      fsType = "ext4";
+    "/home" = {
+      device = "/dev/disk/by-uuid/a033f034-6e90-45ed-8d37-a6952a46946d";
+      fsType = "btrfs";
+      options = [ "subvol=@home" ];
     };
-
+    "/nix" = {
+      device = "/dev/disk/by-uuid/a033f034-6e90-45ed-8d37-a6952a46946d";
+      fsType = "btrfs";
+      options = [ "subvol=@nix" ];
+    };
+    "/var/log" = {
+      device = "/dev/disk/by-uuid/a033f034-6e90-45ed-8d37-a6952a46946d";
+      fsType = "btrfs";
+      options = [ "subvol=@log" ];
+    };
     "/boot" = {
-      device = "/dev/disk/by-uuid/06AB-66BA";
+      device = "/dev/disk/by-uuid/EE28-BFC5";
       fsType = "vfat";
-      options = ["fmask=0077" "dmask=0077"];
+      options = [ "fmask=0077" "dmask=0077" ];
     };
   };
 
@@ -50,7 +60,7 @@
       powerManagement.finegrained = false;
       open = false; # open = true;
       nvidiaSettings = true;
-      package = config.boot.kernelPackages.nvidiaPackages.beta; # nvidiaPackages.dc; # <- datacenter drivers
+      package = config.boot.kernelPackages.nvidiaPackages.latest; # nvidiaPackages.dc; # <- datacenter drivers
     };
 
     cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
