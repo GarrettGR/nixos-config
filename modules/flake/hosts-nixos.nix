@@ -84,13 +84,17 @@ in {
         m.nixos.desktop
         m.nixos.gaming
         m.nixos.networking
+        m.nixos.ios-usb
         m.nixos.nfs
+        m.nixos.logitech
         m.nixos.packages
+        m.nixos.resolve
       ];
       homeModules = [
         m.homeManager.linux
         m.homeManager.desktop
         m.homeManager.zen
+        m.homeManager.resolve
       ];
       hostModule = ../../hosts/arrakis-nix;
     };
