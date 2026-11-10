@@ -31,7 +31,6 @@
       cuda_profiler_api
       # cuda_nvrtc
       # cuda_cupti
-      cuda_nsight
       nsight_compute
       nsight_systems
       # cuda_nvvp
