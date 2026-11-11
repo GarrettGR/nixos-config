@@ -9,6 +9,7 @@
     imports = [
       config.flake.modules.nixos.containers
       config.flake.modules.nixos.nix-settings
+      config.flake.modules.nixos.overlays
     ];
 
     system.stateVersion = "25.05";
