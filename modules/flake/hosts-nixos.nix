@@ -78,6 +78,8 @@ in {
     arrakis-nix = mkNixos {
       system = "x86_64-linux";
       nixosModules = [
+        m.nixos.disko-btrfs
+        m.nixos.btrfs
         m.nixos.nix-caches-cuda
         m.nixos.keyboard
         m.nixos.display-manager
