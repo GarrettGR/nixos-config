@@ -4,7 +4,7 @@
     imports = [inputs.nvf.nixosModules.default];
 
     programs.nvf = {
-      enable = true;
+      enable = false;
       settings = {
         config.vim = {
           viAlias = false;
