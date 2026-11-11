@@ -1,0 +1,31 @@
+From: Garrett Gonzalez-Rivas <emailforggr@gmail.com>
+Subject: [PATCH] tools/include: define __u128/__s128 for the tools build
+
+Linux 7.3 UAPI headers (shipped by glibc-dev in nixpkgs) use __u128 in
+arm64 <asm/ptrace.h> and <asm/sigcontext.h>. Building tools/bpf/resolve_btfids
+against a 7.2 tree pulls those system headers in through tools/include,
+whose <linux/types.h> shadows the system one and never defines __u128,
+so libbpf fails with "unknown type name '__u128'".
+
+Define the types the same way the 7.3 UAPI <linux/types.h> does. An
+identical typedef repeated in C11 is accepted, so this is harmless when
+the system header also defines them.
+
+---
+ tools/include/linux/types.h | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+--- a/tools/include/linux/types.h
++++ b/tools/include/linux/types.h
+@@ -13,6 +13,11 @@
+ #include <asm/types.h>
+ #include <asm/posix_types.h>
+ 
++#ifdef __SIZEOF_INT128__
++typedef __signed__ __int128 __s128 __attribute__((aligned(16)));
++typedef unsigned __int128 __u128 __attribute__((aligned(16)));
++#endif
++
+ struct page;
+ struct kmem_cache;
+ 

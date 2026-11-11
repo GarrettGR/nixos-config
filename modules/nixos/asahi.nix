@@ -57,6 +57,14 @@
       };
     };
 
+    # nixpkgs' 7.3 UAPI headers use __u128, which the 7.2 tree's tools/include
+    # doesn't define, breaking resolve_btfids. Drop once linux-asahi reaches 7.3.
+    boot.kernelPatches = [
+      {
+        name = "tools-include-add-u128";
+        patch = ./_kernel-patches/tools-include-add-u128.patch;
+      }
+    ];
 
     boot.loader.grub = {
       enable = true;
