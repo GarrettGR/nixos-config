@@ -26,6 +26,8 @@
         la = "eza --all $eza_params";
         lt = "eza --icons --tree --color-scale=all --git --level=3";
         lr = "eza --recurse --level=2 $eza_params";
+        lblk = "command lsblk";
+        lsblk = "lsblk -o NAME,MODEL,SIZE,FSTYPE,MOUNTPOINTS,LABEL,UUID";
         cat = "bat";
         ccat = "command cat";
         rl = "exec zsh";
@@ -34,8 +36,6 @@
         gd = "git diff";
       };
 
-      # eza_params was referenced by the ls aliases but never defined; define it
-      # here so the aliases work (previously ls ran with empty params).
       localVariables = {
         eza_params = [
           "--git"

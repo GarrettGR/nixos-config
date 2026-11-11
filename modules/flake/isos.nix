@@ -30,8 +30,10 @@
     .build
     .isoImage;
 
-  # buildSystem: the machine doing the build. "aarch64-linux" = native,
-  # "x86_64-linux" = cross-compiled (slow, little binary-cache coverage).
+  # buildSystem: the machine doing the build.
+  #
+  #   "aarch64-linux" = native,
+  #   "x86_64-linux" = cross-compiled (slow, little binary-cache coverage).
   isoAppleSilicon = buildSystem:
     inputs.apple-silicon-support.lib.mkInstallerBootstrapCustom {
       system = buildSystem;

@@ -1,11 +1,4 @@
-# Extras layered on top of both installer ISOs (see flake/isos.nix):
-#   - a writable copy of this flake at ~nixos/nixos-config on the live ISO;
-#     `install-host` puts it at /etc/nixos/nixos-config on the installed system
-#   - binary caches, disko + partitioning tools
-#   - `install-host <host>`: disko format/mount + nixos-install for a host
-#
-# No `specialArgs` here: the Apple Silicon ISO builder only passes
-# `modulesPath`, so everything comes from the flake-parts closure.
+#NOTE: No `specialArgs` here: the Apple Silicon ISO builder only passes `modulesPath`, so everything comes from the flake-parts closure.
 {
   inputs,
   config,

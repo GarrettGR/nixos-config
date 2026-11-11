@@ -66,8 +66,8 @@
     };
 
     # null = extract vendorfw/firmware.cpio from the ESP in the initrd at every
-    # boot (systemd initrd). No absolute path in the config, so pure eval works
-    # and --impure is no longer needed.
+    # boot (systemd initrd). 
+    # No absolute path in the config (pure eval, so no more --impure is needed)
     hardware.asahi.peripheralFirmwareDirectory = null;
 
     environment.systemPackages =

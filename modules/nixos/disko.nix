@@ -1,13 +1,3 @@
-# Declarative disk layouts (disko). A host opts in by adding one of these
-# modules in flake/hosts-nixos.nix and setting `custom.disko.*` in its
-# hardware.nix. disko then GENERATES the host's `fileSystems`, so
-# hardware.nix must not also declare them.
-#
-# disko only touches disks when you run the `disko` CLI (e.g. via
-# `install-host` on the ISO). On a running system the layout is just the
-# source of fileSystems, so an existing install can adopt a layout without
-# reformatting as long as labels/subvolumes match what's on disk.
-#
 #   disko-btrfs : whole-disk GPT -> ESP (label ESP, fs label BOOT) + btrfs
 #                 (label nixos). DESTRUCTIVE when run: wipes the disk.
 #   disko-asahi : Apple Silicon. Never repartitions (macOS and the Asahi stub
@@ -42,20 +32,6 @@
     }
     // cfg.extraSubvolumes;
 
-  # Device options accept either an absolute path or a bare name as printed
-  # by `ls /dev/disk/by-id/` (expanded to /dev/disk/by-id/<name>).
-  toDevicePath = lib: d:
-    if lib.hasPrefix "/" d
-    then d
-    else "/dev/disk/by-id/${d}";
-
-  devicePath = lib: description: example:
-    lib.mkOption {
-      type = lib.types.str;
-      apply = toDevicePath lib;
-      inherit description example;
-    };
-
   commonOptions = lib: {
     extraSubvolumes = lib.mkOption {
       type = with lib.types; attrsOf anything;
@@ -68,8 +44,6 @@
       };
       description = ''
         Extra subvolumes on the root btrfs filesystem (disko subvolume syntax).
-        Data on *other* disks (e.g. a RAID array) belongs in its own
-        `disko.devices.disk.*` entries in the host config instead.
       '';
     };
   };
@@ -86,10 +60,11 @@ in {
     options.custom.disko =
       commonOptions lib
       // {
-        device =
-          devicePath lib
-          "Whole disk to partition: a /dev/disk/by-id path or bare by-id name."
-          "nvme-Samsung_SSD_970_EVO_Plus_1TB_XXXX";
+        device = lib.mkOption {
+          type = lib.types.str;
+          example = "/dev/disk/by-id/nvme-Samsung_SSD_970_EVO_Plus_1TB_XXXX";
+          description = "Whole disk to partition, as an absolute path. Prefer /dev/disk/by-id.";
+        };
         espSize = lib.mkOption {
           type = lib.types.str;
           default = "5G";
@@ -146,7 +121,6 @@ in {
         device = lib.mkOption {
           type = lib.types.str;
           default = "/dev/disk/by-partlabel/nixos";
-          apply = toDevicePath lib;
           description = ''
             The NixOS root *partition* (not the whole disk). Create it in the
             free space left by the Asahi installer:
@@ -157,7 +131,6 @@ in {
         espDevice = lib.mkOption {
           type = lib.types.str;
           example = "/dev/disk/by-uuid/C833-0A0F";
-          apply = toDevicePath lib;
           description = ''
             The ESP made by the Asahi installer (m1n1 stage 2, U-Boot,
             vendorfw/firmware.cpio). Mounted at /boot/efi, never formatted.
@@ -186,9 +159,8 @@ in {
           destroy = false;
           content = {
             type = "btrfs";
-            # 4K sectors (btrfs-progs default since 6.3, what Fedora Asahi
-            # uses). GRUB must read /boot from this filesystem.
             extraArgs = ["-L" "nixos" "--sectorsize" "4096"];
+            # NOTE: using 4K sectors since GRUB must read /boot from this filesystem and running 4K sectors on a 16K page size is more mature now
             subvolumes = subvolumes cfg;
           };
         };
