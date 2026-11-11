@@ -78,6 +78,7 @@ in {
     arrakis-nix = mkNixos {
       system = "x86_64-linux";
       nixosModules = [
+        m.nixos.nix-caches-cuda
         m.nixos.keyboard
         m.nixos.display-manager
         m.nixos.n8n
@@ -102,6 +103,7 @@ in {
     hyperion-nix = mkNixos {
       system = "x86_64-linux";
       nixosModules = [
+        m.nixos.nix-caches-cuda
         m.nixos.keyboard
         m.nixos.nixflix
         m.nixos.thelounge

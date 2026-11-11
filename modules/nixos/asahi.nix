@@ -1,4 +1,8 @@
-{inputs, ...}: {
+{
+  inputs,
+  config,
+  ...
+}: {
   flake.modules.nixos.asahi = {pkgs, ...}: let
     wifi-recover = pkgs.writeShellApplication {
       name = "wifi-recover"; # NOTE: reloading the module bumps the phy name
@@ -46,7 +50,10 @@
       '';
     };
   in {
-    imports = [inputs.apple-silicon-support.nixosModules.apple-silicon-support];
+    imports = [
+      inputs.apple-silicon-support.nixosModules.apple-silicon-support
+      config.flake.modules.nixos.nix-caches-asahi
+    ];
 
     hardware.asahi.enable = true;
 
