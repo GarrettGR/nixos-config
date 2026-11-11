@@ -7,6 +7,7 @@
 }: {
   imports = [
     ./hardware.nix
+    ./swap.nix
     ./cuda.nix
     ./packages.nix
     ./users.nix

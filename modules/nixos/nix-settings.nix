@@ -1,9 +1,36 @@
-{config, ...}: {
+{config, ...}: let
+  caches = {
+    general = {
+      "https://nix-community.cachix.org" = "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=";
+      "https://hyprland.cachix.org" = "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=";
+    };
+    asahi = {
+      "https://nixos-apple-silicon.cachix.org" = "nixos-apple-silicon.cachix.org-1:8psDu5SA5dAD7qA0zMy5UT292TxeEPzIz8VVEr2Js20=";
+    };
+    cuda = {
+      "https://cache.nixos-cuda.org" = "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M=";
+      "https://cache.flox.dev" = "flox-cache-public-1:7F4OyH7ZCnFhcze3fJdfyXYLQw/aV7GEed86nQ7IsOs=";
+    };
+  };
+
+  mkCacheModule = set: {lib, ...}: {
+    nix.settings = {
+      extra-substituters = lib.attrNames set;
+      extra-trusted-public-keys = lib.attrValues set;
+    };
+  };
+in {
+  flake.modules.nixos.nix-caches = mkCacheModule caches.general;
+  flake.modules.nixos.nix-caches-asahi = mkCacheModule caches.asahi;
+  flake.modules.nixos.nix-caches-cuda = mkCacheModule caches.cuda;
+
   flake.modules.nixos.nix-settings = {
     lib,
     pkgs,
     ...
   }: {
+    imports = [config.flake.modules.nixos.nix-caches];
+
     nix = {
       package = lib.mkDefault pkgs.lix;
       settings = {
@@ -11,13 +38,6 @@
 
         experimental-features = ["nix-command" "flakes"];
         auto-optimise-store = true;
-
-        extra-substituters = [
-          "https://nixos-apple-silicon.cachix.org"
-        ];
-        extra-trusted-public-keys = [
-          "nixos-apple-silicon.cachix.org-1:8psDu5SA5dAD7qA0zMy5UT292TxeEPzIz8VVEr2Js20="
-        ];
       };
       gc = {
         automatic = true;

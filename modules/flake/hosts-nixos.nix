@@ -54,6 +54,8 @@ in {
       system = "aarch64-linux";
       nixosModules = [
         m.nixos.asahi
+        m.nixos.disko-asahi
+        m.nixos.btrfs
         m.nixos.keyboard
         m.nixos.titdb
         m.nixos.display-manager
@@ -78,6 +80,9 @@ in {
     arrakis-nix = mkNixos {
       system = "x86_64-linux";
       nixosModules = [
+        m.nixos.disko-btrfs
+        m.nixos.btrfs
+        m.nixos.nix-caches-cuda
         m.nixos.keyboard
         m.nixos.display-manager
         m.nixos.n8n
@@ -102,6 +107,7 @@ in {
     hyperion-nix = mkNixos {
       system = "x86_64-linux";
       nixosModules = [
+        m.nixos.nix-caches-cuda
         m.nixos.keyboard
         m.nixos.nixflix
         m.nixos.thelounge

@@ -1,4 +1,8 @@
-{inputs, ...}: {
+{
+  inputs,
+  config,
+  ...
+}: {
   flake.modules.nixos.asahi = {pkgs, ...}: let
     wifi-recover = pkgs.writeShellApplication {
       name = "wifi-recover"; # NOTE: reloading the module bumps the phy name
@@ -46,7 +50,10 @@
       '';
     };
   in {
-    imports = [inputs.apple-silicon-support.nixosModules.apple-silicon-support];
+    imports = [
+      inputs.apple-silicon-support.nixosModules.apple-silicon-support
+      config.flake.modules.nixos.nix-caches-asahi
+    ];
 
     hardware.asahi = {
       enable = true;
@@ -74,7 +81,10 @@
       gfxmodeEfi = "2560x1664";
     };
 
-    hardware.asahi.peripheralFirmwareDirectory = /etc/nixos/firmware;
+    # null = extract vendorfw/firmware.cpio from the ESP in the initrd at every
+    # boot (systemd initrd). 
+    # No absolute path in the config (pure eval, so no more --impure is needed)
+    hardware.asahi.peripheralFirmwareDirectory = null;
 
     environment.systemPackages =
       (with pkgs; [
