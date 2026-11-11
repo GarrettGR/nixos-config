@@ -54,6 +54,8 @@ in {
       system = "aarch64-linux";
       nixosModules = [
         m.nixos.asahi
+        m.nixos.disko-asahi
+        m.nixos.btrfs
         m.nixos.keyboard
         m.nixos.titdb
         m.nixos.display-manager
