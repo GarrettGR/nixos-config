@@ -38,13 +38,11 @@
     };
   };
 
-  # TODO: setup zram/zswap (whichever is recommended by asahi upstream)
-  # swapDevices = [
-  #   {
-  #     device = "/var/lib/swapfile";
-  #     size = 16 * 1024;
-  #   }
-  # ];
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+    memoryPercent = 50;
+  };
 
   services.logind.settings.Login = {
     HandlePowerKey = "ignore";
