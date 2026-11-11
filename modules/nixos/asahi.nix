@@ -48,7 +48,15 @@
   in {
     imports = [inputs.apple-silicon-support.nixosModules.apple-silicon-support];
 
-    hardware.asahi.enable = true;
+    hardware.asahi = {
+      enable = true;
+      setupAsahiSound = true;
+      avd = {
+        vaapi-support = true;
+        codecs = [ "all" ];
+      };
+    };
+
 
     boot.loader.grub = {
       enable = true;

@@ -60,9 +60,5 @@
       enable = true;
       powerOnBoot = true;
     };
-    asahi = {
-      setupAsahiSound = true;
-      avd.vaapi-support = true; #NOTE: this has some compatability problems
-    };
   };
 }
