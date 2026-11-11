@@ -1,33 +1,56 @@
-{...}: {
+{lib, ...}: let
+  # Launch an app when one of these workspaces is created empty.
+  # Replaces the deprecated `on_created_empty` workspace-rule field (Hyprland 0.57+).
+  # Keyed by addressable_name, which stays "6" even after default_name renames it to "browser".
+  onCreatedEmpty = {
+    "6" = "zen-twilight";
+    "7" = "legcord";
+    "8" = "obsidian";
+    "9" = "ghostty";
+    "special:obs" = "obs";
+  };
+
+  luaTable = lib.concatStringsSep ", " (
+    lib.mapAttrsToList (ws: cmd: ''[${builtins.toJSON ws}] = ${builtins.toJSON cmd}'') onCreatedEmpty
+  );
+in {
   wayland.windowManager.hyprland.settings = {
+    on = [
+      {
+        _args = [
+          "workspace.created"
+          (lib.generators.mkLuaInline ''
+            function(ws)
+              local apps = { ${luaTable} }
+              if not ws or not ws.is_empty then return end
+              local cmd = apps[ws.addressable_name]
+              if cmd then hl.exec_cmd(cmd) end
+            end
+          '')
+        ];
+      }
+    ];
+
     workspace_rule = [
       {
         workspace = "6";
         default_name = "browser";
         layout = "monocle";
-        on_created_empty = "zen-twilight";
       }
       {
         workspace = "7";
         default_name = "discord";
         layout = "dwindle";
-        on_created_empty = "legcord";
       }
       {
         workspace = "8";
         default_name = "notes";
         layout = "master";
-        on_created_empty = "obsidian";
       }
       {
         workspace = "9";
         default_name = "terminal";
         layout = "dwindle";
-        on_created_empty = "ghostty";
-      }
-      {
-        workspace = "special:obs";
-        on_created_empty = "obs";
       }
     ];
 
