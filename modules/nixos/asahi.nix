@@ -65,7 +65,10 @@
       gfxmodeEfi = "2560x1664";
     };
 
-    hardware.asahi.peripheralFirmwareDirectory = /etc/nixos/firmware;
+    # null = extract vendorfw/firmware.cpio from the ESP in the initrd at every
+    # boot (systemd initrd). No absolute path in the config, so pure eval works
+    # and --impure is no longer needed.
+    hardware.asahi.peripheralFirmwareDirectory = null;
 
     environment.systemPackages =
       (with pkgs; [
