@@ -88,7 +88,6 @@
       fd
       fzf
       yazi
-      xclip
     ];
   };
 }

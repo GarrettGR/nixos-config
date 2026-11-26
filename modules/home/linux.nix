@@ -31,6 +31,8 @@
         fastfetch
 
         jujutsu
+
+        xclip
       ];
 
       programs.zathura.enable = true;
