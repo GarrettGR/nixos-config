@@ -20,6 +20,7 @@
       modules =
         [
           m.homeManager.cli
+          m.homeManager.dev
           m.homeManager.remote
           {
             home.username = username;

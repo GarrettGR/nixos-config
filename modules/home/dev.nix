@@ -1,3 +1,6 @@
+# Terminal dev tooling: toolchains, build tools, CLI helpers, direnv, gh. No
+# GUI apps, so it's shared by workstations (via core) and the headless remote
+# profiles; IDEs live in dev-gui.
 {...}: {
   flake.modules.homeManager.dev = {
     lib,
@@ -29,10 +32,6 @@
         yq
         tldr
         tio
-
-        jetbrains.clion
-        jetbrains.rust-rover
-        jetbrains.rider
 
         # Build tools
         cmake
