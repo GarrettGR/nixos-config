@@ -30,32 +30,5 @@
     # Terminfo for the terminal we actually connect from, so TERM=xterm-ghostty
     # works over ssh without copying terminfo by hand.
     home.packages = [pkgs.ghostty.terminfo];
-
-    # The login shell is bash and usually can't be changed (no chsh / LDAP-
-    # managed), so bash hands interactive sessions to zsh. HM's ~/.bashrc puts
-    # initExtra after its interactive guard, so scp/sftp/rsync and batch jobs
-    # never see the exec. Set NO_ZSH=1 to stay in bash for a session.
-    programs.bash = {
-      enable = true;
-      # Keep the site config (module system, scheduler env, proxies) that a
-      # cluster's default ~/.bashrc would normally source.
-      bashrcExtra = ''
-        [ -r /etc/bashrc ] && . /etc/bashrc
-      '';
-      initExtra = ''
-        if [ -z "$NO_ZSH" ] && [ -z "$ZSH_VERSION" ] && [ -x "${zsh}" ]; then
-          export SHELL="${zsh}"
-          exec "${zsh}" -l
-        fi
-      '';
-    };
-
-    # `module load ...` is a shell function, so it doesn't survive the exec;
-    # re-initialize Lmod / Environment Modules for zsh when the site has one.
-    programs.zsh.initContent = ''
-      if [[ -n "$MODULESHOME" && -r "$MODULESHOME/init/zsh" ]]; then
-        source "$MODULESHOME/init/zsh"
-      fi
-    '';
   };
 }
