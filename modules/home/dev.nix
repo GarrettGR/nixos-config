@@ -9,9 +9,6 @@
       fzf
       serie
       jq
-      yq
-      tldr
-      tio
     ];
 
     programs.direnv = {
