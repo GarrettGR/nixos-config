@@ -45,6 +45,15 @@
       fi
       export PATH
 
+      # nix itself and HM's session vars, which programs.bash would otherwise
+      # provide, so bash inside the namespace (fallback, nested, NO_ZSH) has
+      # `nix` too. No-op outside it, where these profile links dangle.
+      for f in "${config.home.profileDirectory}/etc/profile.d/nix.sh" \
+               "${config.home.profileDirectory}/etc/profile.d/hm-session-vars.sh"; do
+        [ -r "$f" ] && . "$f"
+      done
+      unset f
+
       ${cfg.bashInit}
 
       ${handoff}
