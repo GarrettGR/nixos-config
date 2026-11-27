@@ -10,29 +10,59 @@
     marker = "# managed by home-manager (homeManager.remote)";
     zcompdump = "${config.xdg.cacheHome}/zsh/zcompdump";
 
-    # Without /nix, the store only exists inside the user namespace, so enter
-    # it first and start zsh in there. Never lock out the login: probe the
-    # namespace before exec'ing into it (userns may be off on some nodes), and
-    # fall back to an interactive bash inside it if zsh isn't in the store.
+    # Every interactive bash switches to zsh, decided from the filesystem
+    # rather than an inherited env var: Slurm (srun/salloc) copies the whole
+    # environment into jobs, so a "handed off" marker would leak onto compute
+    # nodes and keep them in bash. For a deliberate bash: `NO_ZSH=1 bash`.
+    #
+    # Without /nix, the store only exists inside the user namespace. Outside
+    # it (fresh ssh/srun login), enter it and start zsh there; inside it
+    # (salloc's shell, nested bash), just switch. Never lock out the login:
+    # probe the namespace before exec'ing into it (userns may be off on some
+    # nodes), and stay in bash if zsh isn't in the store; that bash lands in
+    # the "inside" branch, where the -x check fails, so it can't loop.
     handoff =
       if cfg.nixUserChroot.enable
       then ''
-        if [[ $- == *i* && -z "$HM_ZSH_HANDOFF" && -z "$NO_ZSH" \
-              && -x "${cfg.nixUserChroot.binary}" && -d "${cfg.nixUserChroot.storeDir}" ]] \
-           && "${cfg.nixUserChroot.binary}" "${cfg.nixUserChroot.storeDir}" /usr/bin/env true 2>/dev/null; then
-          export HM_ZSH_HANDOFF=1 SHELL="${zsh}"
-          exec "${cfg.nixUserChroot.binary}" "${cfg.nixUserChroot.storeDir}" /usr/bin/env bash -c '
-            [ -x "$0" ] && exec "$0" -l
-            echo "nix-user-chroot: $0 missing, staying in bash" >&2
-            exec bash -i' "${zsh}"
+        if [[ $- == *i* && -z "$NO_ZSH" ]]; then
+          if [[ -d /nix/store ]]; then
+            if [[ -x "${zsh}" ]]; then
+              export SHELL="${zsh}"
+              exec "${zsh}" -l
+            fi
+          elif [[ -x "${cfg.nixUserChroot.binary}" && -d "${cfg.nixUserChroot.storeDir}" ]] \
+               && "${cfg.nixUserChroot.binary}" "${cfg.nixUserChroot.storeDir}" /usr/bin/env true 2>/dev/null; then
+            export SHELL="${zsh}"
+            exec "${cfg.nixUserChroot.binary}" "${cfg.nixUserChroot.storeDir}" /usr/bin/env bash -c '
+              [ -x "$0" ] && exec "$0" -l
+              echo "nix-user-chroot: $0 missing, staying in bash" >&2
+              exec bash -i' "${zsh}"
+          fi
         fi
       ''
       else ''
-        if [[ $- == *i* && -z "$HM_ZSH_HANDOFF" && -z "$NO_ZSH" && -x "${zsh}" ]]; then
-          export HM_ZSH_HANDOFF=1 SHELL="${zsh}"
+        if [[ $- == *i* && -z "$NO_ZSH" && -x "${zsh}" ]]; then
+          export SHELL="${zsh}"
           exec "${zsh}" -l
         fi
       '';
+
+    # Inside the namespace host root maps to `nobody`, so OpenSSH rejects the
+    # root-owned system config (/etc/ssh/ssh_config.d/*: "Bad owner or
+    # permissions"). These wrappers shadow the host binaries via the nix
+    # profile, which is only on PATH (and only resolvable) inside the
+    # namespace, and use only the user config. git and rsync pick up `ssh`
+    # from PATH; scp/sftp hardcode /usr/bin/ssh, hence -S.
+    hostSsh = "/usr/bin";
+    sshWrapper = pkgs.writeShellScriptBin "ssh" ''
+      if [ -r "$HOME/.ssh/config" ]; then conf="$HOME/.ssh/config"; else conf=none; fi
+      exec ${hostSsh}/ssh -F "$conf" "$@"
+    '';
+    sshWrappers = [
+      sshWrapper
+      (pkgs.writeShellScriptBin "scp" ''exec ${hostSsh}/scp -S ${sshWrapper}/bin/ssh "$@"'')
+      (pkgs.writeShellScriptBin "sftp" ''exec ${hostSsh}/sftp -S ${sshWrapper}/bin/ssh "$@"'')
+    ];
 
     bashrc = pkgs.writeText "remote-bashrc" ''
       ${marker}
@@ -47,8 +77,7 @@
       export PATH
 
       # nix itself and HM's session vars, which programs.bash would otherwise
-      # provide, so bash inside the namespace (fallback, nested, NO_ZSH) has
-      # `nix` too. No-op outside it, where these profile links dangle.
+      # provide, so bash inside the namespace (fallback, NO_ZSH) has `nix` too. No-op outside it, where these profile links dangle.
       for f in "${config.home.profileDirectory}/etc/profile.d/nix.sh" \
                "${config.home.profileDirectory}/etc/profile.d/hm-session-vars.sh"; do
         [ -r "$f" ] && . "$f"
@@ -106,6 +135,8 @@
           run mkdir -p "${builtins.dirOf zcompdump}"
           run rm -f "${zcompdump}" "${zcompdump}.zwc"
         '';
+
+        home.packages = sshWrappers;
       })
 
       {
@@ -138,9 +169,8 @@
         # managed), so bash hands interactive sessions to zsh. These files are
         # written as real files, not store symlinks, so login works even when
         # /nix/store isn't visible (nix-user-chroot) or the store is broken. The
-        # $- guard keeps scp/sftp/rsync and batch jobs in plain bash, and
-        # HM_ZSH_HANDOFF stops a nested `bash` from bouncing back into zsh.
-        # Set NO_ZSH=1 to stay in bash for a session.
+        # $- guard keeps scp/sftp/rsync and batch jobs in plain bash. Set
+        # NO_ZSH=1 to stay in bash (see `handoff` above).
         home.activation.remoteBashDotfiles = lib.hm.dag.entryAfter ["linkGeneration"] ''
           install_dotfile() {
             local src="$1" dest="$2"
