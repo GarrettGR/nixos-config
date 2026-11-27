@@ -64,6 +64,14 @@
       (pkgs.writeShellScriptBin "sftp" ''exec ${hostSsh}/sftp -S ${sshWrapper}/bin/ssh "$@"'')
     ];
 
+    # `hostbash [host]`: a plain host bash *outside* the namespace. Nothing
+    # started from inside can leave it, so open a fresh session over ssh
+    # (defaults to this node) with NO_ZSH=1 so ~/.bashrc skips the hand-off.
+    # NO_ZSH goes in the remote command because sshd drops most client env.
+    hostbash = pkgs.writeShellScriptBin "hostbash" ''
+      exec ${sshWrapper}/bin/ssh -t "''${1:-$HOSTNAME}" 'NO_ZSH=1 exec bash -il'
+    '';
+
     bashrc = pkgs.writeText "remote-bashrc" ''
       ${marker}
       # Keep the site config (module system, scheduler env, proxies) that a
@@ -136,7 +144,7 @@
           run rm -f "${zcompdump}" "${zcompdump}.zwc"
         '';
 
-        home.packages = sshWrappers;
+        home.packages = sshWrappers ++ [hostbash];
       })
 
       {
