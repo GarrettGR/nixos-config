@@ -39,8 +39,8 @@ in {
       }
       {
         workspace = "7";
-        default_name = "discord";
-        layout = "dwindle";
+        default_name = "chat";
+        layout = "monocle";
       }
       {
         workspace = "8";
@@ -79,7 +79,7 @@ in {
       }
       {
         name = "chat-to-workspace-7";
-        match.class = "^(legcord|discord)$";
+        match.class = "^(legcord|discord|org\\.telegram\\.desktop|TelegramDesktop|signal|com\\.github\\.dagmoller\\.whatsapp-electron)$";
         workspace = 7;
       }
       {
