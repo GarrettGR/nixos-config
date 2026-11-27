@@ -1,7 +1,3 @@
-# Builds flake.nixosConfigurations from the named dendritic modules. Each host
-# gets the common base (base/users/stylix/nvf + home core), its opted-in feature
-# modules, and a host-local leaf (hosts/<name>/default.nix) for hardware and
-# host-specific config.
 {
   inputs,
   config,
@@ -14,6 +10,7 @@
     system,
     nixosModules ? [],
     homeModules ? [],
+    homeCore ? m.homeManager.core,
     hostModule,
   }:
     inputs.nixpkgs.lib.nixosSystem {
@@ -37,7 +34,7 @@
               useUserPackages = true;
               extraSpecialArgs = {inherit inputs;};
               users.${userName} = {
-                imports = [m.homeManager.core] ++ homeModules;
+                imports = [homeCore] ++ homeModules;
                 home.username = userName;
                 home.homeDirectory = "/home/${userName}";
                 home.stateVersion = "25.05";
@@ -111,7 +108,9 @@ in {
         m.nixos.keyboard
         m.nixos.nixflix
         m.nixos.thelounge
-        m.nixos.cloudflare-tunnel
+        m.nixos.audiobookshelf
+        # cloudflare-tunnel: the university network blocks port 7844, so
+        # tycho-nix fronts hyperion's public subdomains instead.
         m.nixos.gaming
         m.nixos.networking
         # m.nixos.filesystems
@@ -121,6 +120,12 @@ in {
         m.homeManager.zen
       ];
       hostModule = ../../hosts/hyperion-nix;
+    };
+
+    tycho-nix = mkNixos {
+      system = "x86_64-linux";
+      homeCore = m.homeManager.cli;
+      hostModule = ../../hosts/tycho-nix;
     };
 
     rocinante-wsl-nix = mkNixos {
