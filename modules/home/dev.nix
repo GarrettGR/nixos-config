@@ -1,47 +1,15 @@
+# Terminal dev helpers: search/JSON tools, claude-code, direnv, gh. No
+# compilers (toolchains) or GUI apps (dev-gui), so it's shared by workstations
+# (via core) and the headless remote profiles.
 {...}: {
-  flake.modules.homeManager.dev = {
-    lib,
-    pkgs,
-    ...
-  }: {
-    home.packages = with pkgs;
-      [
-        # C/C++
-        gnumake
-        gcc
-
-        # Rust
-        rustup
-
-        # OCaml
-        ocaml
-        ocamlPackages.utop
-
-        # Python
-        python314
-
-        # Development tools
-        claude-code
-        ripgrep
-        fzf
-        serie
-        jq
-        yq
-        tldr
-        tio
-
-        jetbrains.clion
-        jetbrains.rust-rover
-        jetbrains.rider
-
-        # Build tools
-        cmake
-        ninja
-      ]
-      # Linux-only toolchain bits (glibc's libgcc); darwin uses its own.
-      ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
-        libgcc
-      ];
+  flake.modules.homeManager.dev = {pkgs, ...}: {
+    home.packages = with pkgs; [
+      claude-code
+      ripgrep
+      fzf
+      serie
+      jq
+    ];
 
     programs.direnv = {
       enable = true;
