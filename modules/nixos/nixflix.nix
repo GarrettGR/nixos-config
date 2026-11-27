@@ -140,6 +140,8 @@
         };
       "100.98.175.99" = jellyfinLocations;
       "jellyfin.garrettgr.net" = jellyfinLocations;
+      # nixflix already proxies seerr; just answer to the public name too.
+      "seerr.nixflix".serverAliases = ["requests.garrettgr.net"];
     };
 
     environment.systemPackages = with pkgs; [
