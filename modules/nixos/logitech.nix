@@ -1,9 +1,10 @@
 {...}: {
-  flake.modules.nixos.logitech = {pkgs, ...}: {
+  flake.modules.nixos.logitech = {...}: {
     hardware.logitech.wireless.enable = true;
 
-    environment.systemPackages = with pkgs; [
-      solaar
-    ];
+    programs.solaar = {
+      enable = true;
+      userService.enable = true;
+    };
   };
 }
